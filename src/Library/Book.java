@@ -75,11 +75,26 @@ public class Book {
     
     }
     void remove_Book(int isbn){
-    
+     con = DBconnect.connect();
+        try {
+            String sql = "DELETE FROM book_details WHERE ISBN ="+isbn;
+              pst = con.prepareStatement(sql);
+            boolean ck=  pst.execute();
+            System.out.println(isbn);
+           //   if(ck==true){
+              JOptionPane.showMessageDialog(null,"Successfully Deleted ");
+           //   }else{
+        //  
+          
+           //   }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,"Errror"+e);
+        }
+
     
     }
     void update_book(int pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
-        System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
+        //System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
       
         con = DBconnect.connect();
         try {

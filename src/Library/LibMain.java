@@ -49,7 +49,6 @@ public class LibMain extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
 
@@ -166,15 +165,6 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -40, 890, 760);
 
-        jLabel2.setText("jLabel2");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel2MouseReleased(evt);
-            }
-        });
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 890, 30);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,10 +203,6 @@ public class LibMain extends javax.swing.JFrame {
         xmouse = evt.getX();
         ymouse = evt.getY();
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
-      
-    }//GEN-LAST:event_jLabel2MouseReleased
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
        new Remove_Books().setVisible(true);
@@ -289,7 +275,6 @@ public class LibMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

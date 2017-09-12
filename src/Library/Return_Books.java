@@ -35,16 +35,12 @@ public class Return_Books extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setOpacity(0.9F);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jTextField1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -85,32 +81,6 @@ public class Return_Books extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(410, 320, 160, 40);
 
-        jLabel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel5MouseDragged(evt);
-            }
-        });
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel5MouseReleased(evt);
-            }
-        });
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 680, 40);
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Library/newpackage/images/download.png"))); // NOI18N
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(590, -20, 165, 115);
-
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(240, 128, 17));
         jLabel2.setText("Book Isbn");
@@ -131,36 +101,13 @@ public class Return_Books extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-200, 0, 920, 560);
 
-        setSize(new java.awt.Dimension(722, 541));
+        setSize(new java.awt.Dimension(738, 580));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseDragged
-
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xmouse, y - ymouse);
-
-    }//GEN-LAST:event_jLabel5MouseDragged
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel5MouseReleased
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        this.dispose();
-        xmouse = evt.getX();
-        ymouse = evt.getY();
-
-    }//GEN-LAST:event_jLabel6MouseClicked
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        new LibMain().setVisible(true);
+       
       
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -207,8 +154,6 @@ public class Return_Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

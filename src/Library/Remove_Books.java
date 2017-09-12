@@ -5,6 +5,17 @@
  */
 package Library;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author LuCif3R
@@ -18,6 +29,10 @@ public class Remove_Books extends javax.swing.JFrame {
     int ymouse;
     public Remove_Books() {
         initComponents();
+         changed();
+      
+       
+        
     }
 
     /**
@@ -29,7 +44,7 @@ public class Remove_Books extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel9 = new javax.swing.JLabel();
+        cat = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -37,31 +52,33 @@ public class Remove_Books extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        ISBN = new javax.swing.JTextField();
+        name1 = new javax.swing.JTextField();
+        pages = new javax.swing.JTextField();
+        qty = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        lang = new javax.swing.JTextField();
+        pr = new javax.swing.JTextField();
+        remove = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setOpacity(0.9F);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Library/newpackage/images/download.png"))); // NOI18N
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+        cat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catActionPerformed(evt);
             }
         });
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(240, -20, 165, 115);
+        cat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                catKeyPressed(evt);
+            }
+        });
+        getContentPane().add(cat);
+        cat.setBounds(160, 300, 154, 24);
 
         jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField7.setText("Search Book");
@@ -111,38 +128,96 @@ public class Remove_Books extends javax.swing.JFrame {
         jLabel8.setText("Catagory");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(50, 300, 80, 19);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(160, 100, 154, 24);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        ISBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                ISBNActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(160, 140, 154, 24);
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(160, 180, 154, 24);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(160, 220, 154, 24);
+        ISBN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ISBNKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ISBNKeyTyped(evt);
+            }
+        });
+        getContentPane().add(ISBN);
+        ISBN.setBounds(160, 100, 154, 24);
+
+        name1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                name1ActionPerformed(evt);
+            }
+        });
+        name1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                name1KeyPressed(evt);
+            }
+        });
+        getContentPane().add(name1);
+        name1.setBounds(160, 140, 154, 24);
+
+        pages.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pagesKeyPressed(evt);
+            }
+        });
+        getContentPane().add(pages);
+        pages.setBounds(160, 180, 154, 24);
+
+        qty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                qtyKeyPressed(evt);
+            }
+        });
+        getContentPane().add(qty);
+        qty.setBounds(160, 220, 154, 24);
 
         jButton1.setText("Update");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(60, 390, 90, 40);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(160, 260, 154, 24);
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(160, 300, 154, 24);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(60, 390, 90, 40);
 
-        jButton2.setText("Remove");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(217, 390, 80, 40);
+        lang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                langKeyPressed(evt);
+            }
+        });
+        getContentPane().add(lang);
+        lang.setBounds(160, 260, 154, 24);
+
+        pr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prActionPerformed(evt);
+            }
+        });
+        pr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                prKeyPressed(evt);
+            }
+        });
+        getContentPane().add(pr);
+        pr.setBounds(160, 340, 154, 24);
+
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(remove);
+        remove.setBounds(217, 390, 80, 40);
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Price");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(50, 340, 80, 19);
 
         jLabel1.setMaximumSize(new java.awt.Dimension(200, 100));
         jLabel1.setMinimumSize(new java.awt.Dimension(200, 100));
@@ -166,17 +241,17 @@ public class Remove_Books extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 370, 40);
 
-        setSize(new java.awt.Dimension(376, 482));
+        setSize(new java.awt.Dimension(392, 521));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_name1ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void prActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_prActionPerformed
 
     private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
 
@@ -194,13 +269,6 @@ public class Remove_Books extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseReleased
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        this.dispose();
-        xmouse = evt.getX();
-        ymouse = evt.getY();
-
-    }//GEN-LAST:event_jLabel9MouseClicked
-
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
         jTextField7.setText(" ");
     }//GEN-LAST:event_jTextField7FocusGained
@@ -209,6 +277,202 @@ public class Remove_Books extends javax.swing.JFrame {
          jTextField7.setText(" Search Books");
     }//GEN-LAST:event_jTextField7FocusLost
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       int number = 0;
+        String sbn = ISBN.getText();
+        int ISBN = Integer.parseInt(sbn);
+        String name = name1.getText();
+        String pagess = pages .getText();
+        int pags = Integer.parseInt(pagess);
+        String qun = qty.getText();
+        int quntity = Integer.parseInt(qun);
+        String lang = this.lang.getText();
+        String cat = this.cat.getText();
+        String date = null ;
+        String pri =  pr.getText();
+        double price = Double.parseDouble(pri);
+        PreparedStatement pst;
+        ResultSet rs = null;
+        Connection con = DBconnect.connect();
+        String temp =  null;
+        int nwquntity = 0;
+          
+        
+        //select available amounts from db
+        try {
+            String sql = "Select Available_amount , Quntity ,Pub_date from book_details where ISBN = " +ISBN;
+            pst = con.prepareStatement(sql);
+           rs = pst.executeQuery();
+            System.out.println("lollll");
+            System.out.println(rs);
+            while(rs.next()){
+                
+                   System.out.println(temp);
+                    number = rs.getInt("Available_amount");
+                    nwquntity=rs.getInt("Quntity");
+                    date=rs.getString("Pub_date");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Add_Books.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         //calculate new quntity and available books
+        number = number + quntity;
+        quntity = quntity + nwquntity;
+        
+            int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
+                if(out==0){ 
+                    Book b1 = new Book();
+                    b1.update_book(ISBN, name, date, lang, cat, quntity, number, pags, price);
+                }
+           
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_catActionPerformed
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+      
+        String SBN = null;
+         SBN = this.ISBN.getText();
+       int ISBN = Integer.parseInt(SBN);
+       Book b1 =new Book();
+       Connection con = DBconnect.connect();
+        try {
+            
+       String sql = "SELECT * FROM book_details WHERE ISBN ="+ISBN;
+        Statement st =  con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        if(rs.absolute(1)){
+            
+         int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
+                if(out==0){ 
+                     b1.remove_Book(ISBN);
+                }  
+        }else{
+            JOptionPane.showMessageDialog(null,"No Book on this ISBN");
+        }
+        } catch (Exception e) {
+        }
+ 
+        
+        
+            
+    }//GEN-LAST:event_removeActionPerformed
+
+    private void ISBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ISBNActionPerformed
+         
+    }//GEN-LAST:event_ISBNActionPerformed
+
+    private void ISBNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyTyped
+         changed();
+    }//GEN-LAST:event_ISBNKeyTyped
+
+    private void ISBNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyPressed
+      int key = evt.getKeyCode();
+        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
+        
+           ISBN.setEditable(true);
+           ISBN.setBackground(Color.WHITE);
+        }else
+        {
+            ISBN.setEditable(false);
+            ISBN.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_ISBNKeyPressed
+
+    private void name1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1KeyPressed
+         char key = evt.getKeyChar();
+        
+        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)|| (key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+       
+           name1.setEditable(true);
+           name1.setBackground(Color.WHITE);
+        }else
+        {
+            name1.setEditable(false);
+            name1.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_name1KeyPressed
+
+    private void pagesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pagesKeyPressed
+        int key = evt.getKeyCode();
+        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
+        
+           pages.setEditable(true);
+           pages.setBackground(Color.WHITE);
+        }else
+        {
+            pages.setEditable(false);
+            pages.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_pagesKeyPressed
+
+    private void qtyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyPressed
+          int key = evt.getKeyCode();
+        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
+        
+           qty.setEditable(true);
+           qty.setBackground(Color.WHITE);
+        }else
+        {
+            qty.setEditable(false);
+            qty.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_qtyKeyPressed
+
+    private void langKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_langKeyPressed
+                         char key = evt.getKeyChar();
+        
+        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+       
+           lang.setEditable(true);
+           lang.setBackground(Color.WHITE);
+        }else
+        {
+            lang.setEditable(false);
+            lang.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_langKeyPressed
+
+    private void catKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_catKeyPressed
+              
+                      char key = evt.getKeyChar();
+        
+        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)||(key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+       
+           cat.setEditable(true);
+           cat.setBackground(Color.WHITE);
+        }else
+        {
+            cat.setEditable(false);
+            cat.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_catKeyPressed
+
+    private void prKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prKeyPressed
+        
+                     int key = evt.getKeyCode();
+        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9)||key==KeyEvent.VK_DECIMAL ||key == KeyEvent.VK_BACK_SPACE||key == '.'||key==evt.VK_PERIOD){
+        
+           pr.setEditable(true);
+           pr.setBackground(Color.WHITE);
+        }else
+        {
+            pr.setEditable(false);
+            pr.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_prKeyPressed
+
+     public void changed(){
+         if (!ISBN.getText().isEmpty()){
+             remove.setEnabled(true);
+         }
+         else {
+             remove.setEnabled(false);
+         }
+     }
     /**
      * @param args the command line arguments
      */
@@ -245,9 +509,11 @@ public class Remove_Books extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ISBN;
+    private javax.swing.JTextField cat;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -255,13 +521,12 @@ public class Remove_Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField lang;
+    private javax.swing.JTextField name1;
+    private javax.swing.JTextField pages;
+    private javax.swing.JTextField pr;
+    private javax.swing.JTextField qty;
+    private javax.swing.JButton remove;
     // End of variables declaration//GEN-END:variables
 }

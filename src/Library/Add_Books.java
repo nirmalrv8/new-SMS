@@ -53,8 +53,6 @@ public class Add_Books extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -71,83 +69,56 @@ public class Add_Books extends javax.swing.JFrame {
         pub = new javax.swing.JTextField();
         pr = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(60, 161, 210));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setUndecorated(true);
-        setOpacity(0.9F);
         getContentPane().setLayout(null);
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Library/newpackage/images/download.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(300, -10, 165, 115);
-
-        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel2MouseDragged(evt);
-            }
-        });
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel2MouseReleased(evt);
-            }
-        });
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 370, 40);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("ISBN");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 100, 80, 20);
+        jLabel3.setBounds(80, 80, 80, 20);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Name");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 140, 70, 20);
+        jLabel4.setBounds(80, 120, 70, 20);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pages");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 180, 66, 19);
+        jLabel5.setBounds(80, 160, 66, 19);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Quntity");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 220, 66, 19);
+        jLabel6.setBounds(80, 200, 66, 19);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Language");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(20, 260, 69, 19);
+        jLabel7.setBounds(80, 240, 69, 19);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Price");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(20, 380, 110, 19);
+        jLabel8.setBounds(80, 360, 110, 19);
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Published date");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(20, 340, 110, 19);
+        jLabel11.setBounds(80, 320, 110, 19);
 
         cata.setText("asdqqq");
         cata.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +132,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cata);
-        cata.setBounds(160, 300, 154, 24);
+        cata.setBounds(220, 280, 154, 24);
 
         isbn.setText("154");
         isbn.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -170,7 +141,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(isbn);
-        isbn.setBounds(160, 100, 154, 24);
+        isbn.setBounds(220, 80, 154, 24);
 
         name1.setText("uyuy");
         name1.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +155,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name1);
-        name1.setBounds(160, 140, 154, 24);
+        name1.setBounds(220, 120, 154, 24);
 
         pages.setText("4444");
         pages.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -193,7 +164,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pages);
-        pages.setBounds(160, 180, 154, 24);
+        pages.setBounds(220, 160, 154, 24);
 
         qunt.setText("54");
         qunt.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +178,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(qunt);
-        qunt.setBounds(160, 220, 154, 24);
+        qunt.setBounds(220, 200, 154, 24);
 
         lan.setText("awsdq");
         lan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -216,7 +187,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lan);
-        lan.setBounds(160, 260, 154, 24);
+        lan.setBounds(220, 240, 154, 24);
 
         pub.setText("457");
         pub.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +201,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pub);
-        pub.setBounds(160, 340, 154, 24);
+        pub.setBounds(220, 320, 154, 24);
 
         pr.setText("4111");
         pr.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +215,7 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pr);
-        pr.setBounds(160, 380, 154, 24);
+        pr.setBounds(220, 360, 154, 24);
 
         jButton1.setText("Add Book");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -253,46 +224,26 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(170, 430, 120, 40);
+        jButton1.setBounds(160, 420, 120, 40);
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
+        jLabel1.setText("Add Books");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(180, 20, 190, 40);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Catagory");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 300, 80, 19);
+        jLabel9.setBounds(80, 280, 80, 19);
 
         jLabel10.setText("jLabel10");
         getContentPane().add(jLabel10);
         jLabel10.setBounds(-920, -180, 1370, 690);
 
-        setSize(new java.awt.Dimension(446, 507));
+        setSize(new java.awt.Dimension(462, 546));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       this.dispose();
-              xmouse = evt.getX();
-       ymouse = evt.getY();
-      
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-       
-       
-      
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseReleased
-
-    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
-  
-        int x = evt.getXOnScreen();
-       int y = evt.getYOnScreen();
-        this.setLocation(x - xmouse, y - ymouse);
-        
-    }//GEN-LAST:event_jLabel2MouseDragged
 
     private void cataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cataActionPerformed
         // TODO add your handling code here:
@@ -471,7 +422,7 @@ public class Add_Books extends javax.swing.JFrame {
                 
                       char key = evt.getKeyChar();
         
-        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)||(key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)||key == KeyEvent.VK_BACK_SPACE){
        
            cata.setEditable(true);
            cata.setBackground(Color.WHITE);
@@ -552,7 +503,6 @@ public class Add_Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
