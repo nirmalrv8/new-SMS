@@ -7,8 +7,8 @@ package MainInterface;
 import static MainInterface.Login.type;
 import static MainInterface.Login.reg;
 
-import ProfileManagement.EmployeeProfile;
-import ProfileManagement.StudentProfile;
+
+import ProfileManagement.Profile;
 import com.mysql.jdbc.JDBC4ResultSet;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -311,12 +311,8 @@ public class Main extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //show profile frame
         this.dispose();
-        if(type == "teacher"){
-            new EmployeeProfile().setVisible(true);
-        }
-        else{
-            new StudentProfile().setVisible(true);
-        }
+        new Profile().setVisible(true);
+        
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
