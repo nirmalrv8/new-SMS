@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.JTextField;
+
 /**
  *
  * @author LuCif3R
@@ -32,7 +33,7 @@ public class Add_Books extends javax.swing.JFrame {
     int ymouse;
     public Add_Books() {
         initComponents();
-       
+      changer();
       
         
         
@@ -60,15 +61,15 @@ public class Add_Books extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        cata = new javax.swing.JTextField();
-        isbn = new javax.swing.JTextField();
+        cat = new javax.swing.JTextField();
+        ISBN = new javax.swing.JTextField();
         name1 = new javax.swing.JTextField();
         pages = new javax.swing.JTextField();
-        qunt = new javax.swing.JTextField();
-        lan = new javax.swing.JTextField();
+        qty = new javax.swing.JTextField();
+        lang = new javax.swing.JTextField();
         pub = new javax.swing.JTextField();
         pr = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        add = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -120,28 +121,34 @@ public class Add_Books extends javax.swing.JFrame {
         getContentPane().add(jLabel11);
         jLabel11.setBounds(80, 320, 110, 19);
 
-        cata.setText("asdqqq");
-        cata.addActionListener(new java.awt.event.ActionListener() {
+        cat.setText("asdqqq");
+        cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cataActionPerformed(evt);
+                catActionPerformed(evt);
             }
         });
-        cata.addKeyListener(new java.awt.event.KeyAdapter() {
+        cat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                cataKeyPressed(evt);
+                catKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                catKeyReleased(evt);
             }
         });
-        getContentPane().add(cata);
-        cata.setBounds(220, 280, 154, 24);
+        getContentPane().add(cat);
+        cat.setBounds(220, 280, 154, 24);
 
-        isbn.setText("154");
-        isbn.addKeyListener(new java.awt.event.KeyAdapter() {
+        ISBN.setText("154");
+        ISBN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                isbnKeyPressed(evt);
+                ISBNKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ISBNKeyReleased(evt);
             }
         });
-        getContentPane().add(isbn);
-        isbn.setBounds(220, 80, 154, 24);
+        getContentPane().add(ISBN);
+        ISBN.setBounds(220, 80, 154, 24);
 
         name1.setText("uyuy");
         name1.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +160,9 @@ public class Add_Books extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 name1KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                name1KeyReleased(evt);
+            }
         });
         getContentPane().add(name1);
         name1.setBounds(220, 120, 154, 24);
@@ -162,32 +172,41 @@ public class Add_Books extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pagesKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pagesKeyReleased(evt);
+            }
         });
         getContentPane().add(pages);
         pages.setBounds(220, 160, 154, 24);
 
-        qunt.setText("54");
-        qunt.addActionListener(new java.awt.event.ActionListener() {
+        qty.setText("54");
+        qty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quntActionPerformed(evt);
+                qtyActionPerformed(evt);
             }
         });
-        qunt.addKeyListener(new java.awt.event.KeyAdapter() {
+        qty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                quntKeyPressed(evt);
+                qtyKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                qtyKeyReleased(evt);
             }
         });
-        getContentPane().add(qunt);
-        qunt.setBounds(220, 200, 154, 24);
+        getContentPane().add(qty);
+        qty.setBounds(220, 200, 154, 24);
 
-        lan.setText("awsdq");
-        lan.addKeyListener(new java.awt.event.KeyAdapter() {
+        lang.setText("awsdq");
+        lang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                lanKeyPressed(evt);
+                langKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                langKeyReleased(evt);
             }
         });
-        getContentPane().add(lan);
-        lan.setBounds(220, 240, 154, 24);
+        getContentPane().add(lang);
+        lang.setBounds(220, 240, 154, 24);
 
         pub.setText("457");
         pub.addActionListener(new java.awt.event.ActionListener() {
@@ -198,6 +217,9 @@ public class Add_Books extends javax.swing.JFrame {
         pub.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pubKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pubKeyReleased(evt);
             }
         });
         getContentPane().add(pub);
@@ -213,18 +235,21 @@ public class Add_Books extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 prKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                prKeyReleased(evt);
+            }
         });
         getContentPane().add(pr);
         pr.setBounds(220, 360, 154, 24);
 
-        jButton1.setText("Add Book");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add.setText("Add Book");
+        add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(160, 420, 120, 40);
+        getContentPane().add(add);
+        add.setBounds(160, 420, 120, 40);
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setText("Add Books");
@@ -245,25 +270,25 @@ public class Add_Books extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cataActionPerformed
+    private void catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cataActionPerformed
+    }//GEN-LAST:event_catActionPerformed
 
     private void name1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         int number = 0;
-        String sbn = isbn.getText();
+        String sbn = ISBN.getText();
         int ISBN = Integer.parseInt(sbn);
         String name = name1.getText();
         String pagess = pages .getText();
         int pags = Integer.parseInt(pagess);
-        String qun = qunt.getText();
+        String qun = qty.getText();
         int quntity = Integer.parseInt(qun);
-        String lang = lan.getText();
-        String cat = cata.getText();
+        String lan = lang.getText();
+        String cata = cat.getText();
         String date = pub.getText();
         String pri =  pr.getText();
         double price = Double.parseDouble(pri);
@@ -274,7 +299,7 @@ public class Add_Books extends javax.swing.JFrame {
         int nwquntity = 0;
           
             Book b1 = new Book();
-             b1.add_Book(ISBN, name, date , lang, cat, quntity, price, pags);
+             b1.add_Book(ISBN, name, date , lan, cata, quntity, price, pags);
         
         try {
             pst = con.prepareStatement("Select Name from book_details where ISBN = "+ISBN);
@@ -318,22 +343,21 @@ public class Add_Books extends javax.swing.JFrame {
             
                     b1.stor_details();
                   JOptionPane.showMessageDialog(null, "Book Record stored" );
-            
+                     setnll();
         }else{
             int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
                 if(out==0){ 
                     
-                    b1.update_book(ISBN, name, date, lang, cat, quntity, number, pags, price);
+                    b1.update_book(ISBN, name, date, lan, cata, quntity, number, pags, price);
                 }
            
             
            
-            
-           
-            
+         
+            changer();
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addActionPerformed
 
     private void pubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pubActionPerformed
         // TODO add your handling code here:
@@ -343,22 +367,23 @@ public class Add_Books extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_prActionPerformed
 
-    private void quntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quntActionPerformed
+    private void qtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qtyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quntActionPerformed
+    }//GEN-LAST:event_qtyActionPerformed
 
-    private void isbnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isbnKeyPressed
+    private void ISBNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyPressed
         int key = evt.getKeyCode();
         if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
         
-           isbn.setEditable(true);
-           isbn.setBackground(Color.WHITE);
+           ISBN.setEditable(true);
+           ISBN.setBackground(Color.WHITE);
         }else
         {
-            isbn.setEditable(false);
-            isbn.setBackground(Color.red);
+            ISBN.setEditable(false);
+            ISBN.setBackground(Color.red);
         }
-    }//GEN-LAST:event_isbnKeyPressed
+       
+    }//GEN-LAST:event_ISBNKeyPressed
 
     private void name1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1KeyPressed
         char key = evt.getKeyChar();
@@ -372,6 +397,7 @@ public class Add_Books extends javax.swing.JFrame {
             name1.setEditable(false);
             name1.setBackground(Color.red);
         }
+       
         
     }//GEN-LAST:event_name1KeyPressed
 
@@ -386,52 +412,56 @@ public class Add_Books extends javax.swing.JFrame {
             pages.setEditable(false);
             pages.setBackground(Color.red);
         }
+       
     }//GEN-LAST:event_pagesKeyPressed
 
-    private void quntKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quntKeyPressed
+    private void qtyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyPressed
        
       int key = evt.getKeyCode();
         if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
         
-           qunt.setEditable(true);
-           qunt.setBackground(Color.WHITE);
+           qty.setEditable(true);
+           qty.setBackground(Color.WHITE);
         }else
         {
-            qunt.setEditable(false);
-            qunt.setBackground(Color.red);
+            qty.setEditable(false);
+            qty.setBackground(Color.red);
         }
-    }//GEN-LAST:event_quntKeyPressed
+        
+    }//GEN-LAST:event_qtyKeyPressed
 
-    private void lanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lanKeyPressed
+    private void langKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_langKeyPressed
       
                       char key = evt.getKeyChar();
         
-        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+        if ((key>=evt.VK_A || key >= evt.VK_Z) ||key == KeyEvent.VK_BACK_SPACE){
        
-           lan.setEditable(true);
-           lan.setBackground(Color.WHITE);
+           lang.setEditable(true);
+           lang.setBackground(Color.WHITE);
         }else
         {
-            lan.setEditable(false);
-            lan.setBackground(Color.red);
+            lang.setEditable(false);
+            lang.setBackground(Color.red);
         }
-    }//GEN-LAST:event_lanKeyPressed
+        
+    }//GEN-LAST:event_langKeyPressed
 
-    private void cataKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cataKeyPressed
+    private void catKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_catKeyPressed
         
                 
                       char key = evt.getKeyChar();
         
         if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)||key == KeyEvent.VK_BACK_SPACE){
        
-           cata.setEditable(true);
-           cata.setBackground(Color.WHITE);
+           cat.setEditable(true);
+           cat.setBackground(Color.WHITE);
         }else
         {
-            cata.setEditable(false);
-            cata.setBackground(Color.red);
+            cat.setEditable(false);
+            cat.setBackground(Color.red);
         }
-    }//GEN-LAST:event_cataKeyPressed
+       
+    }//GEN-LAST:event_catKeyPressed
 
     private void pubKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pubKeyPressed
        
@@ -445,6 +475,7 @@ public class Add_Books extends javax.swing.JFrame {
             pub.setEditable(false);
             pub.setBackground(Color.red);
         }
+       
     }//GEN-LAST:event_pubKeyPressed
 
     private void prKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prKeyPressed
@@ -459,9 +490,68 @@ public class Add_Books extends javax.swing.JFrame {
             pr.setEditable(false);
             pr.setBackground(Color.red);
         }
+        
     }//GEN-LAST:event_prKeyPressed
 
+    private void ISBNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyReleased
+        changer();
+    }//GEN-LAST:event_ISBNKeyReleased
+
+    private void name1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1KeyReleased
+       changer();
+    }//GEN-LAST:event_name1KeyReleased
+
+    private void pagesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pagesKeyReleased
+        changer();
+    }//GEN-LAST:event_pagesKeyReleased
+
+    private void qtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyReleased
+       changer();
+    }//GEN-LAST:event_qtyKeyReleased
+
+    private void langKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_langKeyReleased
+       changer();
+    }//GEN-LAST:event_langKeyReleased
+
+    private void catKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_catKeyReleased
+        changer();
+    }//GEN-LAST:event_catKeyReleased
+
+    private void pubKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pubKeyReleased
+       changer();
+    }//GEN-LAST:event_pubKeyReleased
+
+    private void prKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prKeyReleased
+       changer();
+    }//GEN-LAST:event_prKeyReleased
+
+         public void setnll(){
+     
+            ISBN.setText(null);
+               name1.setText(null);
+                 pages.setText(null);
+                     qty.setText(null);
+                        lang.setText(null);
+                             cat.setText(null);
+                               pr.setText(null);
+                                pub.setText(null);
+     }  
+    public void changer(){
+     
+     
+      if (!ISBN.getText().isEmpty() && !name1.getText().isEmpty()&&!pages.getText().isEmpty()&& !lang.getText().isEmpty()&&!cat.getText().isEmpty()&&!pr.getText().isEmpty()){
+             add.setEnabled(true);
+           
+         }
+         else {
+               add.setEnabled(false);
+           
+         }
+     
+     }
+    
     /**
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -497,9 +587,9 @@ public class Add_Books extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cata;
-    private javax.swing.JTextField isbn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField ISBN;
+    private javax.swing.JButton add;
+    private javax.swing.JTextField cat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -510,11 +600,11 @@ public class Add_Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField lan;
+    private javax.swing.JTextField lang;
     private javax.swing.JTextField name1;
     private javax.swing.JTextField pages;
     private javax.swing.JTextField pr;
     private javax.swing.JTextField pub;
-    private javax.swing.JTextField qunt;
+    private javax.swing.JTextField qty;
     // End of variables declaration//GEN-END:variables
 }

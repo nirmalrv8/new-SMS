@@ -93,7 +93,7 @@ public class Book {
 
     
     }
-    void update_book(int pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
+    boolean update_book(int pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
         //System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
       
         con = DBconnect.connect();
@@ -101,13 +101,21 @@ public class Book {
             String sql = "UPDATE book_details SET Name = '"+name+"', pub_date = '"+date+"', Language = '"+lang+"',Category = '"+cat+"', Quntity = "+quntity+", Available_amount = " +number+ ", Pages = "+pagess+", Price ="+price+" where ISBN ="+ISBN;
             System.out.println("asdaf");
             pst = con.prepareStatement(sql);
-            pst.executeUpdate();
-                System.out.println("lol");
+            int b = pst.executeUpdate();
+                System.out.println(sql);
+                 if(b != 2&&b!=0){
+                     
+                     JOptionPane.showMessageDialog(null, " Successfull updated");
+                     return true;
+                 }else{
+                     
+                     JOptionPane.showMessageDialog(null, "no recorded data on this ("+pISbn+") ISBN");
+                    
+                 }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex );
             }
-            JOptionPane.showMessageDialog(null, " Successfull updated");
-    
+           return false;
     }
 
     

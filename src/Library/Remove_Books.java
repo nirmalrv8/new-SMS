@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author LuCif3R
  */
 public class Remove_Books extends javax.swing.JFrame {
-
+ boolean lock ;
     /**
      * Creates new form Remove_Books
      */
@@ -30,8 +30,9 @@ public class Remove_Books extends javax.swing.JFrame {
     public Remove_Books() {
         initComponents();
          changed();
+       changer();
       
-       
+               
         
     }
 
@@ -44,8 +45,9 @@ public class Remove_Books extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         cat = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        searchisbn = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -56,7 +58,7 @@ public class Remove_Books extends javax.swing.JFrame {
         name1 = new javax.swing.JTextField();
         pages = new javax.swing.JTextField();
         qty = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         lang = new javax.swing.JTextField();
         pr = new javax.swing.JTextField();
         remove = new javax.swing.JButton();
@@ -64,9 +66,12 @@ public class Remove_Books extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
+        cat.setText("awdwe");
         cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 catActionPerformed(evt);
@@ -76,22 +81,36 @@ public class Remove_Books extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 catKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                catKeyReleased(evt);
+            }
         });
         getContentPane().add(cat);
         cat.setBounds(160, 300, 154, 24);
 
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("Search Book");
-        jTextField7.addFocusListener(new java.awt.event.FocusAdapter() {
+        searchisbn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        searchisbn.setText("Search Book");
+        searchisbn.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField7FocusGained(evt);
+                searchisbnFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField7FocusLost(evt);
+                searchisbnFocusLost(evt);
             }
         });
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(60, 30, 250, 24);
+        searchisbn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchisbnKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchisbnKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchisbnKeyTyped(evt);
+            }
+        });
+        getContentPane().add(searchisbn);
+        searchisbn.setBounds(70, 20, 250, 24);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -129,6 +148,7 @@ public class Remove_Books extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(50, 300, 80, 19);
 
+        ISBN.setText("1233");
         ISBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ISBNActionPerformed(evt);
@@ -138,6 +158,9 @@ public class Remove_Books extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ISBNKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ISBNKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ISBNKeyTyped(evt);
             }
@@ -145,6 +168,7 @@ public class Remove_Books extends javax.swing.JFrame {
         getContentPane().add(ISBN);
         ISBN.setBounds(160, 100, 154, 24);
 
+        name1.setText("qwe");
         name1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name1ActionPerformed(evt);
@@ -154,43 +178,59 @@ public class Remove_Books extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 name1KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                name1KeyReleased(evt);
+            }
         });
         getContentPane().add(name1);
         name1.setBounds(160, 140, 154, 24);
 
+        pages.setText("123");
         pages.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pagesKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pagesKeyReleased(evt);
             }
         });
         getContentPane().add(pages);
         pages.setBounds(160, 180, 154, 24);
 
+        qty.setText("12");
         qty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 qtyKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                qtyKeyReleased(evt);
             }
         });
         getContentPane().add(qty);
         qty.setBounds(160, 220, 154, 24);
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(60, 390, 90, 40);
+        getContentPane().add(update);
+        update.setBounds(60, 390, 90, 40);
 
+        lang.setText("sd");
         lang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 langKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                langKeyReleased(evt);
             }
         });
         getContentPane().add(lang);
         lang.setBounds(160, 260, 154, 24);
 
+        pr.setText("12");
         pr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prActionPerformed(evt);
@@ -199,6 +239,9 @@ public class Remove_Books extends javax.swing.JFrame {
         pr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 prKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                prKeyReleased(evt);
             }
         });
         getContentPane().add(pr);
@@ -269,18 +312,19 @@ public class Remove_Books extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2MouseReleased
 
-    private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
-        jTextField7.setText(" ");
-    }//GEN-LAST:event_jTextField7FocusGained
+    private void searchisbnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchisbnFocusGained
+        searchisbn.setText(null);
+    }//GEN-LAST:event_searchisbnFocusGained
 
-    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
-         jTextField7.setText(" Search Books");
-    }//GEN-LAST:event_jTextField7FocusLost
+    private void searchisbnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchisbnFocusLost
+         searchisbn.setText(" Search Books");
+    }//GEN-LAST:event_searchisbnFocusLost
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
        int number = 0;
+      
         String sbn = ISBN.getText();
-        int ISBN = Integer.parseInt(sbn);
+        int IBN = Integer.parseInt(sbn);
         String name = name1.getText();
         String pagess = pages .getText();
         int pags = Integer.parseInt(pagess);
@@ -296,18 +340,22 @@ public class Remove_Books extends javax.swing.JFrame {
         Connection con = DBconnect.connect();
         String temp =  null;
         int nwquntity = 0;
-          
+   
         
         //select available amounts from db
         try {
-            String sql = "Select Available_amount , Quntity ,Pub_date from book_details where ISBN = " +ISBN;
+            String sql = "Select Available_amount , Quntity ,Pub_date from book_details where ISBN = " +IBN;
+            
             pst = con.prepareStatement(sql);
+        
            rs = pst.executeQuery();
-            System.out.println("lollll");
+           
             System.out.println(rs);
+                 System.out.println(sql);
             while(rs.next()){
-                
+                       
                    System.out.println(temp);
+              
                     number = rs.getInt("Available_amount");
                     nwquntity=rs.getInt("Quntity");
                     date=rs.getString("Pub_date");
@@ -318,15 +366,20 @@ public class Remove_Books extends javax.swing.JFrame {
          //calculate new quntity and available books
         number = number + quntity;
         quntity = quntity + nwquntity;
-        
+        boolean ck = false ;
             int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
                 if(out==0){ 
                     Book b1 = new Book();
-                    b1.update_book(ISBN, name, date, lang, cat, quntity, number, pags, price);
+                           b1.add_Book(IBN, name, pagess, lang, cat, quntity, price, pags);
+                    ck = b1.update_book(IBN, name, date, lang, cat, quntity, number, pags, price);
+                 
                 }
-           
+                if(ck == true)
+                   setnll();
+           changer();
+           changed();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
     private void catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catActionPerformed
         // TODO add your handling code here:
@@ -349,6 +402,7 @@ public class Remove_Books extends javax.swing.JFrame {
          int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
                 if(out==0){ 
                      b1.remove_Book(ISBN);
+                     setnll();
                 }  
         }else{
             JOptionPane.showMessageDialog(null,"No Book on this ISBN");
@@ -356,6 +410,12 @@ public class Remove_Books extends javax.swing.JFrame {
         } catch (Exception e) {
         }
  
+        
+     
+         changed();
+         changer();
+        
+        
         
         
             
@@ -366,10 +426,15 @@ public class Remove_Books extends javax.swing.JFrame {
     }//GEN-LAST:event_ISBNActionPerformed
 
     private void ISBNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyTyped
-         changed();
+         
     }//GEN-LAST:event_ISBNKeyTyped
 
     private void ISBNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyPressed
+        if (lock) {
+            ISBN.setEditable(false);
+        }else
+        {
+
       int key = evt.getKeyCode();
         if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
         
@@ -380,6 +445,7 @@ public class Remove_Books extends javax.swing.JFrame {
             ISBN.setEditable(false);
             ISBN.setBackground(Color.red);
         }
+            }
     }//GEN-LAST:event_ISBNKeyPressed
 
     private void name1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1KeyPressed
@@ -394,6 +460,7 @@ public class Remove_Books extends javax.swing.JFrame {
             name1.setEditable(false);
             name1.setBackground(Color.red);
         }
+        
     }//GEN-LAST:event_name1KeyPressed
 
     private void pagesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pagesKeyPressed
@@ -407,6 +474,7 @@ public class Remove_Books extends javax.swing.JFrame {
             pages.setEditable(false);
             pages.setBackground(Color.red);
         }
+        
     }//GEN-LAST:event_pagesKeyPressed
 
     private void qtyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyPressed
@@ -420,12 +488,13 @@ public class Remove_Books extends javax.swing.JFrame {
             qty.setEditable(false);
             qty.setBackground(Color.red);
         }
+       
     }//GEN-LAST:event_qtyKeyPressed
 
     private void langKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_langKeyPressed
                          char key = evt.getKeyChar();
         
-        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+        if ((key>=evt.VK_A || key >= evt.VK_Z)  ||key == KeyEvent.VK_BACK_SPACE){
        
            lang.setEditable(true);
            lang.setBackground(Color.WHITE);
@@ -440,7 +509,7 @@ public class Remove_Books extends javax.swing.JFrame {
               
                       char key = evt.getKeyChar();
         
-        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)||(key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)||key == KeyEvent.VK_BACK_SPACE){
        
            cat.setEditable(true);
            cat.setBackground(Color.WHITE);
@@ -465,14 +534,141 @@ public class Remove_Books extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_prKeyPressed
 
+    private void searchisbnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchisbnKeyPressed
+         
+   
+    }//GEN-LAST:event_searchisbnKeyPressed
+
+    private void searchisbnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchisbnKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchisbnKeyTyped
+
+    private void searchisbnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchisbnKeyReleased
+             try {
+              int search=0;
+       String s = searchisbn.getText();
+       search = Integer.parseInt(s);
+        System.out.println(search);
+          
+          String sql = "SELECT ISBN,Name,Pages,Quntity,Language,Category,Price FROM book_details WHERE ISBN = "+search;
+           System.out.println(sql);
+          Connection con =  DBconnect.connect();
+          PreparedStatement pst  = con.prepareStatement(sql);
+          ResultSet rs = pst.executeQuery();
+               
+                while (rs.next()) {
+                int sbn = rs.getInt("ISBN");
+                ISBN.setText(String.valueOf(sbn));
+                String name=  rs.getString("Name");
+                name1.setText(name);
+                int pagess = rs.getInt("Pages");
+                pages.setText(String.valueOf(pagess));
+           
+                int qun = rs.getInt("Quntity");
+                qty.setText(String.valueOf(qun));
+                
+                String lang = rs.getString("Language");
+                this.lang.setText(lang);
+                String cat = rs.getString("Category");
+                this.cat.setText(cat);
+               
+                double pri =  rs.getDouble("Price");
+                pr.setText(String.valueOf(pri));
+                
+                if (sbn!=0) {
+                     lock = true;
+                    
+                 }else
+                    lock=false;
+                
+                
+                 }
+               
+                changed();
+                changer();
+          
+         
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+      
+       
+        
+        
+    }//GEN-LAST:event_searchisbnKeyReleased
+
+    private void ISBNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyReleased
+     changed();
+         changer();
+    }//GEN-LAST:event_ISBNKeyReleased
+
+    private void name1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1KeyReleased
+   
+         changer();
+    }//GEN-LAST:event_name1KeyReleased
+
+    private void pagesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pagesKeyReleased
+       
+         changer();
+    }//GEN-LAST:event_pagesKeyReleased
+
+    private void qtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtyKeyReleased
+        
+         changer();
+    }//GEN-LAST:event_qtyKeyReleased
+
+    private void langKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_langKeyReleased
+        
+         changer();
+    }//GEN-LAST:event_langKeyReleased
+
+    private void catKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_catKeyReleased
+        
+         changer();
+    }//GEN-LAST:event_catKeyReleased
+
+    private void prKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prKeyReleased
+        
+         changer();
+    }//GEN-LAST:event_prKeyReleased
+
      public void changed(){
          if (!ISBN.getText().isEmpty()){
              remove.setEnabled(true);
+           
          }
          else {
              remove.setEnabled(false);
+             
          }
+       
      }
+     public void changer(){
+     
+     
+      if (!ISBN.getText().isEmpty() && !name1.getText().isEmpty()&&!pages.getText().isEmpty()&& !lang.getText().isEmpty()&&!cat.getText().isEmpty()&&!pr.getText().isEmpty()){
+             update.setEnabled(true);
+           
+         }
+         else {
+             update.setEnabled(false);
+             
+         }
+     
+     }
+     
+     public void setnll(){
+     
+            ISBN.setText(null);
+               name1.setText(null);
+                 pages.setText(null);
+                     qty.setText(null);
+                        lang.setText(null);
+                             cat.setText(null);
+                               pr.setText(null);
+           
+     }  
     /**
      * @param args the command line arguments
      */
@@ -521,12 +717,13 @@ public class Remove_Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField lang;
     private javax.swing.JTextField name1;
     private javax.swing.JTextField pages;
     private javax.swing.JTextField pr;
     private javax.swing.JTextField qty;
     private javax.swing.JButton remove;
+    private javax.swing.JTextField searchisbn;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
