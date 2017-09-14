@@ -30,7 +30,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        jTextField2.setEnabled(false);
+        jPasswordField1.setEnabled(false);
         //set frame size
         setPreferredSize(new Dimension(400, 300));
         pack();
@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
         
         //set textfield placeholder 
         TextPrompt tp7 = new TextPrompt("Reg num or staff ID", jTextField1);
-        TextPrompt tp8 = new TextPrompt("Password", jTextField2);
+        TextPrompt tp8 = new TextPrompt("Password", jPasswordField1);
         tp7.changeAlpha(0.5f);
         tp8.changeAlpha(0.5f);
     }
@@ -56,7 +56,6 @@ public class Login extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
@@ -83,12 +82,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField2KeyPressed(evt);
-            }
-        });
-
         jButton2.setText("Forgot Reg no or Password?");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +97,16 @@ public class Login extends javax.swing.JFrame {
         });
 
         jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPasswordField1MouseClicked(evt);
+            }
+        });
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
 
         jCheckBox1.setText("Show Password");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,27 +119,21 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                    .addComponent(jTextField1))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCheckBox1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField1)
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
                             .addComponent(jButton1)
                             .addComponent(jButton3))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,16 +143,14 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
+                    .addComponent(jButton1)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addGap(30, 30, 30)
                 .addComponent(jButton2)
-                .addGap(34, 34, 34))
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -183,7 +178,7 @@ public class Login extends javax.swing.JFrame {
             ResultSet re = ps.executeQuery();
                         
             while(re.next()){                
-                String pass = jTextField2.getText();
+                String pass = new String(jPasswordField1.getPassword());
                 String pass1 = re.getString("password");                
                 if(pass1.equals(pass)){
                     this.dispose();
@@ -191,6 +186,7 @@ public class Login extends javax.swing.JFrame {
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "wrong password");
+                    jPasswordField1.selectAll();
                 }
             }    
         }
@@ -249,12 +245,14 @@ public class Login extends javax.swing.JFrame {
             ResultSet re = ps.executeQuery();
 
             while(re.next()){
-                jTextField2.setEnabled(true);
+                jPasswordField1.setEnabled(true);
                 jTextField1.setEnabled(false); 
-                jTextField2.requestFocus();
+                jPasswordField1.selectAll();
+                jPasswordField1.requestFocus();
                 return;
             }    
             JOptionPane.showMessageDialog(null, "invalid reg num");
+            jTextField1.selectAll();
         }
         catch(SQLException ex){
             System.out.println("sql error " + ex.getMessage());
@@ -281,11 +279,15 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField1KeyPressed
 
-    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){            
             login();
         }
-    }//GEN-LAST:event_jTextField2KeyPressed
+    }//GEN-LAST:event_jPasswordField1KeyPressed
+
+    private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
+        jPasswordField1.selectAll();
+    }//GEN-LAST:event_jPasswordField1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,6 +331,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

@@ -73,10 +73,6 @@ public class SearchProfiles extends javax.swing.JFrame {
         
     }
     
-    public void searchProfile(){
-        
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -298,7 +294,7 @@ public class SearchProfiles extends javax.swing.JFrame {
             stt="select * from teacher where Teacher_ID like ?";
         }
         else if(jRadioButton5.isSelected()){
-            stt="select * from teacher where fname like ?";
+            stt="select * from teacher where name like ?";
         }         
         else{
             JOptionPane.showMessageDialog(null, "Please select search criteria");
@@ -306,9 +302,7 @@ public class SearchProfiles extends javax.swing.JFrame {
         }
         
         
-        try{
-                
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Button","RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
+        try{          
             
             ps = c.prepareStatement(stt);             
             ps.setString(1, "%" + jTextField1.getText() + "%" );
@@ -319,10 +313,13 @@ public class SearchProfiles extends javax.swing.JFrame {
                 return;
             }
             re.previous();
-            
+            DefaultTableModel model1 = new DefaultTableModel(new String[]{"RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
+            DefaultTableModel model2 = new DefaultTableModel(new String[]{"ID","Name", "Address", "Contact"}, 0);
             while(re.next()){   
+                //display student in table
                 
                 if(jRadioButton1.isSelected() || jRadioButton2.isSelected() || jRadioButton3.isSelected()  ){
+                    
                     String regno = re.getString("regNum");
                     String name = re.getString("name");
                     String age = re.getString("age");
@@ -335,19 +332,27 @@ public class SearchProfiles extends javax.swing.JFrame {
                     String contact = re.getString("contact");
                     String add = re.getString("address");
                     String email = re.getString("email");
-                    String button = "view" + name;
-                    model.addRow(new Object[]{button,regno,name,age,grade,stringDOB,contact,add,email});
-                      
+                    
+                    model1.addRow(new Object[]{regno,name,age,grade,stringDOB,contact,add,email});
+                    jTable1.setModel(model1); 
                 }
+                
                 else{
-                    //meeka hadapaaaaaaaaan
-                    String id = re.getString("Teacher_ID");
-                    System.out.println(id);
-                }              
+                    
+                    
+                    String ID = re.getString("Teacher_ID");
+                    String name = re.getString("name");
+                    String add = re.getString("address");
+                    String contact = re.getString("phone");               
+        
+                    
+                    model2.addRow(new Object[]{ID,name,add,contact});
+                    jTable1.setModel(model2);
+                }      
                 
             }
+              
             jPanel3.setVisible(true);
-            jTable1.setModel(model);
             
         }
         catch(SQLException ex){
