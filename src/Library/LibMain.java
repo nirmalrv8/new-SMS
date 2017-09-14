@@ -5,7 +5,8 @@
  */
 package Library;
 
-import Library.reports.ReportGenerate;
+//import Library.reports.ReportGenerate;
+import Profile.MainInterface.Main;
 import java.awt.Dimension;
 
 /**
@@ -48,7 +49,7 @@ public class LibMain extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
 
         jTextField2.setText("jTextField2");
 
@@ -74,7 +75,6 @@ public class LibMain extends javax.swing.JFrame {
         jButton3.setBounds(700, 480, 170, 82);
 
         jButton4.setText("Reservations");
-        jButton4.setRolloverEnabled(true);
         jButton4.setSelected(true);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +142,6 @@ public class LibMain extends javax.swing.JFrame {
         jTextField1.setBounds(127, 194, 402, 276);
 
         jButton7.setText("Add Book");
-        jButton7.setRolloverEnabled(true);
         jButton7.setSelected(true);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,18 +151,14 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jButton7);
         jButton7.setBounds(700, 30, 170, 82);
 
-        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel1MouseDragged(evt);
+        jButton8.setText("Back");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
             }
         });
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -40, 890, 760);
+        getContentPane().add(jButton8);
+        jButton8.setBounds(40, 30, 55, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -193,17 +188,6 @@ public class LibMain extends javax.swing.JFrame {
         jTextField3.setText("Search Books");
     }//GEN-LAST:event_jTextField3FocusLost
 
-    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
-     int x = evt.getXOnScreen();
-     int y = evt.getYOnScreen();
-        this.setLocation(x + xmouse, y+ ymouse);
-    }//GEN-LAST:event_jLabel1MouseDragged
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        xmouse = evt.getX();
-        ymouse = evt.getY();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
        new Remove_Books().setVisible(true);
     }//GEN-LAST:event_jButton6MouseClicked
@@ -221,7 +205,7 @@ public class LibMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new ReportGenerate("report1.jrxml");
+//        new ReportGenerate("report1.jrxml");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -231,6 +215,11 @@ public class LibMain extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.dispose();
+        new Main().setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,7 +263,7 @@ public class LibMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
