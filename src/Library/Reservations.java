@@ -34,6 +34,7 @@ public class Reservations extends javax.swing.JFrame {
         ISBN.setEditable(false);
         resDate.setEditable(false);
         Bname.setEditable(false);
+        resno.setEditable(false);
            search.setText(null);
       
     }
@@ -64,7 +65,9 @@ public class Reservations extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         lend = new javax.swing.JButton();
         del = new javax.swing.JButton();
+        resno = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -109,7 +112,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(70, 90, 256, 28);
+        search.setBounds(70, 30, 256, 28);
 
         BorrowerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,9 +140,9 @@ public class Reservations extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Borrowers Id");
+        jLabel1.setText("Reserved no");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 140, 200, 30);
+        jLabel1.setBounds(10, 90, 170, 30);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -208,8 +211,18 @@ public class Reservations extends javax.swing.JFrame {
         });
         getContentPane().add(del);
         del.setBounds(100, 480, 140, 28);
+        getContentPane().add(resno);
+        resno.setBounds(190, 90, 180, 30);
         getContentPane().add(jLabel6);
         jLabel6.setBounds(-320, -20, 1910, 660);
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 0, 0));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setText("Borrowers Id");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(10, 140, 200, 30);
 
         setSize(new java.awt.Dimension(888, 605));
         setLocationRelativeTo(null);
@@ -234,7 +247,7 @@ public class Reservations extends javax.swing.JFrame {
         String Name = name.getText();
         String SBN= this.ISBN.getText();
         int ISBN = Integer.parseInt(SBN);
-        String r = search.getText();
+        String r = resno.getText();
        
         
         
@@ -271,7 +284,7 @@ public class Reservations extends javax.swing.JFrame {
       System.out.println(s);
        int search = Integer.parseInt(s);
        
-       
+        resno.setText(s);
         String sql = "SELECT BorrowerId , BorrowerName , ISBN , BookName , ReservedDate FROM book_reservation WHERE ReserveNo = "+search;
        ps = con.prepareStatement(sql);
        rs = ps.executeQuery();
@@ -288,6 +301,7 @@ public class Reservations extends javax.swing.JFrame {
            Bname.setText(Bna);
            String dat = rs.getString("ReservedDate");
            resDate.setText(dat);
+          
        
        }
       
@@ -346,7 +360,7 @@ public class Reservations extends javax.swing.JFrame {
      
        
          
-      if (!ISBN.getText().isEmpty()&&!BorrowerID.getText().isEmpty()){
+      if (!ISBN.getText().isEmpty()&&!BorrowerID.getText().isEmpty()&&!resno.getText().isEmpty()){
              lend.setEnabled(true);
             del.setEnabled(true);
          }
@@ -376,6 +390,7 @@ public class Reservations extends javax.swing.JFrame {
         ISBN.setText(null);
         resDate.setText(null);
         Bname.setText(null);;
+        resno.setText(null);
       }
     /**
      * @param args the command line arguments
@@ -426,11 +441,13 @@ public class Reservations extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton lend;
     private javax.swing.JTextField name;
     private javax.swing.JTextField resDate;
+    private javax.swing.JTextField resno;
     private javax.swing.JTextField search;
     // End of variables declaration//GEN-END:variables
 }
