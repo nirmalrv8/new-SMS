@@ -53,7 +53,7 @@ public class Book {
             
             
             
-            String sql = "Insert into book_details VALUES ("+ISBN+",'"+Book_name+"','"+Pub_Year+"','"+Language+"','"+Catagory_type+"',"+Quntity+","+available_number+","+pages+","+Price+")";
+            String sql = "Insert into book_details VALUES ("+ISBN+",'"+Book_name+"','"+Pub_Year+"','"+Language+"','"+Catagory_type+"',"+Quntity+","+Quntity+","+Price+","+pages+")";
             pst=con.prepareStatement(sql);
             System.out.println(sql);
             pst.execute();
@@ -69,7 +69,7 @@ public class Book {
         } 
         
     void searchbook(String word){
-    
+            
         
         
     
@@ -94,12 +94,11 @@ public class Book {
     
     }
     boolean update_book(int pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
-        //System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
+     System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
       
         con = DBconnect.connect();
         try {
             String sql = "UPDATE book_details SET Name = '"+name+"', pub_date = '"+date+"', Language = '"+lang+"',Category = '"+cat+"', Quntity = "+quntity+", Available_amount = " +number+ ", Pages = "+pagess+", Price ="+price+" where ISBN ="+ISBN;
-            System.out.println("asdaf");
             pst = con.prepareStatement(sql);
             int b = pst.executeUpdate();
                 System.out.println(sql);
@@ -117,7 +116,39 @@ public class Book {
             }
            return false;
     }
+    void makereservation(String sBorrowerID , String name , int ISBN , String Bname , String resdate,int quntity , int no ) throws SQLException{
+        con =DBconnect.connect();
+        PreparedStatement ps3,ps4;
+                   try{     
+          String sq4 = " INSERT INTO book_reservation ( BorrowerId, BorrowerName, ISBN, BookName, ReservedDate , Quntity) VALUES ( '"+sBorrowerID+"' , '"+name+"', "+ISBN+", '"+Bname+"', '"+resdate+"',"+no+")";
+             
+             ps3= con.prepareStatement(sq4);
+         
+           System.out.println(sq4);
+                       System.out.println("awe");
+                       boolean ck =  ps3.execute();
+                       System.out.println(ck);
+                                if (ck == false){
+                                    System.out.println(quntity);
+               String sql4 = " UPDATE book_details SET Available_amount = "+quntity+" where ISBN ="+ISBN;
+               ps4 = con.prepareStatement(sql4);
+               ps4.execute();
+               
+               JOptionPane.showMessageDialog(null,"Reservation Stored Successfully");
+             }else{
+                             
+                  JOptionPane.showMessageDialog(null,"Error");
+                    }  
+           
+             
 
+                    }catch(Exception e){
+                   System.out.println(e);
+        
+                }
+
+    
+    }
     
 
 }

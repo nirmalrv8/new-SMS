@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,68,0,0,2,-30"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-23,0,0,2,-93"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
@@ -22,11 +22,74 @@
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
   </AuxValues>
 
-  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-    <Property name="useNullLayout" type="boolean" value="true"/>
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                      <Component id="lend" min="-2" pref="210" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel5" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
+                      <Component id="ISBN" min="-2" pref="210" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                      <Component id="Borrower" min="-2" pref="210" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="ret" min="-2" pref="160" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" pref="130" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Component id="stat" min="-2" pref="94" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel2" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lend" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="stat" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel5" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="ISBN" min="-2" pref="30" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="Borrower" min="-2" pref="30" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Component id="ret" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace pref="65" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="ISBN">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="18" style="0"/>
@@ -35,13 +98,8 @@
           <Color blue="0" green="66" red="cc" type="rgb"/>
         </Property>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="330" y="210" width="210" height="30"/>
-        </Constraint>
-      </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="Borrower">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="18" style="0"/>
@@ -50,42 +108,17 @@
           <Color blue="0" green="66" red="cc" type="rgb"/>
         </Property>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="330" y="90" width="210" height="30"/>
-        </Constraint>
-      </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="lend">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SansSerif" size="18" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="cc" type="rgb"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Enter Lend No Here"/>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="330" y="150" width="210" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="11" green="80" red="f0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Calculate Fine"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="190" y="320" width="160" height="40"/>
-        </Constraint>
-      </Constraints>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lendFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lendFocusLost"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lendKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lendKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -100,13 +133,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="590" y="500" width="130" height="40"/>
-        </Constraint>
-      </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="ret">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -116,11 +144,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Returned"/>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="410" y="320" width="160" height="40"/>
-        </Constraint>
-      </Constraints>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="retActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -130,29 +156,8 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="11" green="80" red="f0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Book Isbn"/>
+        <Property name="text" type="java.lang.String" value="Lend Number"/>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="90" width="110" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="18" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="11" green="80" red="f0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Fine Per Day"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="210" width="120" height="30"/>
-        </Constraint>
-      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -164,18 +169,19 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Borrower Id"/>
       </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="150" width="120" height="30"/>
-        </Constraint>
-      </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="-200" y="0" width="920" height="560"/>
-        </Constraint>
-      </Constraints>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="11" green="80" red="f0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Book Isbn"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="stat">
     </Component>
   </SubComponents>
 </Form>

@@ -71,9 +71,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="ISBN"/>
       </Properties>
       <Constraints>
@@ -86,9 +83,6 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
@@ -103,9 +97,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Pages"/>
       </Properties>
       <Constraints>
@@ -118,9 +109,6 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Quntity"/>
       </Properties>
@@ -135,9 +123,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
         </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Language"/>
       </Properties>
       <Constraints>
@@ -150,9 +135,6 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Catagory"/>
       </Properties>
@@ -280,9 +262,6 @@
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Price"/>
       </Properties>

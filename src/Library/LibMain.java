@@ -5,9 +5,23 @@
  */
 package Library;
 
-//import Library.reports.ReportGenerate;
-import Profile.MainInterface.Main;
+
+import Library.reports.ReportGenerate;
+import java.awt.Color;
+
+
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -26,8 +40,10 @@ public class LibMain extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         
-        
-        
+        ButtonGroup group = new ButtonGroup();
+        group.add(BookS);
+        group.add(BorrowerS);
+        searchlab.setVisible(false);
         
     }
 
@@ -40,18 +56,23 @@ public class LibMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        searchlab = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Searchbook = new javax.swing.JTable();
+        search = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
 
-        jTextField2.setText("jTextField2");
+        BookS = new javax.swing.JRadioButton();
+        BorrowerS = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -93,7 +114,7 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jButton5);
         jButton5.setBounds(700, 390, 170, 82);
 
-        jButton6.setText("Remove book");
+        jButton6.setText("Remove/Update  book");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
@@ -107,39 +128,68 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jButton6);
         jButton6.setBounds(700, 120, 170, 82);
 
-        jTextField3.setBackground(new java.awt.Color(214, 218, 220));
-        jTextField3.setFont(new java.awt.Font("Trajan Pro 3", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(11, 16, 17));
-        jTextField3.setText("Search Book");
-        jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+        searchlab.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        searchlab.setText("Search Results");
+        getContentPane().add(searchlab);
+        searchlab.setBounds(220, 210, 390, 60);
+
+        Searchbook.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(Searchbook);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 270, 630, 406);
+
+        search.setBackground(new java.awt.Color(214, 218, 220));
+        search.setFont(new java.awt.Font("Trajan Pro 3", 0, 14)); // NOI18N
+        search.setForeground(new java.awt.Color(11, 16, 17));
+        search.setText("Search ");
+        search.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        search.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        search.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField3FocusGained(evt);
+                searchFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField3FocusLost(evt);
+                searchFocusLost(evt);
             }
         });
-        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextField3MouseEntered(evt);
+                searchMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextField3MouseExited(evt);
+                searchMouseExited(evt);
             }
         });
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(127, 117, 410, 34);
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+        });
+        getContentPane().add(search);
+        search.setBounds(70, 120, 410, 34);
 
         jTextField1.setBackground(new java.awt.Color(214, 218, 220));
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(127, 194, 402, 276);
+        jTextField1.setBounds(12, 206, 640, 480);
 
         jButton7.setText("Add Book");
         jButton7.setSelected(true);
@@ -151,42 +201,82 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jButton7);
         jButton7.setBounds(700, 30, 170, 82);
 
-        jButton8.setText("Back");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+
+        BookS.setText("Book Search");
+        BookS.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                BookSStateChanged(evt);
             }
         });
-        getContentPane().add(jButton8);
-        jButton8.setBounds(40, 30, 55, 23);
+        BookS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BookSMouseClicked(evt);
+            }
+        });
+        BookS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BookSActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BookS);
+        BookS.setBounds(90, 180, 92, 18);
+
+        BorrowerS.setText("Search Borrower");
+        BorrowerS.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BorrowerSMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BorrowerSMouseEntered(evt);
+            }
+        });
+        BorrowerS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrowerSActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BorrowerS);
+        BorrowerS.setBounds(290, 180, 120, 18);
+
+        jButton1.setText("search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(490, 110, 66, 50);
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
-        jTextField3.setText(" ");
-    }//GEN-LAST:event_jTextField3FocusGained
+    private void searchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusGained
+        search.setText(null);
+    }//GEN-LAST:event_searchFocusGained
 
-    private void jTextField3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseEntered
+    private void searchMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseEntered
         
-    }//GEN-LAST:event_jTextField3MouseEntered
+    }//GEN-LAST:event_searchMouseEntered
 
-    private void jTextField3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseExited
+    private void searchMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseExited
          
-    }//GEN-LAST:event_jTextField3MouseExited
+    }//GEN-LAST:event_searchMouseExited
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        this.dispose();
         new Reservations().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
-        jTextField3.setText("Search Books");
-    }//GEN-LAST:event_jTextField3FocusLost
+
+    private void searchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusLost
+          
+    }//GEN-LAST:event_searchFocusLost
+
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
        new Remove_Books().setVisible(true);
@@ -216,10 +306,82 @@ public class LibMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        this.dispose();
-        new Main().setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void BookSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookSActionPerformed
+       search.setText("Search Books");
+        
+      
+       
+    }//GEN-LAST:event_BookSActionPerformed
+
+    private void BorrowerSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrowerSActionPerformed
+       
+                 search.setText("Search Borrower ");
+                  tableload(" ", " ");
+               
+    }//GEN-LAST:event_BorrowerSActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(BookS.isSelected()||BorrowerS.isSelected()){
+        
+        String ISB = search.getText();
+         if (BookS.isSelected()){
+             searchlab.setVisible(true);
+             tableload(ISB,"Book_details");
+             
+         }else{
+                    searchlab.setVisible(true);
+                  tableload(ISB,"borrowers_details");
+                  
+         }
+        }else
+            JOptionPane.showMessageDialog(null, "select Search Borrowers or Search Books ");
+         
+         search.setText(null);
+         
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+       
+    }//GEN-LAST:event_searchKeyReleased
+
+    private void searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyPressed
+       int key2 = evt.getKeyCode();
+       
+       if(BookS.isSelected()||BorrowerS.isSelected()){
+       
+        
+        if ((key2>=evt.VK_A || key2>= evt.VK_Z) || (key2 == evt.VK_SPACE)|| (key2 >= evt.VK_NUMPAD0&& key2 <= evt.VK_NUMPAD9)||(key2>=KeyEvent.VK_0&&key2<=evt.VK_9) ||key2 == KeyEvent.VK_BACK_SPACE){
+       
+           search.setEditable(true);
+           search.setBackground(Color.WHITE);
+        }else
+        {
+            search.setEditable(false);
+            search.setBackground(Color.red);
+        }
+       
+       }
+    }//GEN-LAST:event_searchKeyPressed
+
+    private void BookSStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_BookSStateChanged
+     
+        
+        
+    }//GEN-LAST:event_BookSStateChanged
+
+    private void BookSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BookSMouseClicked
+         cleartab();
+    }//GEN-LAST:event_BookSMouseClicked
+
+    private void BorrowerSMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BorrowerSMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BorrowerSMouseEntered
+
+    private void BorrowerSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BorrowerSMouseClicked
+          cleartab();
+    }//GEN-LAST:event_BorrowerSMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -255,17 +417,53 @@ public class LibMain extends javax.swing.JFrame {
             }
         });
     }
+          public void tableload(String nam , String tabname){
+        
+        try {
+             Connection con = DBconnect.connect();
+             ResultSet rest;
+             PreparedStatement pst;
+              String sql="SELECT * FROM "+tabname+" Where Name like '%"+nam+"%'";
+              pst=con.prepareStatement(sql);
+              rest=pst.executeQuery();
+              Searchbook.setModel(DbUtils.resultSetToTableModel(rest));
+              System.out.println(sql);
+        } 
+        catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null, "wrong sql " + ex.getMessage());
+        }  
+        
+         
+          
+          }
+          void cleartab(){
+          
+        DefaultTableModel mod =  (DefaultTableModel)Searchbook.getModel();
+        while(mod.getRowCount()>0){
+            for(int i =0 ;i<mod.getRowCount();i++){
+                mod.removeRow(i);
+            }
+        
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton BookS;
+    private javax.swing.JRadioButton BorrowerS;
+    private javax.swing.JTable Searchbook;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+
+    private javax.swing.JScrollPane jScrollPane1;
+
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField search;
+    private javax.swing.JLabel searchlab;
     // End of variables declaration//GEN-END:variables
 }
