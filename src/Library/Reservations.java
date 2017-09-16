@@ -5,6 +5,15 @@
  */
 package Library;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author LuCif3R
@@ -18,6 +27,14 @@ public class Reservations extends javax.swing.JFrame {
     int ymouse;
     public Reservations() {
         initComponents();
+        tableload();
+        BorrowerID.setEditable(false);
+        name.setEditable(false);
+        ISBN.setEditable(false);
+        resDate.setEditable(false);
+        Bname.setEditable(false);
+           search.setText(null);
+      
     }
 
     /**
@@ -31,12 +48,12 @@ public class Reservations extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        search = new javax.swing.JTextField();
+        BorrowerID = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
+        ISBN = new javax.swing.JTextField();
+        Bname = new javax.swing.JTextField();
+        resDate = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -45,6 +62,7 @@ public class Reservations extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -66,45 +84,53 @@ public class Reservations extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(380, 60, 453, 403);
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Search Reserv Number");
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        search.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        search.setText("Search Reserv Number");
+        search.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                searchFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
+                searchFocusLost(evt);
             }
         });
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
+                searchMouseClicked(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(70, 90, 256, 24);
+        search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchKeyReleased(evt);
+            }
+        });
+        getContentPane().add(search);
+        search.setBounds(70, 90, 256, 24);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        BorrowerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                BorrowerIDActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(190, 140, 178, 30);
+        getContentPane().add(BorrowerID);
+        BorrowerID.setBounds(190, 140, 178, 30);
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                nameActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3);
-        jTextField3.setBounds(190, 190, 178, 24);
-        getContentPane().add(jTextField4);
-        jTextField4.setBounds(190, 230, 178, 24);
-        getContentPane().add(jTextField5);
-        jTextField5.setBounds(190, 270, 178, 24);
-        getContentPane().add(jTextField6);
-        jTextField6.setBounds(190, 320, 178, 24);
+        getContentPane().add(name);
+        name.setBounds(190, 190, 178, 24);
+        getContentPane().add(ISBN);
+        ISBN.setBounds(190, 230, 178, 24);
+        getContentPane().add(Bname);
+        Bname.setBounds(190, 270, 178, 24);
+        getContentPane().add(resDate);
+        resDate.setBounds(190, 320, 178, 24);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -162,7 +188,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(260, 500, 140, 32);
+        jButton1.setBounds(190, 420, 140, 32);
 
         jButton2.setText("Lend The Book");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -171,28 +197,49 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(50, 500, 120, 32);
+        jButton2.setBounds(20, 420, 120, 32);
+
+        jButton4.setText("Delete Reservation");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(100, 480, 140, 32);
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 1910, 660);
+        jLabel6.setBounds(-320, -20, 1910, 660);
 
         setSize(new java.awt.Dimension(859, 605));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
         
-    }//GEN-LAST:event_jTextField1MouseClicked
+    }//GEN-LAST:event_searchMouseClicked
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        jTextField1.setText(" ");
-    }//GEN-LAST:event_jTextField1FocusGained
+    private void searchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusGained
+        search.setText(null);
+    }//GEN-LAST:event_searchFocusGained
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        jTextField1.setText(" Search the Reservation ");
-    }//GEN-LAST:event_jTextField1FocusLost
+    private void searchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusLost
+       /// search.setText(" Search the Reservation ");
+    }//GEN-LAST:event_searchFocusLost
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new IssueBook().setVisible(true);
+        //new IssueBook().setVisible(true);
+        
+        String Borrower = BorrowerID.getText();
+        String Name = name.getText();
+        String SBN= this.ISBN.getText();
+        int ISBN = Integer.parseInt(SBN);
+        String r = search.getText();
+       
+        
+        
+        System.out.println(Borrower+" "+Name+" "+ISBN+" ");
+        
+        new IssueBook(Borrower, Name, ISBN ,r).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -204,14 +251,118 @@ public class Reservations extends javax.swing.JFrame {
         new LibMain().setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void BorrowerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrowerIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_BorrowerIDActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
+    private void searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyReleased
+      try{       
+          setnul();
+        PreparedStatement ps;
+        ResultSet rs= null;
+        Connection con = DBconnect.connect();
+    
+        String s = search.getText();
+      System.out.println(s);
+       int search = Integer.parseInt(s);
+       
+       
+        String sql = "SELECT BorrowerId , BorrowerName , ISBN , BookName , ReservedDate FROM book_reservation WHERE ReserveNo = "+search;
+       ps = con.prepareStatement(sql);
+       rs = ps.executeQuery();
+   
+       while(rs.next()){
+           
+           String BID = rs.getString("BorrowerId");
+           BorrowerID.setText(BID);
+           String Name = rs.getString("BorrowerName");
+           name.setText(Name);
+           String ISB = rs.getString("ISBN");
+           ISBN.setText(ISB);
+           String Bna= rs.getString("BookName");
+           Bname.setText(Bna);
+           String dat = rs.getString("ReservedDate");
+           resDate.setText(dat);
+       
+       }
+      
+       
+       
+       }catch(SQLException e){
+       
+      
+       }
+    }//GEN-LAST:event_searchKeyReleased
+
+    private void searchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchKeyPressed
+        setnul();
+        int key = evt.getKeyCode();
+        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
+        
+           search.setEditable(true);
+           search.setBackground(Color.WHITE);
+        }else
+        {
+            search.setEditable(false);
+            search.setBackground(Color.red);
+        }      
+       
+    }//GEN-LAST:event_searchKeyPressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       Connection con = DBconnect.connect();
+       PreparedStatement ps;
+       String sreservno = search.getText();
+       int reserveno=Integer.parseInt(sreservno);
+       int val = JOptionPane.showConfirmDialog(null, " DO you want to delete?");
+       
+       if(val == 0){
+           try {
+                  String sql ="DELETE from book_reservation where ReserveNo = "+reserveno;
+       ps = con.prepareStatement(sql);
+       boolean ck=ps.execute();
+        if(ck  != true){
+            JOptionPane.showMessageDialog(null, "Succecfully deleted");
+        }else{
+        JOptionPane.showMessageDialog(null, "Error");
+        }
+           } catch (Exception e) {
+           }
+        
+       }else{
+       
+       }
+       tableload();
+       setnul();
+       search.setText(null);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+      public void tableload(){
+        
+        try {
+             Connection con = DBconnect.connect();
+             ResultSet rest;
+             PreparedStatement pst;
+              String sql="SELECT ReserveNo ,BorrowerId , BorrowerName , ISBN , BookName , ReservedDate FROM book_reservation";
+              pst=con.prepareStatement(sql);
+              rest=pst.executeQuery();
+              jTable1.setModel(DbUtils.resultSetToTableModel(rest));
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "wrong sql " + ex.getMessage());
+        }  
+    }
+      public void setnul(){
+        BorrowerID.setText(null);
+        name.setText(null);
+        ISBN.setText(null);
+        resDate.setText(null);
+        Bname.setText(null);;
+      }
     /**
      * @param args the command line arguments
      */
@@ -249,9 +400,13 @@ public class Reservations extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Bname;
+    private javax.swing.JTextField BorrowerID;
+    private javax.swing.JTextField ISBN;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -260,11 +415,8 @@ public class Reservations extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField resDate;
+    private javax.swing.JTextField search;
     // End of variables declaration//GEN-END:variables
 }

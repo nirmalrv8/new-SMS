@@ -399,7 +399,7 @@ public class Remove_Books extends javax.swing.JFrame {
         ResultSet rs = st.executeQuery(sql);
         if(rs.absolute(1)){
             
-         int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
+         int out=JOptionPane.showConfirmDialog(null,"You really want to Delete?");
                 if(out==0){ 
                      b1.remove_Book(ISBN);
                      setnll();
@@ -544,7 +544,8 @@ public class Remove_Books extends javax.swing.JFrame {
     }//GEN-LAST:event_searchisbnKeyTyped
 
     private void searchisbnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchisbnKeyReleased
-             try {
+        setnll();
+        try {
               int search=0;
        String s = searchisbn.getText();
        search = Integer.parseInt(s);
