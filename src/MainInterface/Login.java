@@ -96,7 +96,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPasswordField1MouseClicked(evt);
@@ -224,7 +223,7 @@ public class Login extends javax.swing.JFrame {
         
         
         if(reg.equals("")){
-            JOptionPane.showMessageDialog(null, "please enter a reg num");
+            JOptionPane.showMessageDialog(null, "Please enter a reg num");
             return;
         }     
         

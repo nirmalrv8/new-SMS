@@ -308,11 +308,11 @@ public class SearchProfiles extends javax.swing.JFrame {
             ps.setString(1, "%" + jTextField1.getText() + "%" );
             ResultSet re = ps.executeQuery();       
             
-            if(!re.next()){
+            if(!re.isBeforeFirst()){
                 JOptionPane.showMessageDialog(null, "No users found");
                 return;
             }
-            re.previous();
+            
             DefaultTableModel model1 = new DefaultTableModel(new String[]{"RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
             DefaultTableModel model2 = new DefaultTableModel(new String[]{"ID","Name", "Address", "Contact"}, 0);
             while(re.next()){   
