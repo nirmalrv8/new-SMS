@@ -5,8 +5,11 @@
  */
 package Library;
 
+
 import Library.reports.ReportGenerate;
 import java.awt.Color;
+
+
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -64,9 +67,12 @@ public class LibMain extends javax.swing.JFrame {
         search = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+
         BookS = new javax.swing.JRadioButton();
         BorrowerS = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -195,6 +201,7 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jButton7);
         jButton7.setBounds(700, 30, 170, 82);
 
+
         BookS.setText("Book Search");
         BookS.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -240,6 +247,7 @@ public class LibMain extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(490, 110, 66, 50);
 
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,9 +272,11 @@ public class LibMain extends javax.swing.JFrame {
         new Reservations().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+
     private void searchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFocusLost
           
     }//GEN-LAST:event_searchFocusLost
+
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
        new Remove_Books().setVisible(true);
@@ -285,7 +295,7 @@ public class LibMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new ReportGenerate("report1.jrxml");
+//        new ReportGenerate("report1.jrxml");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -295,6 +305,7 @@ public class LibMain extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
 
     private void BookSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookSActionPerformed
        search.setText("Search Books");
@@ -370,6 +381,7 @@ public class LibMain extends javax.swing.JFrame {
     private void BorrowerSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BorrowerSMouseClicked
           cleartab();
     }//GEN-LAST:event_BorrowerSMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -447,7 +459,9 @@ public class LibMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+
     private javax.swing.JScrollPane jScrollPane1;
+
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField search;
     private javax.swing.JLabel searchlab;
