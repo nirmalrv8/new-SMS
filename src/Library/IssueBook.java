@@ -5,6 +5,7 @@
  */
 package Library;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -25,6 +26,8 @@ public class IssueBook extends javax.swing.JFrame {
         initComponents();
         res1.setVisible(false);
             setVisible(false);
+             JTextFieldDateEditor editor = (JTextFieldDateEditor) duedate.getDateEditor();
+        editor.setEditable(false);
         
     }
     public IssueBook(String Borrower , String Name , int ISBN ,String res){
@@ -41,7 +44,8 @@ public class IssueBook extends javax.swing.JFrame {
         }
         
         
-    
+     JTextFieldDateEditor editor = (JTextFieldDateEditor) duedate.getDateEditor();
+        editor.setEditable(false);
     
     }
 
@@ -143,18 +147,41 @@ public class IssueBook extends javax.swing.JFrame {
     }//GEN-LAST:event_NameActionPerformed
 
     private void issueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueActionPerformed
-      
-//        Connection con = DBconnect.connect();
-//        PreparedStatement ps;
-//        
-        JTextField pubd=(JTextField)this.duedate.getDateEditor().getUiComponent();
-         String date1 = pubd.getText();
+         
          String name = Name.getText();
          String SBN = this.ISBN.getText();
          int ISBN1 = Integer.parseInt(SBN);
          String Borrower =BorrowerID.getText();
          Borrower bo1 = new Borrower();
          String reso =res2.getText();
+        Connection con = DBconnect.connect();
+        PreparedStatement pst;
+        ResultSet rs;
+        int number = 0;
+        String bname = null;
+        
+        try {
+            String sql = "Select Available_amount , Name from book_details where ISBN = " +ISBN1;
+            pst = con.prepareStatement(sql);
+           rs = pst.executeQuery();
+            
+            while(rs.next()){
+                
+                   
+                    number = rs.getInt("Available_amount");
+                    bname=rs.getString("Name");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+            System.out.println(number);
+           if(number<0){
+               JOptionPane.showMessageDialog(null,"The Book You requesting is ("+bname+") is OUT OF STOCK");
+               
+           }else{
+        
+        JTextField pubd=(JTextField)this.duedate.getDateEditor().getUiComponent();
+         
 //         JTextField dat=(JTextField)this.duedate.getDateEditor().getUiComponent();
 //         
 //          String due = dat.getText();
@@ -166,9 +193,9 @@ public class IssueBook extends javax.swing.JFrame {
 
          bo1.setBorrower(Borrower, name, ISBN1,date,reso);
       
-         bo1.StoreBorrowerRecord();
+         bo1.StoreBorrowerRecord(number);
         
-         
+           }
          
         
     }//GEN-LAST:event_issueActionPerformed

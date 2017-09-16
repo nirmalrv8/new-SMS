@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Library;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.*;
@@ -30,6 +31,9 @@ public class MakeReservation extends javax.swing.JFrame {
        
        ISBN.setText(null);
        changer();
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) resdate.getDateEditor();
+        editor.setEditable(false);
+       
     }
 
     /**

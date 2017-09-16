@@ -5,6 +5,7 @@
  */
 package Library;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -30,7 +31,8 @@ public class Add_Books extends javax.swing.JFrame {
     public Add_Books() {
         initComponents();
       changer();
-       
+       JTextFieldDateEditor editor = (JTextFieldDateEditor) pubd.getDateEditor();
+        editor.setEditable(false);
         
         
     }
@@ -68,47 +70,31 @@ public class Add_Books extends javax.swing.JFrame {
         add = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(60, 161, 210));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("ISBN");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(110, 80, 80, 20);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Name");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(110, 120, 70, 20);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Pages");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(110, 320, 66, 19);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setText("Quntity");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(110, 200, 66, 19);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("Language");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(110, 240, 69, 19);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setText("Price");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(110, 360, 110, 19);
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setText("Published date");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(110, 160, 110, 19);
 
         cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,8 +109,6 @@ public class Add_Books extends javax.swing.JFrame {
                 catKeyReleased(evt);
             }
         });
-        getContentPane().add(cat);
-        cat.setBounds(250, 280, 154, 30);
 
         ISBN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -134,8 +118,6 @@ public class Add_Books extends javax.swing.JFrame {
                 ISBNKeyReleased(evt);
             }
         });
-        getContentPane().add(ISBN);
-        ISBN.setBounds(250, 70, 154, 30);
 
         name1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +132,6 @@ public class Add_Books extends javax.swing.JFrame {
                 name1KeyReleased(evt);
             }
         });
-        getContentPane().add(name1);
-        name1.setBounds(250, 120, 154, 30);
 
         pages.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -161,8 +141,6 @@ public class Add_Books extends javax.swing.JFrame {
                 pagesKeyReleased(evt);
             }
         });
-        getContentPane().add(pages);
-        pages.setBounds(250, 320, 154, 30);
 
         qty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,8 +155,6 @@ public class Add_Books extends javax.swing.JFrame {
                 qtyKeyReleased(evt);
             }
         });
-        getContentPane().add(qty);
-        qty.setBounds(250, 200, 154, 30);
 
         lang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -188,8 +164,6 @@ public class Add_Books extends javax.swing.JFrame {
                 langKeyReleased(evt);
             }
         });
-        getContentPane().add(lang);
-        lang.setBounds(250, 240, 154, 30);
 
         pubd.setPreferredSize(new java.awt.Dimension(60, 28));
         pubd.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -198,6 +172,9 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         pubd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pubdFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 pubdFocusLost(evt);
             }
@@ -211,19 +188,20 @@ public class Add_Books extends javax.swing.JFrame {
             }
         });
         pubd.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 pubdInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         pubd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pubdKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pubdKeyTyped(evt);
+            }
         });
-        getContentPane().add(pubd);
-        pubd.setBounds(250, 160, 150, 30);
 
         pr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,8 +216,6 @@ public class Add_Books extends javax.swing.JFrame {
                 prKeyReleased(evt);
             }
         });
-        getContentPane().add(pr);
-        pr.setBounds(250, 360, 154, 30);
 
         add.setText("Add Book");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -247,22 +223,106 @@ public class Add_Books extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
-        getContentPane().add(add);
-        add.setBounds(200, 420, 120, 40);
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setText("Add Books");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(210, 20, 190, 40);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("Catagory");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(110, 280, 80, 19);
 
-        jLabel10.setText("jLabel10");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(-920, -170, 1370, 690);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(ISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(pubd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel7)
+                .addGap(71, 71, 71)
+                .addComponent(lang, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(cat, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(pages, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(pr, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(pubd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(lang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(cat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(pages, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(pr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         setSize(new java.awt.Dimension(502, 546));
         setLocationRelativeTo(null);
@@ -514,7 +574,7 @@ public class Add_Books extends javax.swing.JFrame {
     }//GEN-LAST:event_pubdMouseEntered
 
     private void pubdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pubdKeyPressed
- 
+          
     }//GEN-LAST:event_pubdKeyPressed
 
     private void pubdInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_pubdInputMethodTextChanged
@@ -524,6 +584,15 @@ public class Add_Books extends javax.swing.JFrame {
     private void pubdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubdFocusLost
         changer();
     }//GEN-LAST:event_pubdFocusLost
+
+    private void pubdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pubdKeyTyped
+        
+    }//GEN-LAST:event_pubdKeyTyped
+
+    private void pubdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pubdFocusGained
+        pubd.setEnabled(false);
+        
+    }//GEN-LAST:event_pubdFocusGained
 
          public void setnll(){
      
@@ -592,7 +661,6 @@ public class Add_Books extends javax.swing.JFrame {
     private javax.swing.JButton add;
     private javax.swing.JTextField cat;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

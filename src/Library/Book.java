@@ -69,7 +69,7 @@ public class Book {
         } 
         
     void searchbook(String word){
-    
+            
         
         
     
@@ -99,7 +99,6 @@ public class Book {
         con = DBconnect.connect();
         try {
             String sql = "UPDATE book_details SET Name = '"+name+"', pub_date = '"+date+"', Language = '"+lang+"',Category = '"+cat+"', Quntity = "+quntity+", Available_amount = " +number+ ", Pages = "+pagess+", Price ="+price+" where ISBN ="+ISBN;
-            System.out.println("asdaf");
             pst = con.prepareStatement(sql);
             int b = pst.executeUpdate();
                 System.out.println(sql);
