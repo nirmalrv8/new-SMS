@@ -173,6 +173,10 @@ public class Login extends javax.swing.JFrame {
         if(type == "teacher"){           
             stt = "select * from teacher where Teacher_ID=?";
         }
+        else if(type == "emp"){           
+            stt = "select * from employee where Emp_ID=?";
+        }
+        
         else{            
             stt = "select * from student where regNum=?";            
         }        
@@ -187,6 +191,16 @@ public class Login extends javax.swing.JFrame {
                 String pass1 = re.getString("password");                
                 if(pass1.equals(pass)){
                     this.dispose();
+                    //System.out.println(reg);
+                    if(reg.equals("e1")){
+                        new Payment.Interface.main().setVisible(true);
+                        return;
+                    }
+                    else if(reg.equals("eadmin")){
+                        new Admin.schoolsystem.Admin_Panel().setVisible(true);
+                        return;
+                    }
+                    
                     new Main().setVisible(true);
                 }
                 else{
@@ -236,6 +250,10 @@ public class Login extends javax.swing.JFrame {
         if(reg.startsWith("t")){
             type = "teacher";
             stt = "select * from teacher where Teacher_ID=?";
+        }
+        else if(reg.startsWith("e")){
+            type = "emp";
+            stt = "select * from employee where Emp_ID=?";
         }
         else{
             type = "student";

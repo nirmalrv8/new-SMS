@@ -25,8 +25,8 @@ public class DBconnect {
     {
         Connection con = null;
         try{
-            //con = DriverManager.getConnection("jdbc:mysql://localhost/sms","root","");
-            con = DriverManager.getConnection("jdbc:mysql://mysql5.gear.host/sms1?useSSL=false","sms1","Ss9E?hre_1gC");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/sms1","root","");
+            //con = DriverManager.getConnection("jdbc:mysql://mysql5.gear.host/sms1?useSSL=false","sms1","Ss9E?hre_1gC");
         } 
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex + " failed connection");
