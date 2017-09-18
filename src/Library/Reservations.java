@@ -48,6 +48,7 @@ public class Reservations extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         search = new javax.swing.JTextField();
@@ -61,7 +62,6 @@ public class Reservations extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         lend = new javax.swing.JButton();
         del = new javax.swing.JButton();
@@ -71,6 +71,17 @@ public class Reservations extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"))); // NOI18N
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(660, 500, 84, 60);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,7 +123,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(70, 30, 256, 28);
+        search.setBounds(70, 30, 256, 20);
 
         BorrowerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,13 +139,13 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(190, 190, 178, 28);
+        name.setBounds(190, 190, 178, 20);
         getContentPane().add(ISBN);
-        ISBN.setBounds(190, 230, 178, 28);
+        ISBN.setBounds(190, 230, 178, 20);
         getContentPane().add(Bname);
-        Bname.setBounds(190, 270, 178, 28);
+        Bname.setBounds(190, 270, 178, 20);
         getContentPane().add(resDate);
-        resDate.setBounds(190, 320, 178, 28);
+        resDate.setBounds(190, 320, 178, 20);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -176,23 +187,14 @@ public class Reservations extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(10, 320, 200, 30);
 
-        jButton3.setText("Go Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(590, 500, 110, 28);
-
-        jButton1.setText("Make Rservation");
+        jButton1.setText("Make Reservation");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 420, 140, 28);
+        jButton1.setBounds(190, 420, 140, 26);
 
         lend.setText("Lend The Book");
         lend.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +203,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lend);
-        lend.setBounds(20, 420, 120, 28);
+        lend.setBounds(20, 420, 120, 26);
 
         del.setText("Delete Reservation");
         del.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +212,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(del);
-        del.setBounds(100, 480, 140, 28);
+        del.setBounds(100, 480, 140, 26);
         getContentPane().add(resno);
         resno.setBounds(190, 90, 180, 30);
         getContentPane().add(jLabel6);
@@ -259,11 +261,6 @@ public class Reservations extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new MakeReservation().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.dispose();
-        new LibMain().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void BorrowerIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrowerIDActionPerformed
         // TODO add your handling code here:
@@ -356,6 +353,11 @@ public class Reservations extends javax.swing.JFrame {
        setnul();
        search.setText(null);
     }//GEN-LAST:event_delActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+          this.dispose();
+        new LibMain().setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
  public void changer(){
      
        
@@ -434,7 +436,7 @@ public class Reservations extends javax.swing.JFrame {
     private javax.swing.JTextField ISBN;
     private javax.swing.JButton del;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
