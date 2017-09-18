@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/Subject_Details.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/Admin_Login.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/Validation.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/Exam_Paper.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/UpdateMarks.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/viewSubjectMarks.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/Marks.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/ViewMarks.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/viewMarksAnalysis.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/viewMarksForTeacher.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/SchoolSystem.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Profile/MainInterface/Login.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/Teachers_Details.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/Admin_Panel.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Profile/MainInterface/Main.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Admin/schoolsystem/ChangeAdminPassword.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/Payment/Interface/Add_Payment_Details.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/SMSnewest/src/AcademicReports/DeleteRecord.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

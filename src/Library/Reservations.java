@@ -112,7 +112,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(70, 30, 256, 28);
+        search.setBounds(70, 30, 256, 20);
 
         BorrowerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,13 +128,13 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(190, 190, 178, 28);
+        name.setBounds(190, 190, 178, 20);
         getContentPane().add(ISBN);
-        ISBN.setBounds(190, 230, 178, 28);
+        ISBN.setBounds(190, 230, 178, 20);
         getContentPane().add(Bname);
-        Bname.setBounds(190, 270, 178, 28);
+        Bname.setBounds(190, 270, 178, 20);
         getContentPane().add(resDate);
-        resDate.setBounds(190, 320, 178, 28);
+        resDate.setBounds(190, 320, 178, 20);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -183,16 +183,16 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(590, 500, 110, 28);
+        jButton3.setBounds(590, 500, 110, 26);
 
-        jButton1.setText("Make Rservation");
+        jButton1.setText("Make Reservation");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 420, 140, 28);
+        jButton1.setBounds(190, 420, 140, 26);
 
         lend.setText("Lend The Book");
         lend.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +201,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lend);
-        lend.setBounds(20, 420, 120, 28);
+        lend.setBounds(20, 420, 120, 26);
 
         del.setText("Delete Reservation");
         del.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +210,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(del);
-        del.setBounds(100, 480, 140, 28);
+        del.setBounds(100, 480, 140, 26);
         getContentPane().add(resno);
         resno.setBounds(190, 90, 180, 30);
         getContentPane().add(jLabel6);
