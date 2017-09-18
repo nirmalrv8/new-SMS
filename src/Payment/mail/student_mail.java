@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Payment.mail;
+package mail;
 
 /**
  *
  * @author SURESH_UDAYA
  */
-import Payment.Interface.Add_Payment_Details;
+import Interface.Add_Payment_Details;
 import java.io.File;
 import java.util.*;
 import javax.mail.*;
@@ -41,11 +41,20 @@ public class student_mail extends javax.swing.JFrame {
     public student_mail() {
         initComponents();
     }
+    
+    
     public void postdata(){
     
         this.text.setText("Sid is :"+getdata[0]+"\n payament: "+getdata[1]);
     }
-
+    
+    public void reset(){
+        to.setText(null);
+        subject.setText(null);
+        text.setText(null);
+        attachpath.setText(null);
+        attachname.setText(null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +75,6 @@ public class student_mail extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
-        assign = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,13 +103,6 @@ public class student_mail extends javax.swing.JFrame {
         text.setText("\n\n");
         jScrollPane1.setViewportView(text);
 
-        assign.setText("Assign");
-        assign.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,10 +122,7 @@ public class student_mail extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(assign))
+                                    .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
@@ -150,23 +148,19 @@ public class student_mail extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(assign))))
-                .addGap(20, 20, 20)
+                            .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Attach)
                     .addComponent(attachpath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(attachname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(attachname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
 
@@ -239,12 +233,12 @@ public class student_mail extends javax.swing.JFrame {
             
             
             JOptionPane.showMessageDialog(rootPane,"Message Sent");
-            
+            reset();
             
             
         } catch(MessagingException e) 
         {
-            JOptionPane.showMessageDialog(rootPane, e);
+            JOptionPane.showMessageDialog(rootPane,"Message Not Sent");
             System.out.println("error");
             
         }
@@ -264,16 +258,6 @@ public class student_mail extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_AttachActionPerformed
-
-    private void assignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignActionPerformed
-       
-        
-        Add_Payment_Details apd = new Add_Payment_Details();
-        
-        
-  
-        
-    }//GEN-LAST:event_assignActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,7 +295,6 @@ public class student_mail extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Attach;
-    private javax.swing.JButton assign;
     private javax.swing.JTextField attachname;
     private javax.swing.JTextField attachpath;
     private javax.swing.JButton jButton1;

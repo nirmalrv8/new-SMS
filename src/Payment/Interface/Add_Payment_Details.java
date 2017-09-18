@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Payment.Interface;
+package Interface;
 
 
-import Payment.mail.student_mail;
+import mail.student_mail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import mycode.dbconnect;
+import mycode.dbconnect1;
 import net.proteanit.sql.DbUtils;
 import java.util.Properties;
 import javax.mail.Message;
@@ -37,17 +37,30 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
     public Add_Payment_Details() {
         initComponents();
         
-        con = Profile.MainInterface.DBconnect.connect();
+        con =dbconnect1.connect();
         
         tableload();
     }
+    public void reset(){
+    
+        SID.setText(null);
+        amount.setText(null);
+        fees.setText(null);
+        term.setSelectedItem(null);
+        clz.setSelectedItem(null);
+        pid_search.setText(null);
+    
+    }
+    
+    
+    
     
     
     
     public void tableload(){
     
        try{
-        String sql = "SELECT payment_id,student_ID,paid_amount,late_fees FROM student_payment";
+        String sql = "SELECT payment_id,student_ID,class,term,paid_amount,late_fees FROM student_payment";
         pst = con.prepareStatement(sql);
         rs = pst.executeQuery();
         table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -84,12 +97,13 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         pid_search = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        sem = new javax.swing.JComboBox();
+        term = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         clz = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         SID = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.MatteBorder(null));
         setPreferredSize(new java.awt.Dimension(2048, 2048));
@@ -117,6 +131,52 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -130,7 +190,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 310, 120));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 440, 220));
 
         sid.setText("Payment_ID");
         getContentPane().add(sid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
@@ -152,7 +212,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
                 deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, -1));
+        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
 
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
@@ -166,11 +226,11 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         jLabel4.setText("Payment_ID");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 60, 20));
 
-        jLabel5.setText("Semester");
+        jLabel5.setText("Term");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 60, 30));
 
-        sem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
-        getContentPane().add(sem, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 100, 40, -1));
+        term.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+        getContentPane().add(term, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 100, 40, -1));
 
         jLabel6.setText("class");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 40, -1));
@@ -182,13 +242,21 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 30, -1));
         getContentPane().add(SID, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 10, 70, -1));
 
-        jButton3.setText("email");
+        jButton3.setText("Send Payment Details Through E-mail");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 250, -1));
+
+        jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 60, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,15 +266,16 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         String sid = SID.getText();
         String Amount = amount.getText();
         String Fees = fees.getText();
-        String Sem = sem.getSelectedItem().toString();
+        String Sem = term.getSelectedItem().toString();
         String Clz = clz.getSelectedItem().toString();
         
        try{
-            String q = "INSERT INTO student_payment(student_ID,paid_amount,late_fees)values('"+sid+"','"+Amount+"','"+Fees+"')";
+            String q = "INSERT INTO student_payment(student_ID,class,term,paid_amount,late_fees)values('"+sid+"','"+Clz+"','"+Sem+"','"+Amount+"','"+Fees+"')";
             
             pst = con.prepareStatement(q);
             pst.execute();
             tableload();
+            reset();
        }
        catch(Exception e){
            System.out.println("db add error");
@@ -231,7 +300,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         pid.setText(Pid);
         SID.setText(sid);
         clz.setSelectedItem(Clz);
-        sem.setSelectedItem(Sem);
+        term.setSelectedItem(Sem);
         
     }//GEN-LAST:event_tableMouseClicked
 
@@ -244,13 +313,14 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
             String Sid = SID.getText();
             String Amount =amount.getText();
             String late_fee = fees.getText();
-            String Sem = sem.getSelectedItem().toString();
+            String Sem = term.getSelectedItem().toString();
             String Clz = clz.getSelectedItem().toString();
              
             try{
-                String sql = "UPDATE student SET student_ID='"+Sid+"',class='"+Clz+"',semester='"+Sem+"',paid_amount='"+Amount+"',late_fees='"+late_fee+"' where payment_id='"+payID+"'";
+                String sql = "UPDATE student_payment SET student_ID='"+Sid+"',class='"+Clz+"',term='"+Sem+"',paid_amount='"+Amount+"',late_fees='"+late_fee+"' where payment_id='"+payID+"'";
                 pst = con.prepareStatement(sql);
                 pst.execute();
+                reset();
                 tableload();
             }
             catch(Exception e){
@@ -272,7 +342,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
             String pID = pid.getText();
             
             
-            String sql ="DELETE FROM student WHERE payment_id='"+pID+"'";
+            String sql ="DELETE FROM student_payment WHERE payment_id='"+pID+"'";
             try{
                 pst = con.prepareStatement(sql);
                 pst.execute();
@@ -291,15 +361,16 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         String Pid= pid_search.getText();
         try{
             
-            String sql="SELECT payment_id,student_ID,paid_amount,late_fees FROM student WHERE payment_id ='"+Pid+"' ";
+            String sql="SELECT payment_id,student_ID,paid_amount,late_fees FROM student_payment WHERE payment_id ='"+Pid+"' ";
         
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
                     
             table.setModel(DbUtils.resultSetToTableModel(rs));
+        
         }
         catch(Exception e){
-            System.out.println("search error !");
+            System.out.println(e);
         }
         
         
@@ -318,6 +389,12 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        reset();
+        tableload();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SID;
     private javax.swing.JTextField amount;
@@ -325,6 +402,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
     private javax.swing.JButton delete;
     private javax.swing.JTextField fees;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -337,9 +415,9 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
     private javax.swing.JLabel pid;
     private javax.swing.JTextField pid_search;
     private javax.swing.JButton search;
-    private javax.swing.JComboBox sem;
     private javax.swing.JLabel sid;
     private javax.swing.JTable table;
+    private javax.swing.JComboBox term;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

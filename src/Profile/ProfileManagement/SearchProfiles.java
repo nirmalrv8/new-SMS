@@ -308,7 +308,7 @@ public class SearchProfiles extends javax.swing.JFrame {
         
         try{
                 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Button","RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
+            DefaultTableModel model = new DefaultTableModel(new String[]{"RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
             
             ps = c.prepareStatement(stt);             
             ps.setString(1, "%" + jTextField1.getText() + "%" );
