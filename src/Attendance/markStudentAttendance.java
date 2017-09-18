@@ -69,6 +69,7 @@ public class markStudentAttendance extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         date_txt = new com.toedter.calendar.JDateChooser();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,6 +205,15 @@ public class markStudentAttendance extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"))); // NOI18N
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,7 +221,9 @@ public class markStudentAttendance extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addContainerGap()
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
@@ -249,8 +261,12 @@ public class markStudentAttendance extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addGap(15, 15, 15)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -273,7 +289,7 @@ public class markStudentAttendance extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -282,9 +298,25 @@ public class markStudentAttendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void calAtt_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calAtt_txtActionPerformed
-        // TODO add your handling code here:
+       int present = 0;
+       int absent  = 0;
+       
+       for(int i=0; i<count; i++){
+           if("true".equals(jTable1.getValueAt(i, 2).toString())){
+               present++;
+           }
+           else if("false".equals(jTable1.getValueAt(i, 2).toString())){
+               absent++;
+           }
+       }
+        markStudentAttendance.infoBox("present:" + present + " absent: " + absent + " ","TITLE BAR MESSAGE");
+
     }//GEN-LAST:event_calAtt_txtActionPerformed
 
+    public static void infoBox(String infoMsg,String titleBar){
+        JOptionPane.showMessageDialog(null, infoMsg , "Attendance count",JOptionPane.INFORMATION_MESSAGE );
+    }
+    
     private void save_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_txtActionPerformed
 
         
@@ -341,24 +373,47 @@ public class markStudentAttendance extends javax.swing.JFrame {
 
     private void rapid_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rapid_btnActionPerformed
        
-//        try{
-//            
-//            for(int i=0; i<count; i++){
-//            
-//            jTable1.setValueAt(col2, i, 2);
-//            }
-//       
-//        }
-//        catch(Exception e)
-//        {
-//            System.out.println(e);
-//        
-//        }
+        if(rapid_btn.isSelected()){
+        try{
+            
+            for(int i=0; i<count; i++){
+            
+            jTable1.setValueAt(true, i, 2);
+            }
+       
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        
+        }
+        }
+        else{
+            try{
+            
+            for(int i=0; i<count; i++){
+            
+            jTable1.setValueAt(false, i, 2);
+            }
+       
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        
+        }
+        }
     }//GEN-LAST:event_rapid_btnActionPerformed
 
     private void class_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_class_txtActionPerformed
         
     }//GEN-LAST:event_class_txtActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        AttendanceHome ah=new AttendanceHome();
+        ah.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +449,7 @@ public class markStudentAttendance extends javax.swing.JFrame {
     private javax.swing.JButton go_txt;
     private javax.swing.JComboBox<String> grade_txt;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

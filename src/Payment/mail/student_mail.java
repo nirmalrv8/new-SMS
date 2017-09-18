@@ -29,6 +29,8 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import Profile.MainInterface.*;
+import static Profile.MainInterface.ForgotPassword.isValidEmailAddress;
 
 
 public class student_mail extends javax.swing.JFrame {
@@ -43,11 +45,11 @@ public class student_mail extends javax.swing.JFrame {
     }
     
     
-    public void postdata(){
-    
-        this.text.setText("Sid is :"+getdata[0]+"\n payament: "+getdata[1]);
-    }
-    
+//    public void postdata(){
+//    
+//        this.text.setText("Sid is :"+getdata[0]+"\n payament: "+getdata[1]);
+//    }
+//    
     public void reset(){
         to.setText(null);
         subject.setText(null);
@@ -165,13 +167,45 @@ public class student_mail extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    public void validateEmail(){
+        String email = to.getText();
         
-   
-            final String From = "sureshudaya4@gmail.com";
-            final String password = "SURESh1234";
+        if(email.equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter a Email");
+            return;
+        }        
+        
+        if(!isValidEmailAddress(email)){
+            JOptionPane.showMessageDialog(null, "Email not valid");
+            return;
+        }
+        
+        
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            validateEmail();
+            try{
+                if(attachment_path == null){
+                    JOptionPane.showMessageDialog(null, "Please attach a file");
+                }
+                if(subject == null){
+                JOptionPane.showMessageDialog(null, "Please add a subject");                
+            }
+            if(attachname == null){
+                JOptionPane.showMessageDialog(null, "Please add a attach name");                
+            }
+            }
+            catch(NullPointerException ne){
+                  return;
+            }
+            
+            
+            final String From = "sureshudaya3@gmail.com";
+            final String password = "suresh2768972";
             String To = to.getText();
             String Subject = subject.getText();
             String Txtmessage = text.getText();

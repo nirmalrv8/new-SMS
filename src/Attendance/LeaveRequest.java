@@ -5,12 +5,20 @@
  */
 package attendance;
 
+import static Profile.MainInterface.Login.reg;
+
 import codes.DBconnect;
 import com.mysql.jdbc.Connection;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 //import org.jdesktop.swingx.JXTextField;
@@ -46,14 +54,11 @@ public class LeaveRequest extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        eid_txt = new javax.swing.JTextField();
         count_txt = new javax.swing.JTextField();
         reset_txt = new javax.swing.JButton();
         apply_txt = new javax.swing.JButton();
@@ -62,6 +67,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         paytype_txt = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         descr_txt = new javax.swing.JTextArea();
+        jButton7 = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -70,18 +76,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Desktop\\SLIIT Y2 S2\\ITP\\Attendance\\icons\\Paste-icon.png")); // NOI18N
         jLabel1.setText("Apply A Leave");
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/attendance/Button-Previous-icon.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Employee ID      :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("From                 :");
@@ -125,6 +120,15 @@ public class LeaveRequest extends javax.swing.JFrame {
         descr_txt.setRows(5);
         jScrollPane2.setViewportView(descr_txt);
 
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"))); // NOI18N
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +139,6 @@ public class LeaveRequest extends javax.swing.JFrame {
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
@@ -151,12 +154,13 @@ public class LeaveRequest extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(count_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(eid_txt, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(from_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(to_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(apply_txt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reset_txt)
@@ -164,25 +168,14 @@ public class LeaveRequest extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(20, 20, 20))
+                .addGap(20, 227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(eid_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(from_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,22 +196,20 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reset_txt)
-                    .addComponent(apply_txt))
-                .addGap(63, 63, 63))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(reset_txt)
+                            .addComponent(apply_txt))
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addGap(39, 39, 39))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
-        AttendanceHome ah=new AttendanceHome();
-        ah.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void apply_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apply_txtActionPerformed
         
@@ -229,12 +220,34 @@ public class LeaveRequest extends javax.swing.JFrame {
             String sql="insert into leave_requests (empId,from_,to_,dateCount,paymentType,description )values (?,?,?,?,?,?)";
             pst=con.prepareStatement(sql);
            
-            pst.setString(1, eid_txt.getText());
+            pst.setString(1, reg);
             // pst.setString(2, ename_txt.getText());
             JTextField frmdate=(JTextField)from_txt.getDateEditor().getUiComponent();
             JTextField todate=(JTextField)to_txt.getDateEditor().getUiComponent();
             pst.setString(2, frmdate.getText());
             pst.setString(3, todate.getText());
+            try {
+                Date tod = new SimpleDateFormat("yyyy-MM-dd").parse(todate.getText());
+            
+                Date frmd = new SimpleDateFormat("yyyy-MM-dd").parse(frmdate.getText());
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date nowdate = new Date();
+            int x = tod.compareTo(frmd);
+            int y = frmd.compareTo(nowdate);
+            if(x >= 1 || y >= 0 ){
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Request submitted");
+            }
+            else if(x==0 || -1 == x || y<0){
+                JOptionPane.showMessageDialog(rootPane, "Please select a valid day combination","error",JOptionPane.ERROR_MESSAGE);
+            }
+            
+            } catch (ParseException ex) {
+                Logger.getLogger(LeaveRequest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            
             pst.setString(4, count_txt.getText());
           
 //           count_txt.setText((String.valueOf(diff/(60*60*24*1000))));
@@ -252,7 +265,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             
             
         }
-        catch(HeadlessException | SQLException e)
+        catch(HeadlessException | SQLException e )
         {
         
             System.out.println(e);
@@ -265,6 +278,12 @@ public class LeaveRequest extends javax.swing.JFrame {
     private void count_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_count_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_count_txtActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+          AttendanceHome ah=new AttendanceHome();
+        ah.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,12 +325,10 @@ public class LeaveRequest extends javax.swing.JFrame {
     private javax.swing.JButton apply_txt;
     private javax.swing.JTextField count_txt;
     private javax.swing.JTextArea descr_txt;
-    private javax.swing.JTextField eid_txt;
     private com.toedter.calendar.JDateChooser from_txt;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

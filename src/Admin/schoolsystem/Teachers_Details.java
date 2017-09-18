@@ -33,6 +33,7 @@ public class Teachers_Details extends javax.swing.JFrame {
             private int Age;
             private String Date;
             private String password;
+            private String Email; 
             
     public Teachers_Details() {
         initComponents();
@@ -57,8 +58,9 @@ public class Teachers_Details extends javax.swing.JFrame {
             
             SimpleDateFormat da=new SimpleDateFormat("yyyy-MM-dd");
             this.Date=da.format(date.getDate());
-            
+            this.Email=email.getText();
             this.password=pass.getText();
+            
             
             
     }
@@ -96,7 +98,7 @@ public class Teachers_Details extends javax.swing.JFrame {
                 phone.setText(rs.getString("phone"));
                 age.setText(rs.getString("age"));
                 date.setDate(rs.getDate("Date_Joined"));
-                  
+                email.setText(rs.getString("email"));
               }
          }
          catch(Exception e)
@@ -109,8 +111,8 @@ public class Teachers_Details extends javax.swing.JFrame {
     {
         try{
            
-            String sql="INSERT INTO teacher(Teacher_ID,name,Password,address,phone,age,Date_Joined)"
-                    +"VALUES('"+Id+"','"+Fname+"','"+password+"','"+Address+"','"+Pno+"','"+Age+"','"+Date+"')";
+            String sql="INSERT INTO teacher(Teacher_ID,name,Password,address,phone,age,Date_Joined,email)"
+                    +"VALUES('"+Id+"','"+Fname+"','"+password+"','"+Address+"','"+Pno+"','"+Age+"','"+Date+"','"+Email+"')";
            
             pst = con.prepareStatement(sql);
             pst.execute(sql);
@@ -139,6 +141,7 @@ public class Teachers_Details extends javax.swing.JFrame {
                 phone.setText(rs.getString("phone"));
                 age.setText(rs.getString("age"));
                 date.setDate(rs.getDate("Date_Joined"));
+                email.setText(rs.getString("email"));
             }
             else
             {
@@ -175,7 +178,7 @@ public class Teachers_Details extends javax.swing.JFrame {
     {
          try{
    
-       String sq="update teacher set name=?,address=?,phone=?,age=?,Date_Joined=? where Teacher_ID=?";
+       String sq="update teacher set name=?,address=?,phone=?,age=?,Date_Joined=?,email=? where Teacher_ID=?";
             
             pst=con.prepareStatement(sq);
              
@@ -189,7 +192,8 @@ public class Teachers_Details extends javax.swing.JFrame {
             String Sdate=da.format(date.getDate());
             
             pst.setString(5,Sdate);
-            pst.setString(6,id.getText());
+            pst.setString(6,email.getText());
+            pst.setString(7,id.getText());
             
             pst.executeUpdate();
 
@@ -209,6 +213,7 @@ public class Teachers_Details extends javax.swing.JFrame {
         age.setText(null);
         date.setDate(null);
         pass.setText(null);
+        email.setText(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -247,6 +252,8 @@ public class Teachers_Details extends javax.swing.JFrame {
         lableteacher = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         pass = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -424,6 +431,8 @@ public class Teachers_Details extends javax.swing.JFrame {
 
         jLabel9.setText("PASSWORD :");
 
+        jLabel5.setText("Email :");
+
         javax.swing.GroupLayout lable2Layout = new javax.swing.GroupLayout(lable2);
         lable2.setLayout(lable2Layout);
         lable2Layout.setHorizontalGroup(
@@ -443,7 +452,8 @@ public class Teachers_Details extends javax.swing.JFrame {
                                         .addComponent(jLabel3))
                                     .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel9)
-                                        .addComponent(jLabel8)))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,13 +477,14 @@ public class Teachers_Details extends javax.swing.JFrame {
                                             .addGroup(lable2Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(lableteacher, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(lable2Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lable2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -506,11 +517,7 @@ public class Teachers_Details extends javax.swing.JFrame {
                     .addGroup(lable2Layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
-                        .addComponent(lable1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
+                        .addComponent(lable1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(lable2Layout.createSequentialGroup()
                         .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -523,11 +530,22 @@ public class Teachers_Details extends javax.swing.JFrame {
                         .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))))
-                .addGap(34, 34, 34)
+                .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(lable2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel5))
+                    .addGroup(lable2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton7)
                     .addComponent(jButton6))
@@ -679,6 +697,7 @@ public class Teachers_Details extends javax.swing.JFrame {
     public static javax.swing.JTextField address;
     public static javax.swing.JTextField age;
     public static com.toedter.calendar.JDateChooser date;
+    private javax.swing.JTextField email;
     public static javax.swing.JTextField fname;
     public static javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
@@ -692,6 +711,7 @@ public class Teachers_Details extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

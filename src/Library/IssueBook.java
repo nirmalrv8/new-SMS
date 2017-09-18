@@ -180,7 +180,7 @@ public class IssueBook extends javax.swing.JFrame {
                
            }else{
         
-        JTextField pubd=(JTextField)this.duedate.getDateEditor().getUiComponent();
+     //   JTextField pubd=(JTextField)this.duedate.getDateEditor().getUiComponent();
          
 //         JTextField dat=(JTextField)this.duedate.getDateEditor().getUiComponent();
 //         

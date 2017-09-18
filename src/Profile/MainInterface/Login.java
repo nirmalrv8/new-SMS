@@ -198,6 +198,10 @@ public class Login extends javax.swing.JFrame {
                         new Payment.Interface.main().setVisible(true);
                         return;
                     }
+                    if(reg.equals("elib")){
+                        new Library.LibMain().setVisible(true);
+                        return;
+                    }
                     else if(reg.equals("eadmin")){
                         new Admin.schoolsystem.Admin_Panel().setVisible(true);
                         return;
@@ -257,6 +261,7 @@ public class Login extends javax.swing.JFrame {
             type = "emp";
             stt = "select * from employee where Emp_ID=?";
         }
+        
         else{
             type = "student";
             stt = "select * from student where regNum=?";            

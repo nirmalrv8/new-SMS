@@ -468,11 +468,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-//        new timeTable.timetableStu().setVisible(true);
+        new Calendar.Timetable.timetableStu().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-//        new calander.calanderStudent().setVisible(true);
+        new Calendar.calander.finalStudentcal().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -22,6 +22,9 @@ public class Return_Books extends javax.swing.JFrame {
     int ymouse;
     public Return_Books() {
         initComponents();
+        ISBN.setEditable(false);
+        Borrower.setEditable(false);
+         ret.setEnabled(false);
     }
 
     /**
@@ -180,6 +183,12 @@ public class Return_Books extends javax.swing.JFrame {
                  
             }
             }
+             if(!Borrower.getText().isEmpty()&&!ISBN.getText().isEmpty()&&!lend.getText().isEmpty()){
+            ret.setEnabled(true);
+        }else
+        {
+            ret.setEnabled(false);
+        }
             
             
         } catch (Exception e) {
@@ -252,6 +261,8 @@ public class Return_Books extends javax.swing.JFrame {
 
     private void lendKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lendKeyPressed
         setnull();
+       
+        
     }//GEN-LAST:event_lendKeyPressed
 
     public void setnull(){

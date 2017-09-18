@@ -88,13 +88,13 @@ public class Book {
           
            //   }
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null,"Errror"+e);
+             JOptionPane.showMessageDialog(null,"There are Reservations For this Book");
         }
 
     
     }
     boolean update_book(int pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
-     System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
+     //System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
       
         con = DBconnect.connect();
         try {

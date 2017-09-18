@@ -21,8 +21,8 @@ public class DBconnect {
     {
         Connection con = null;
         try{
-//         con = DriverManager.getConnection("jdbc:mysql://mysql5.gear.host/sms1","sms1","Ss9E?hre_1gC");
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sms1","root","");
+       //  con = DriverManager.getConnection("jdbc:mysql://mysql5.gear.host/sms1","sms1","Ss9E?hre_1gC");
+             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sms1","root","");
             
         } 
         catch(SQLException ex){
