@@ -274,6 +274,87 @@ public class SearchProfiles extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+//    public void search(){
+//        Connection c = DBconnect.connect();        
+//        PreparedStatement ps;
+//        ResultSet result;   
+//        String stt="";        
+//        
+//        if(jTextField1.getText().equals("")){
+//            JOptionPane.showMessageDialog(null, "Enter a keyword to search");
+//            return;
+//        }
+//        
+//        if(jRadioButton1.isSelected()){
+//            stt="select * from student where regNum like ?";
+//        }
+//        else if(jRadioButton2.isSelected()){
+//            stt="select * from student where name like ? ";
+//        }
+//        else if(jRadioButton3.isSelected()){
+//            stt="select * from student where grade like ?";
+//        }
+//        else if(jRadioButton4.isSelected()){
+//            stt="select * from teacher where Teacher_ID like ?";
+//        }
+//        else if(jRadioButton5.isSelected()){
+//            stt="select * from teacher where fname like ?";
+//        }         
+//        else{
+//            JOptionPane.showMessageDialog(null, "Please select search criteria");
+//            return;
+//        }
+//        
+//        
+//        try{
+//                
+//            DefaultTableModel model = new DefaultTableModel(new String[]{"RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
+//            
+//            ps = c.prepareStatement(stt);             
+//            ps.setString(1, "%" + jTextField1.getText() + "%" );
+//            ResultSet re = ps.executeQuery();       
+//            
+//            if(!re.next()){
+//                JOptionPane.showMessageDialog(null, "No users found");
+//                return;
+//            }
+//            re.previous();
+//            
+//            while(re.next()){   
+//                
+//                if(jRadioButton1.isSelected() || jRadioButton2.isSelected() || jRadioButton3.isSelected()  ){
+//                    String regno = re.getString("regNum");
+//                    String name = re.getString("name");
+//                    String age = re.getString("age");
+//                    String grade = re.getString("grade");
+//                    
+//                    Date dob = re.getDate("dob");
+//                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//                    String stringDOB = df.format(dob);
+//                    
+//                    String contact = re.getString("contact");
+//                    String add = re.getString("address");
+//                    String email = re.getString("email");
+//                    String button = "view" + name;
+//                    model.addRow(new Object[]{button,regno,name,age,grade,stringDOB,contact,add,email});
+//                      
+//                }
+//                else{
+//                    //meeka hadapaaaaaaaaan
+//                    String id = re.getString("Teacher_ID");
+//                    System.out.println(id);
+//                }              
+//                
+//            }
+//            jPanel3.setVisible(true);
+//            jTable1.setModel(model);
+//            
+//        }
+//        catch(SQLException ex){
+//            System.out.println("sql error " + ex.getMessage());
+//        }
+//    }
+    
     public void search(){
         Connection c = DBconnect.connect();        
         PreparedStatement ps;
@@ -298,7 +379,7 @@ public class SearchProfiles extends javax.swing.JFrame {
             stt="select * from teacher where Teacher_ID like ?";
         }
         else if(jRadioButton5.isSelected()){
-            stt="select * from teacher where fname like ?";
+            stt="select * from teacher where name like ?";
         }         
         else{
             JOptionPane.showMessageDialog(null, "Please select search criteria");
@@ -306,23 +387,24 @@ public class SearchProfiles extends javax.swing.JFrame {
         }
         
         
-        try{
-                
-            DefaultTableModel model = new DefaultTableModel(new String[]{"RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
+        try{          
             
             ps = c.prepareStatement(stt);             
             ps.setString(1, "%" + jTextField1.getText() + "%" );
             ResultSet re = ps.executeQuery();       
             
-            if(!re.next()){
+            if(!re.isBeforeFirst()){
                 JOptionPane.showMessageDialog(null, "No users found");
                 return;
             }
-            re.previous();
             
+            DefaultTableModel model1 = new DefaultTableModel(new String[]{"RegNo","Name", "Age", "Class","DOB","Contact","Address","Email"}, 0);
+            DefaultTableModel model2 = new DefaultTableModel(new String[]{"ID","Name", "Address", "Contact"}, 0);
             while(re.next()){   
+                //display student in table
                 
                 if(jRadioButton1.isSelected() || jRadioButton2.isSelected() || jRadioButton3.isSelected()  ){
+                    
                     String regno = re.getString("regNum");
                     String name = re.getString("name");
                     String age = re.getString("age");
@@ -335,19 +417,27 @@ public class SearchProfiles extends javax.swing.JFrame {
                     String contact = re.getString("contact");
                     String add = re.getString("address");
                     String email = re.getString("email");
-                    String button = "view" + name;
-                    model.addRow(new Object[]{button,regno,name,age,grade,stringDOB,contact,add,email});
-                      
+                    
+                    model1.addRow(new Object[]{regno,name,age,grade,stringDOB,contact,add,email});
+                    jTable1.setModel(model1); 
                 }
+                
                 else{
-                    //meeka hadapaaaaaaaaan
-                    String id = re.getString("Teacher_ID");
-                    System.out.println(id);
-                }              
+                    
+                    
+                    String ID = re.getString("Teacher_ID");
+                    String name = re.getString("name");
+                    String add = re.getString("address");
+                    String contact = re.getString("phone");               
+        
+                    
+                    model2.addRow(new Object[]{ID,name,add,contact});
+                    jTable1.setModel(model2);
+                }      
                 
             }
+              
             jPanel3.setVisible(true);
-            jTable1.setModel(model);
             
         }
         catch(SQLException ex){

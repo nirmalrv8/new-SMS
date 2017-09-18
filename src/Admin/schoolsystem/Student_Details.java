@@ -52,7 +52,7 @@ public class Student_Details extends javax.swing.JFrame {
     {
             this.Id=id.getText();
             this.Fname=fname1.getText();
-            this.Grade=fname.getText();
+            this.Grade=grade.getText();
             this.Address=address.getText();
             this.Pno=Integer.parseInt(phone.getText());
             this.Age=Integer.parseInt(age.getText());
@@ -94,7 +94,7 @@ public class Student_Details extends javax.swing.JFrame {
               {
                 id.setText(rs.getString("regNum"));
                 fname1.setText(rs.getString("name"));
-                fname.setText(rs.getString("grade"));
+                grade.setText(rs.getString("grade"));
                 address.setText(rs.getString("address"));
                 phone.setText(rs.getString("contact"));
                 age.setText(rs.getString("age"));
@@ -112,7 +112,7 @@ public class Student_Details extends javax.swing.JFrame {
     {
         try{
            
-            String sql="INSERT INTO student(regNum,name,grade,Password,address,phone,age,regDate)"
+            String sql="INSERT INTO student(regNum,name,grade,Password,address,contact,age,regDate)"
                     +"VALUES('"+Id+"','"+Fname+"','"+Grade+"','"+password+"','"+Address+"','"+Pno+"','"+Age+"','"+Date+"')";
            
             pst = con.prepareStatement(sql);
@@ -138,7 +138,7 @@ public class Student_Details extends javax.swing.JFrame {
                 
                 id.setText(rs.getString("regNum"));
                 fname1.setText(rs.getString("name"));
-                fname.setText(rs.getString("grade"));
+                grade.setText(rs.getString("grade"));
                 address.setText(rs.getString("address"));
                 phone.setText(rs.getString("contact"));
                 age.setText(rs.getString("age"));
@@ -184,7 +184,7 @@ public class Student_Details extends javax.swing.JFrame {
             pst=con.prepareStatement(sq);
              
             pst.setString(1,fname1.getText());
-            pst.setString(2,fname.getText());
+            pst.setString(2,grade.getText());
             pst.setString(3,address.getText());
             pst.setString(4,phone.getText());
             pst.setString(5,age.getText());
@@ -193,8 +193,8 @@ public class Student_Details extends javax.swing.JFrame {
             
             String Sdate=da.format(date.getDate());
             
-            pst.setString(5,Sdate);
-            pst.setString(6,id.getText());
+            pst.setString(6,Sdate);
+            pst.setString(7,id.getText());
             
             pst.executeUpdate();
 
@@ -209,7 +209,7 @@ public class Student_Details extends javax.swing.JFrame {
     {
         id.setText(null);
         fname1.setText(null); 
-        fname.setText(null); 
+        grade.setText(null); 
         address.setText(null);
         phone.setText(null);
         age.setText(null);
@@ -233,7 +233,7 @@ public class Student_Details extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
-        fname = new javax.swing.JTextField();
+        grade = new javax.swing.JTextField();
         address = new javax.swing.JTextField();
         phone = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -460,7 +460,7 @@ public class Student_Details extends javax.swing.JFrame {
                                     .addGroup(lable2Layout.createSequentialGroup()
                                         .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                                            .addComponent(fname, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                                            .addComponent(grade, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                                             .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                                             .addComponent(phone, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                                             .addComponent(age, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
@@ -511,7 +511,7 @@ public class Student_Details extends javax.swing.JFrame {
                 .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton5)
-                        .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(grade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(lable2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -697,8 +697,8 @@ public class Student_Details extends javax.swing.JFrame {
     public static javax.swing.JTextField address;
     public static javax.swing.JTextField age;
     public static com.toedter.calendar.JDateChooser date;
-    public static javax.swing.JTextField fname;
     public static javax.swing.JTextField fname1;
+    public static javax.swing.JTextField grade;
     public static javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

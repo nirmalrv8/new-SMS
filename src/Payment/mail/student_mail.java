@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mail;
+package Payment.mail;
 
 /**
  *
  * @author SURESH_UDAYA
  */
-import Interface.Add_Payment_Details;
+import Payment.Interface.Add_Payment_Details;
 import java.io.File;
 import java.util.*;
 import javax.mail.*;

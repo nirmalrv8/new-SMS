@@ -113,7 +113,7 @@ public class ChangeAdminPassword extends javax.swing.JFrame {
 
         jLabel5.setText("Re-Enter Password :");
 
-        jButton9.setText("Conform");
+        jButton9.setText("Confirm");
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
