@@ -95,6 +95,11 @@ public class LeaveRequest extends javax.swing.JFrame {
                 count_txtActionPerformed(evt);
             }
         });
+        count_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                count_txtKeyPressed(evt);
+            }
+        });
 
         reset_txt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         reset_txt.setText("Reset");
@@ -213,7 +218,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             JTextField todate=(JTextField)to_txt.getDateEditor().getUiComponent();
             pst.setString(2, frmdate.getText());
             pst.setString(3, todate.getText());
-            try {
+            
                 Date tod = new SimpleDateFormat("yyyy-MM-dd").parse(todate.getText());
             
                 Date frmd = new SimpleDateFormat("yyyy-MM-dd").parse(frmdate.getText());
@@ -221,20 +226,9 @@ public class LeaveRequest extends javax.swing.JFrame {
             Date nowdate = new Date();
             int x = tod.compareTo(frmd);
             int y = frmd.compareTo(nowdate);
-            if(x >= 1 || y >= 0 ){
-                pst.execute();
-                JOptionPane.showMessageDialog(null, "Request submitted");
-            }
-            else if(x==0 || -1 == x || y<0){
-                JOptionPane.showMessageDialog(rootPane, "Please select a valid day combination","error",JOptionPane.ERROR_MESSAGE);
-            }
-            
-            } catch (ParseException ex) {
-                Logger.getLogger(LeaveRequest.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            
-            
+            String to=to_txt.getDateForamtString();
+            String from=from_txt.getDateForamtString();
+              
             pst.setString(4, count_txt.getText());
           
 //           count_txt.setText((String.valueOf(diff/(60*60*24*1000))));
@@ -242,24 +236,25 @@ public class LeaveRequest extends javax.swing.JFrame {
             
             pst.setString(5, paytype_txt.getSelectedItem().toString());
             pst.setString(6, descr_txt.getText());
-         
             
-            
-           
-            pst.execute();
-            
-             JOptionPane.showMessageDialog(null, "Request submitted ");
-            
-            
-        }
-        catch(HeadlessException | SQLException e )
+            if(x >= 1 || y >= 0 ){
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "Request submitted");
+            }
+            else if(x==0 || -1 == x || y<0){
+                JOptionPane.showMessageDialog(rootPane, "Please select a valid day combination","error",JOptionPane.ERROR_MESSAGE);
+            }
+            catch(HeadlessException | SQLException e )
         {
         
             System.out.println(e);
         
         }
-
-        
+            
+             catch (ParseException ex) {
+                Logger.getLogger(LeaveRequest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
     }//GEN-LAST:event_apply_txtActionPerformed
 
     private void count_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_count_txtActionPerformed
@@ -279,6 +274,22 @@ public class LeaveRequest extends javax.swing.JFrame {
         count_txt.setText("");
         descr_txt.setText("");
     }//GEN-LAST:event_reset_txtActionPerformed
+
+    private void count_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_count_txtKeyPressed
+        // TODO add your handling code here:
+         char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                      jTextField1.setEditable(false);
+                    jTextField1.setBackground(Color.red);
+                   
+               }
+               else{
+                   jTextField1.setEditable(true);
+                   jTextField1.setBackground(Color.white);
+                 
+               }
+    }//GEN-LAST:event_count_txtKeyPressed
 
     /**
      * @param args the command line arguments
