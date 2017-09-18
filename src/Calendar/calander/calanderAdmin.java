@@ -340,11 +340,12 @@ public class calanderAdmin extends javax.swing.JFrame {
        
                
                char key = (char) evt.getKeyCode();
-               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)){
+               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key>=evt.VK_0&&key<=evt.VK_9){
                    
                    jTextField1.setEditable(true);
                    jTextField1.setBackground(Color.white);
-               }else{
+               }
+               else{
                     jTextField1.setEditable(false);
                     jTextField1.setBackground(Color.red);
                }

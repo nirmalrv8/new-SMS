@@ -151,6 +151,23 @@ public class inventory extends javax.swing.JFrame {
 
         jLabel3.setText("Quantity");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField3KeyPressed(evt);
+            }
+        });
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField4KeyPressed(evt);
@@ -400,6 +417,16 @@ public class inventory extends javax.swing.JFrame {
 
     private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
         // TODO add your handling code here:
+             char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)){
+                   
+                   jTextField1.setEditable(true);
+                   jTextField1.setBackground(Color.white);
+               }
+               else{
+                    jTextField1.setEditable(false);
+                    jTextField1.setBackground(Color.red);
+               }
         
     }//GEN-LAST:event_jTextField4KeyPressed
 
@@ -461,6 +488,27 @@ public class inventory extends javax.swing.JFrame {
         this.dispose();
         new Admin.schoolsystem.Admin_Panel().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+            char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0&&key<=evt.VK_9)){
+                   
+                   jTextField1.setEditable(true);
+                   jTextField1.setBackground(Color.white);
+               }
+               else{
+                    jTextField1.setEditable(false);
+                    jTextField1.setBackground(Color.red);
+               }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3KeyPressed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
