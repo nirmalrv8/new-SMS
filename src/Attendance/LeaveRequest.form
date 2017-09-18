@@ -2,8 +2,6 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -42,6 +40,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="jButton7" min="-2" pref="74" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="apply_txt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="reset_txt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -64,30 +71,14 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="count_txt" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="from_txt" alignment="1" max="32767" attributes="0"/>
-                              <Component id="to_txt" alignment="1" min="-2" pref="183" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="count_txt" min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="432" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="jButton7" min="-2" pref="74" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="apply_txt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="reset_txt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="432" max="-2" attributes="0"/>
-              <EmptySpace min="20" pref="227" max="32767" attributes="0"/>
+              <EmptySpace pref="227" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,21 +88,13 @@
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="72" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <Component id="from_txt" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="count_txt" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="to_txt" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="count_txt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -202,6 +185,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Reset"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reset_txtActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="apply_txt">
       <Properties>
@@ -213,16 +199,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="apply_txtActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="from_txt">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-      </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="to_txt">
-      <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="paytype_txt">
       <Properties>
@@ -256,9 +232,6 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
