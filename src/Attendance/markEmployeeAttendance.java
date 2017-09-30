@@ -342,8 +342,7 @@ String checked;
     }//GEN-LAST:event_calc_btnActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        AttendanceHome ah=new AttendanceHome();
-        ah.setVisible(true);
+        new Admin.schoolsystem.Admin_Panel().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

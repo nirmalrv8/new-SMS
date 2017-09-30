@@ -10,6 +10,7 @@ import static Profile.MainInterface.Login.reg;
 import static Profile.MainInterface.Login.type;
 import Profile.MainInterface.Main;
 import Profile.OtherResources.TextPrompt;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -503,7 +504,22 @@ public class SearchProfiles extends javax.swing.JFrame {
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){            
             search();
-                 char key = (char) evt.getKeyCode();
+        }
+        
+        if(jRadioButton1.isSelected()){
+            char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0 && key<=evt.VK_9)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                   jTextField1.setEditable(true);
+                   jTextField1.setBackground(Color.white);
+               }
+               else{
+                    jTextField1.setEditable(false);
+                    jTextField1.setBackground(Color.red);
+               }
+        }
+        if(jRadioButton2.isSelected()){
+            char key = (char) evt.getKeyCode();
                if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
                    
                    jTextField1.setEditable(true);
@@ -514,6 +530,8 @@ public class SearchProfiles extends javax.swing.JFrame {
                     jTextField1.setBackground(Color.red);
                }
         }
+                 
+        
     }//GEN-LAST:event_jTextField1KeyPressed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

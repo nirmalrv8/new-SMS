@@ -9,6 +9,7 @@ import static Profile.MainInterface.Login.reg;
 
 import codes.DBconnect;
 import com.mysql.jdbc.Connection;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -58,13 +59,15 @@ public class LeaveRequest extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        count_txt = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         reset_txt = new javax.swing.JButton();
         apply_txt = new javax.swing.JButton();
         paytype_txt = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         descr_txt = new javax.swing.JTextArea();
         jButton7 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -90,14 +93,14 @@ public class LeaveRequest extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Description       :");
 
-        count_txt.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                count_txtActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
-        count_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                count_txtKeyPressed(evt);
+                jTextField1KeyPressed(evt);
             }
         });
 
@@ -124,6 +127,7 @@ public class LeaveRequest extends javax.swing.JFrame {
         jScrollPane2.setViewportView(descr_txt);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"))); // NOI18N
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,20 +152,27 @@ public class LeaveRequest extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(paytype_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(paytype_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(223, 223, 223)
-                        .addComponent(count_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -173,13 +184,17 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83)
-                .addComponent(jLabel4)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(count_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -188,7 +203,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,7 +211,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                             .addComponent(apply_txt))
                         .addGap(63, 63, 63))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton7)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))))
         );
 
@@ -214,10 +229,10 @@ public class LeaveRequest extends javax.swing.JFrame {
            
             pst.setString(1, reg);
             // pst.setString(2, ename_txt.getText());
-            JTextField frmdate=(JTextField)from_txt.getDateEditor().getUiComponent();
-            JTextField todate=(JTextField)to_txt.getDateEditor().getUiComponent();
-            pst.setString(2, frmdate.getText());
-            pst.setString(3, todate.getText());
+//            JTextField frmdate=(JTextField)from_txt.getDateEditor().getUiComponent();
+//            JTextField todate=(JTextField)to_txt.getDateEditor().getUiComponent();
+//            pst.setString(2, frmdate.getText());
+//            pst.setString(3, todate.getText());
             
                 Date tod = new SimpleDateFormat("yyyy-MM-dd").parse(todate.getText());
             
@@ -226,10 +241,10 @@ public class LeaveRequest extends javax.swing.JFrame {
             Date nowdate = new Date();
             int x = tod.compareTo(frmd);
             int y = frmd.compareTo(nowdate);
-            String to=to_txt.getDateForamtString();
-            String from=from_txt.getDateForamtString();
+//            String to=to_txt.getDateForamtString();
+//            String from=from_txt.getDateForamtString();
               
-            pst.setString(4, count_txt.getText());
+            pst.setString(4, jTextField1.getText());
           
 //           count_txt.setText((String.valueOf(diff/(60*60*24*1000))));
   
@@ -243,7 +258,7 @@ public class LeaveRequest extends javax.swing.JFrame {
             }
             else if(x==0 || -1 == x || y<0){
                 JOptionPane.showMessageDialog(rootPane, "Please select a valid day combination","error",JOptionPane.ERROR_MESSAGE);
-            }
+            }    }
             catch(HeadlessException | SQLException e )
         {
         
@@ -254,28 +269,27 @@ public class LeaveRequest extends javax.swing.JFrame {
              catch (ParseException ex) {
                 Logger.getLogger(LeaveRequest.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
+        
     }//GEN-LAST:event_apply_txtActionPerformed
 
-    private void count_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_count_txtActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_count_txtActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-          AttendanceHome ah=new AttendanceHome();
-        ah.setVisible(true);
+          new Profile.MainInterface.Main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void reset_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_txtActionPerformed
         // TODO add your handling code here:
-        to_txt.setCalendar(null);
-        from_txt.setCalendar(null);
-        count_txt.setText("");
+//        to_txt.setCalendar(null);
+//        from_txt.setCalendar(null);
+        jTextField1.setText("");
         descr_txt.setText("");
     }//GEN-LAST:event_reset_txtActionPerformed
 
-    private void count_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_count_txtKeyPressed
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
          char key = (char) evt.getKeyCode();
                if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
@@ -289,7 +303,7 @@ public class LeaveRequest extends javax.swing.JFrame {
                    jTextField1.setBackground(Color.white);
                  
                }
-    }//GEN-LAST:event_count_txtKeyPressed
+    }//GEN-LAST:event_jTextField1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -329,9 +343,10 @@ public class LeaveRequest extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton apply_txt;
-    private javax.swing.JTextField count_txt;
     private javax.swing.JTextArea descr_txt;
     private javax.swing.JButton jButton7;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -341,6 +356,7 @@ public class LeaveRequest extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> paytype_txt;
     private javax.swing.JButton reset_txt;
     // End of variables declaration//GEN-END:variables

@@ -71,7 +71,6 @@ public class Remove_Books extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        cat.setText("awdwe");
         cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 catActionPerformed(evt);
@@ -86,7 +85,7 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cat);
-        cat.setBounds(160, 300, 154, 24);
+        cat.setBounds(160, 300, 154, 20);
 
         searchisbn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         searchisbn.setText("Search Book");
@@ -110,45 +109,38 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(searchisbn);
-        searchisbn.setBounds(70, 20, 250, 24);
+        searchisbn.setBounds(70, 20, 250, 20);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("ISBN");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(50, 100, 80, 20);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Name");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(50, 140, 70, 20);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pages");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(50, 180, 66, 19);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Quntity");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(50, 220, 66, 19);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Language");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(50, 260, 69, 19);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Catagory");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(50, 300, 80, 19);
 
-        ISBN.setText("1233");
         ISBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ISBNActionPerformed(evt);
@@ -166,9 +158,8 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ISBN);
-        ISBN.setBounds(160, 100, 154, 24);
+        ISBN.setBounds(160, 100, 154, 20);
 
-        name1.setText("qwe");
         name1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name1ActionPerformed(evt);
@@ -183,9 +174,8 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name1);
-        name1.setBounds(160, 140, 154, 24);
+        name1.setBounds(160, 140, 154, 20);
 
-        pages.setText("123");
         pages.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pagesKeyPressed(evt);
@@ -195,9 +185,8 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pages);
-        pages.setBounds(160, 180, 154, 24);
+        pages.setBounds(160, 180, 154, 20);
 
-        qty.setText("12");
         qty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 qtyKeyPressed(evt);
@@ -207,7 +196,7 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(qty);
-        qty.setBounds(160, 220, 154, 24);
+        qty.setBounds(160, 220, 154, 20);
 
         update.setText("Update");
         update.addActionListener(new java.awt.event.ActionListener() {
@@ -218,7 +207,6 @@ public class Remove_Books extends javax.swing.JFrame {
         getContentPane().add(update);
         update.setBounds(60, 390, 90, 40);
 
-        lang.setText("sd");
         lang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 langKeyPressed(evt);
@@ -228,9 +216,8 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lang);
-        lang.setBounds(160, 260, 154, 24);
+        lang.setBounds(160, 260, 154, 20);
 
-        pr.setText("12");
         pr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prActionPerformed(evt);
@@ -245,7 +232,7 @@ public class Remove_Books extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pr);
-        pr.setBounds(160, 340, 154, 24);
+        pr.setBounds(160, 340, 154, 20);
 
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
@@ -257,7 +244,6 @@ public class Remove_Books extends javax.swing.JFrame {
         remove.setBounds(217, 390, 80, 40);
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Price");
         getContentPane().add(jLabel10);
         jLabel10.setBounds(50, 340, 80, 19);

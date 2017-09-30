@@ -356,8 +356,7 @@ public class ViewStudentAttendance extends javax.swing.JFrame {
     }//GEN-LAST:event_go_txtActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        AttendanceHome ah=new AttendanceHome();
-        ah.setVisible(true);
+        new Profile.MainInterface.Main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

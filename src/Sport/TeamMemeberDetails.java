@@ -282,10 +282,10 @@ public class TeamMemeberDetails extends javax.swing.JFrame {
     }
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
      String age = jComboBox3.getSelectedItem().toString();
-    / int age1 = 
-     
-     
-     
+//    / int age1 = 
+//     
+//     
+//     
     }//GEN-LAST:event_jComboBox3ActionPerformed
     
     /**

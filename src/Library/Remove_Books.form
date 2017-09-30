@@ -34,9 +34,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="cat">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="awdwe"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="catActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="catKeyPressed"/>
@@ -145,9 +142,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="ISBN">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1233"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ISBNActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ISBNKeyPressed"/>
@@ -161,9 +155,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="name1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="qwe"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="name1ActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="name1KeyPressed"/>
@@ -176,9 +167,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="pages">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="123"/>
-      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pagesKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="pagesKeyReleased"/>
@@ -190,9 +178,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="qty">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="12"/>
-      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="qtyKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="qtyKeyReleased"/>
@@ -217,9 +202,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="lang">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="sd"/>
-      </Properties>
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="langKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="langKeyReleased"/>
@@ -231,9 +213,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="pr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="12"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="prKeyPressed"/>

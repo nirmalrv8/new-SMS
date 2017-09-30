@@ -5,7 +5,9 @@
  */
 package Admin.schoolsystem;
 
+import static Admin.schoolsystem.Student_Details.phone;
 import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -404,11 +406,14 @@ public class Teachers_Details extends javax.swing.JFrame {
             }
         });
         age.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ageKeyTyped(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ageKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ageKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ageKeyTyped(evt);
             }
         });
 
@@ -635,7 +640,26 @@ public class Teachers_Details extends javax.swing.JFrame {
 
     private void phoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyPressed
         // TODO add your handling code here:
-        
+        if(evt.getKeyCode()>=KeyEvent.VK_0 && evt.getKeyCode()<=KeyEvent.VK_9 || evt.getKeyCode()==KeyEvent.VK_BACKSPACE || evt.getKeyCode() == KeyEvent.VK_DELETE)
+        {
+            if(phone.getText().length()<10)
+            {
+                phone.setEditable(true);
+                phone.setBackground(Color.white);
+            }
+            else
+            {
+                phone.setEditable(false);
+                phone.setBackground(Color.white);
+            }
+        }
+        else
+        {
+            phone.setEditable(false);
+            phone.setBackground(Color.red);
+        }
+               
+
     }//GEN-LAST:event_phoneKeyPressed
 
     private void ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageKeyTyped
@@ -655,6 +679,29 @@ public class Teachers_Details extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_ageMouseClicked
+
+    private void ageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()>=KeyEvent.VK_2 && evt.getKeyCode()<=KeyEvent.VK_9 || evt.getKeyCode()==KeyEvent.VK_BACKSPACE || evt.getKeyCode()==KeyEvent.VK_DELETE)
+        {
+            if(age.getText().length()<2)
+            {
+                age.setEditable(true);
+                age.setBackground(Color.white);
+            }
+            else
+            {
+                age.setEditable(false);
+                age.setBackground(Color.white);
+            }
+        }
+        else
+        {
+            age.setEditable(false);
+            age.setBackground(Color.red);
+        }
+
+    }//GEN-LAST:event_ageKeyPressed
 
     /**
      * @param args the command line arguments

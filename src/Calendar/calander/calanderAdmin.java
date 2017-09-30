@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package calander;
+package Calendar.calander;
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,7 +32,7 @@ public class calanderAdmin extends javax.swing.JFrame {
     public calanderAdmin() {
         initComponents();
         
-        con=dbconnect.connect();
+        con=Profile.MainInterface.DBconnect.connect();
         tableLoad();
     }
     public void tableLoad(){
@@ -340,7 +340,7 @@ public class calanderAdmin extends javax.swing.JFrame {
        
                
                char key = (char) evt.getKeyCode();
-               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key>=evt.VK_0&&key<=evt.VK_9){
+               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key>=evt.VK_0&&key<=evt.VK_9)){
                    
                    jTextField1.setEditable(true);
                    jTextField1.setBackground(Color.white);
