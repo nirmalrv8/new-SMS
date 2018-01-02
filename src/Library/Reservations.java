@@ -35,8 +35,9 @@ public class Reservations extends javax.swing.JFrame {
         resDate.setEditable(false);
         Bname.setEditable(false);
         resno.setEditable(false);
-           search.setText(null);
-      
+          // search.setText(null);
+       lend.setEnabled(false);
+       del.setEnabled(false);
     }
 
     /**
@@ -65,9 +66,12 @@ public class Reservations extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         lend = new javax.swing.JButton();
         del = new javax.swing.JButton();
-        resno = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        resno = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -81,7 +85,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton7);
-        jButton7.setBounds(660, 500, 84, 60);
+        jButton7.setBounds(660, 500, 85, 59);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,7 +101,7 @@ public class Reservations extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(380, 60, 480, 403);
+        jScrollPane1.setBounds(410, 60, 450, 370);
 
         search.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         search.setText("Search Reserv Number");
@@ -123,7 +127,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(search);
-        search.setBounds(70, 30, 256, 20);
+        search.setBounds(80, 80, 256, 30);
 
         BorrowerID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +135,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BorrowerID);
-        BorrowerID.setBounds(190, 140, 178, 30);
+        BorrowerID.setBounds(210, 190, 178, 30);
 
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,13 +143,13 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(name);
-        name.setBounds(190, 190, 178, 20);
+        name.setBounds(210, 240, 178, 30);
         getContentPane().add(ISBN);
-        ISBN.setBounds(190, 230, 178, 20);
+        ISBN.setBounds(210, 280, 178, 30);
         getContentPane().add(Bname);
-        Bname.setBounds(190, 270, 178, 20);
+        Bname.setBounds(210, 320, 178, 30);
         getContentPane().add(resDate);
-        resDate.setBounds(190, 320, 178, 20);
+        resDate.setBounds(210, 370, 178, 30);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -153,7 +157,7 @@ public class Reservations extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Reserved no");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 90, 170, 30);
+        jLabel1.setBounds(30, 140, 170, 30);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -161,7 +165,7 @@ public class Reservations extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Name");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 180, 200, 30);
+        jLabel2.setBounds(30, 230, 200, 30);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -169,7 +173,7 @@ public class Reservations extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("ISBN");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 230, 200, 20);
+        jLabel3.setBounds(30, 280, 200, 20);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -177,7 +181,7 @@ public class Reservations extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Book Name");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 270, 200, 30);
+        jLabel4.setBounds(30, 320, 200, 30);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -185,7 +189,7 @@ public class Reservations extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Reserved Date");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 320, 200, 30);
+        jLabel5.setBounds(30, 370, 200, 30);
 
         jButton1.setText("Make Reservation");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +198,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(190, 420, 140, 26);
+        jButton1.setBounds(190, 420, 140, 23);
 
         lend.setText("Lend The Book");
         lend.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +207,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lend);
-        lend.setBounds(20, 420, 120, 26);
+        lend.setBounds(20, 420, 120, 23);
 
         del.setText("Delete Reservation");
         del.addActionListener(new java.awt.event.ActionListener() {
@@ -212,11 +216,7 @@ public class Reservations extends javax.swing.JFrame {
             }
         });
         getContentPane().add(del);
-        del.setBounds(100, 480, 140, 26);
-        getContentPane().add(resno);
-        resno.setBounds(190, 90, 180, 30);
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(-320, -20, 1910, 660);
+        del.setBounds(100, 480, 140, 23);
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("SansSerif", 3, 24)); // NOI18N
@@ -224,9 +224,30 @@ public class Reservations extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Borrowers Id");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(10, 140, 200, 30);
+        jLabel7.setBounds(30, 190, 200, 30);
+        getContentPane().add(resno);
+        resno.setBounds(210, 140, 180, 30);
 
-        setSize(new java.awt.Dimension(888, 605));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Library/newpackage/images/reload.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(810, 440, 50, 33);
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(-330, -20, 1910, 660);
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(10, 60, 390, 350);
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 870, 30);
+
+        setSize(new java.awt.Dimension(884, 605));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -248,7 +269,7 @@ public class Reservations extends javax.swing.JFrame {
         String Borrower = BorrowerID.getText();
         String Name = name.getText();
         String SBN= this.ISBN.getText();
-        int ISBN = Integer.parseInt(SBN);
+        long ISBN = Long.parseLong(SBN);
         String r = resno.getText();
        
         
@@ -340,6 +361,28 @@ public class Reservations extends javax.swing.JFrame {
        boolean ck=ps.execute();
         if(ck  != true){
             JOptionPane.showMessageDialog(null, "Succecfully deleted");
+            
+                        
+            
+                 String sql3= "Select Available_amount from book_details where ISBN ="+Long.parseLong(ISBN.getText());
+                 int Qun =0;              
+                 ps = con.prepareStatement(sql3);
+                               ResultSet rs1 =ps.executeQuery();
+                                 while (rs1.next()){
+                
+                                  Qun = rs1.getInt("Available_amount");
+                                    
+                                  }
+                                 Qun = Qun+1;
+                                 String sql4= "UPDATE  book_details SET Available_amount ="+Qun+" WHERE ISBN ="+Long.parseLong(ISBN.getText());
+                                 ps=con.prepareStatement(sql4);
+                                 ps.executeUpdate();
+                                 System.out.println("Done");
+            
+            
+            
+            
+            
         }else{
         JOptionPane.showMessageDialog(null, "Error");
         }
@@ -358,6 +401,10 @@ public class Reservations extends javax.swing.JFrame {
           this.dispose();
         new LibMain().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       tableload();
+    }//GEN-LAST:event_jButton2ActionPerformed
  public void changer(){
      
        
@@ -436,6 +483,7 @@ public class Reservations extends javax.swing.JFrame {
     private javax.swing.JTextField ISBN;
     private javax.swing.JButton del;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -444,6 +492,8 @@ public class Reservations extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton lend;

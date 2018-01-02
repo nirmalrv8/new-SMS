@@ -6,6 +6,7 @@
 package sport;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,10 +14,11 @@ import java.sql.SQLException;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import sun.reflect.LangReflectAccess;
 
 /**
  *
- * @author Ruvindi
+
  */
 public class AddCoaches extends javax.swing.JFrame {
     Connection conn=null;
@@ -111,9 +113,9 @@ public class AddCoaches extends javax.swing.JFrame {
         addressbox = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         Conbox = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +151,11 @@ public class AddCoaches extends javax.swing.JFrame {
                 NameboxActionPerformed(evt);
             }
         });
+        Namebox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NameboxKeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Coach ID");
 
@@ -164,6 +171,11 @@ public class AddCoaches extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Add Coaches");
@@ -172,10 +184,9 @@ public class AddCoaches extends javax.swing.JFrame {
 
         jLabel4.setText("Contact No");
 
-        jToggleButton1.setText("Back");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+        Conbox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ConboxKeyPressed(evt);
             }
         });
 
@@ -193,18 +204,27 @@ public class AddCoaches extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"))); // NOI18N
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -223,61 +243,56 @@ public class AddCoaches extends javax.swing.JFrame {
                                         .addComponent(Conbox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(addressbox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(497, 497, 497)
-                                .addComponent(jToggleButton1)))
-                        .addGap(53, 53, 53))))
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 15, Short.MAX_VALUE)
                 .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(Idbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(Namebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(Conbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(addressbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addComponent(SportCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(Idbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel2)
-                                            .addComponent(Namebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(27, 27, 27)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel4)
-                                            .addComponent(Conbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(25, 25, 25)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel3)
-                                            .addComponent(addressbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(30, 30, 30)
-                                        .addComponent(SportCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(19, 41, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
                             .addComponent(jButton1)
                             .addComponent(jButton3))
-                        .addGap(24, 24, 24))))
+                        .addGap(13, 13, 13))
+                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         pack();
@@ -289,35 +304,39 @@ public class AddCoaches extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        
+       // int x = JOptionPane.showConfirmDialog(null,"Do you want to Add a coach");
+        //
         String Coach_ID = Idbox.getText();
         String Name = Namebox.getText();
         String Contact_No = Conbox.getText();
         
         String Address = addressbox.getText();
         String Sport = SportCombo1.getSelectedItem() .toString();
+
+        
+        
+        
+        
+        
+        if("".equals(Coach_ID) || "".equals(Name) || "".equals(Coach_ID) || "".equals(Address) || "".equals(Sport) ){JOptionPane.showMessageDialog(null, "Enter all values");}
+           
+        else{
         try{
+            
+        int x = JOptionPane.showConfirmDialog(null,"Do you want to Add a coach");
+         if(x==0){   
         String q = "INSERT INTO coach (Coach_Name,Contact_No,Address,Sport) values ('"+Name+"', '"+Contact_No+"', '"+Address+"', '"+Sport+"')";
         pst = conn.prepareStatement(q);
-        pst.execute();
+        pst.execute();}
         }catch (Exception e){
         
         }
         tableload();
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        Sports A2 =new Sports ();
-        A2.setVisible(true);
-        this.dispose();
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        int x = JOptionPane.showConfirmDialog(null,"Do you want to update");
-        if(x==0){
         
             String Coach_ID = Idbox.getText();
             String Name = Namebox.getText();
@@ -325,6 +344,20 @@ public class AddCoaches extends javax.swing.JFrame {
         
             String Address = addressbox.getText();
             String Sport = SportCombo1.getSelectedItem() .toString();
+        
+       if(  "".equals(Coach_ID)||"".equals(Name)||"".equals(Contact_No)||"".equals(Address)||"".equals(Sport)){
+       JOptionPane.showMessageDialog(null, "Enter the all values");
+       }     
+       else{    
+        int x = JOptionPane.showConfirmDialog(null,"Do you want to update");
+        if(x==0){
+        
+//            String Coach_ID = Idbox.getText();
+//            String Name = Namebox.getText();
+//            String Contact_No = Conbox.getText();
+//        
+//            String Address = addressbox.getText();
+//            String Sport = SportCombo1.getSelectedItem() .toString();
             
             String sql = "UPDATE coach SET Coach_Name = '"+ Name +"' ,Contact_No = '"+ Contact_No +"', Address = '"+ Address +"', Sport = '"+ Sport +"' where Coach_id = '"+ Coach_ID+"'";
             try{
@@ -334,6 +367,7 @@ public class AddCoaches extends javax.swing.JFrame {
                 tableload();
             }catch(Exception e){
             }
+        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -362,6 +396,59 @@ public class AddCoaches extends javax.swing.JFrame {
     }  
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+            
+       
+    }//GEN-LAST:event_jButton1KeyPressed
+
+    private void ConboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ConboxKeyPressed
+      if(evt.getKeyCode()>=KeyEvent.VK_0 && evt.getKeyCode()<=KeyEvent.VK_9 || evt.getKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getKeyCode()==KeyEvent.VK_DELETE || evt.getKeyCode()==KeyEvent.VK_LEFT || evt.getKeyCode()==KeyEvent.VK_RIGHT)
+        {
+            if(Conbox.getText().length()<10 || evt.getKeyCode()==KeyEvent.VK_BACK_SPACE || evt.getKeyCode()==KeyEvent.VK_DELETE || evt.getKeyCode()==KeyEvent.VK_LEFT || evt.getKeyCode()==KeyEvent.VK_RIGHT)
+            {
+                Conbox.setEditable(true);
+                Conbox.setBackground(Color.white);
+                
+                
+            }
+            else
+            {
+                Conbox.setEditable(false);
+                Conbox.setBackground(Color.white);
+                
+            }
+        }
+        else
+        {
+            Conbox.setEditable(false);
+            Conbox.setBackground(Color.red);
+            
+        }
+    }//GEN-LAST:event_ConboxKeyPressed
+
+    private void NameboxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameboxKeyPressed
+        char key = evt.getKeyChar();
+        
+       if ((key>=evt.VK_A || key>=evt.VK_Z) || key == KeyEvent.VK_BACK_SPACE){
+           
+           Namebox.setEditable(true);
+           Namebox.setBackground(Color.WHITE);
+       }else
+       {
+         Namebox.setEditable(false);
+           Namebox.setBackground(Color.red);
+       
+       }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameboxKeyPressed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Sports A3 =new Sports ();
+        A3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     private boolean isName(String name){
         //check if the given striing contains onl letters and spaces
             for(int x=0;x<name.length();x++){
@@ -374,10 +461,10 @@ public class AddCoaches extends javax.swing.JFrame {
     
     private boolean addressbox_validate(){
          if (addressbox.getText().isEmpty()){
-             addressbox.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.red));
+             //addressbox.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.red));
              return false;
         }else{
-            addressbox.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.green));
+           // addressbox.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.green));
             return true;
            
             
@@ -429,6 +516,7 @@ public class AddCoaches extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -437,6 +525,5 @@ public class AddCoaches extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

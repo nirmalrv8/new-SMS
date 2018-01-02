@@ -22,7 +22,7 @@ where DATEDIFF(UTC_DATE(),Due_date) > '0']]>
 	<field name="Name" class="java.lang.String"/>
 	<field name="Borrowed_date" class="java.sql.Date"/>
 	<field name="Due_date" class="java.sql.Date"/>
-	<field name="Book_isbn" class="java.lang.Integer"/>
+	<field name="Book_isbn" class="java.lang.Long"/>
 	<field name="Book_name" class="java.lang.String"/>
 	<field name="Days_Left" class="java.lang.Long"/>
 	<background>

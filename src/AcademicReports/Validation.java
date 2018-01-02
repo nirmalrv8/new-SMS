@@ -27,8 +27,14 @@ public class Validation {
             ps.setString(1, sid);
             r = ps.executeQuery();
             
+           // while(r.next()){
+            //String id=r.getString("regNum");
+              //  System.out.println(id);
+            //}
+            
                if(!r.isBeforeFirst())
-                return 1;
+               {
+                      return 1;}
         }
         
         catch(SQLException e){
@@ -44,7 +50,7 @@ public class Validation {
         ResultSet r=null;
         
         try {
-            ps =con.prepareStatement("select * from subject where subjectID = ? ");
+            ps =con.prepareStatement("select * from subject where subID = ? ");
             ps.setString(1, subid);
             r = ps.executeQuery();
             

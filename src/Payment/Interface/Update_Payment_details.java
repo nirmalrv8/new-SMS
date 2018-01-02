@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import mycode.dbconnect1;
+import Payment.Interface.dbconnect1;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.io.FileWriter;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -34,7 +37,7 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
         ot.setText(null);
         salary.setText(null);
         other.setText(null);
-        pid_se.setText(null);
+        tid_se.setText(null);
     }
     public void tableload(){
         
@@ -78,20 +81,44 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
         table = new javax.swing.JTable();
         pid = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        pid_se = new javax.swing.JTextField();
+        tid_se = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        jLabel1.setText("Teachers's ID");
+        tid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tidKeyPressed(evt);
+            }
+        });
+
+        jLabel1.setText("Teacher ID");
 
         jLabel2.setText("Payment ID");
 
         jLabel3.setText("OT Hours");
 
+        ot.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                otKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("Basic Salary");
 
+        salary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                salaryKeyPressed(evt);
+            }
+        });
+
         jLabel7.setText("Bonous");
+
+        other.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                otherKeyPressed(evt);
+            }
+        });
 
         add.setText("ADD");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +161,13 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
 
         pid.setText("ID");
 
-        jLabel8.setText("Payment ID");
+        jLabel8.setText("Teacher ID");
+
+        tid_se.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tid_seKeyPressed(evt);
+            }
+        });
 
         jButton3.setText("SEARCH");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +183,7 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setText("Clear");
+        jButton5.setText("Demo");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -183,8 +216,9 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
                                 .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)))
@@ -193,7 +227,7 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(pid_se, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tid_se, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(jButton3)
                                 .addGap(18, 18, 18)
@@ -214,7 +248,7 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pid_se, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tid_se, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3)
                             .addComponent(jButton5))
                         .addGap(18, 18, 18)
@@ -251,9 +285,9 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
                             .addComponent(add)
                             .addComponent(jButton1)
                             .addComponent(jButton2))
-                        .addGap(40, 40, 40)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,12 +295,34 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         
+        String PID = pid.getText();
         String TID = tid.getText();
         String OT = ot.getText();
         String Salary = salary.getText();
         String Other = other.getText();
+        String no="";
         
         try{
+            
+        FileWriter writer = new FileWriter(TID,true);
+           
+           writer.write(System.getProperty("line.separator"));
+           writer.write(System.getProperty("line.separator"));
+           writer.write("       ****                Your Payment Details Are here                 ****"+no);
+           writer.write(System.getProperty("line.separator"));
+            writer.write("**********************             Payment ID = "+PID+"                **********************");
+            writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Teacher ID = "+TID+"               **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             OT amount = "+OT+"                **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Salary amount = "+Salary+"          **********************"); 
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Bonous amount = "+Other+"       **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.close();    
+            
+            
               
         String q = "INSERT INTO teacher_payment(teachers_id,ot_hours,basic_salary,other) values('"+TID+"','"+OT+"','"+Salary+"','"+Other+"')";
         pst = con.prepareStatement(q);
@@ -363,10 +419,10 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        
-        String Pid = pid_se.getText();
+        String tID = tid_se.getText();
         
         try{
-            String sql ="SELECT payment_id,teachers_id,ot_hours,basic_salary,other FROM teacher_payment WHERE payment_id='"+Pid+"'";
+            String sql ="SELECT payment_id,teachers_id,ot_hours,basic_salary,other FROM teacher_payment WHERE teachers_id='"+tID+"'";
             pst = con.prepareStatement(sql);
             rs=pst.executeQuery();
             
@@ -386,10 +442,88 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        pid.setText("64");
+         tid.setText("t9");
+        ot.setText("3000");
+        salary.setText("35000");
+        other.setText("500");
        
-        reset();
-        tableload();
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void tidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tidKeyPressed
+       
+        int key = evt.getKeyCode();
+        
+        if(tid.getText().length()!=5 || key == KeyEvent.VK_BACK_SPACE){
+            tid.setEditable(true);
+            tid.setBackground(Color.white);
+        }else{
+            tid.setEditable(false);
+            tid.setBackground(Color.red);
+        }
+        
+    }//GEN-LAST:event_tidKeyPressed
+
+    private void tid_seKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tid_seKeyPressed
+        
+        int key = evt.getKeyCode();
+        
+        if(tid.getText().length()!=5 || key == KeyEvent.VK_BACK_SPACE){
+            tid.setEditable(true);
+            tid.setBackground(Color.white);
+        }else{
+            tid.setEditable(false);
+            tid.setBackground(Color.red);
+        }
+    }//GEN-LAST:event_tid_seKeyPressed
+
+    private void otKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_otKeyPressed
+        
+        char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0 && key<=evt.VK_9)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                   ot.setEditable(true);
+                   ot.setBackground(Color.white);
+               }
+               else{
+                    ot.setEditable(false);
+                    ot.setBackground(Color.red);
+               }
+        
+    }//GEN-LAST:event_otKeyPressed
+
+    private void salaryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_salaryKeyPressed
+        
+        
+        char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0 && key<=evt.VK_9)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                   salary.setEditable(true);
+                   salary.setBackground(Color.white);
+               }
+               else{
+                   salary.setEditable(false);
+                    salary.setBackground(Color.red);
+               }
+        
+    }//GEN-LAST:event_salaryKeyPressed
+
+    private void otherKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_otherKeyPressed
+        
+        char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0 && key<=evt.VK_9)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                   other.setEditable(true);
+                   other.setBackground(Color.white);
+               }
+               else{
+                   other.setEditable(false);
+                    other.setBackground(Color.red);
+               }
+        
+    }//GEN-LAST:event_otherKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
@@ -409,9 +543,9 @@ public class Update_Payment_details extends javax.swing.JInternalFrame {
     private javax.swing.JTextField ot;
     private javax.swing.JTextField other;
     private javax.swing.JLabel pid;
-    private javax.swing.JTextField pid_se;
     private javax.swing.JTextField salary;
     private javax.swing.JTable table;
     private javax.swing.JTextField tid;
+    private javax.swing.JTextField tid_se;
     // End of variables declaration//GEN-END:variables
 }

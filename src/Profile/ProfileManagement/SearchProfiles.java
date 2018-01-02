@@ -49,12 +49,20 @@ public class SearchProfiles extends javax.swing.JFrame {
     
     ButtonGroup group1 = new ButtonGroup();
     ButtonGroup group2 = new ButtonGroup();
-    public SearchProfiles() {
+    public SearchProfiles() {   
+        
+        
         initComponents();
         //jPanel3.setVisible(false);
         //jPanel1.setVisible(false);
         //jPanel2.setVisible(false);
-        setPreferredSize(new Dimension(800, 500));
+        
+        //clear the table
+        DefaultTableModel model = new DefaultTableModel(new String[]{}, 0);
+        model.setRowCount(0);
+        jTable1.setModel(model);
+        
+        setPreferredSize(new Dimension(850, 500));
         pack();
         setLocationRelativeTo(null);       
           
@@ -92,7 +100,7 @@ public class SearchProfiles extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton5 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -103,8 +111,11 @@ public class SearchProfiles extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,13 +127,18 @@ public class SearchProfiles extends javax.swing.JFrame {
                 jTextField1KeyPressed(evt);
             }
         });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(290, 150, 240, 30);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(550, 150, 73, 30);
 
         jRadioButton4.setText("Staff ID");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +156,10 @@ public class SearchProfiles extends javax.swing.JFrame {
         });
         jPanel2.add(jRadioButton5);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Student", "Teacher" }));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(260, 100, 190, 50);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Teacher" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -156,8 +175,13 @@ public class SearchProfiles extends javax.swing.JFrame {
                 jComboBox1PropertyChange(evt);
             }
         });
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(440, 60, 95, 22);
 
-        jLabel2.setText("Select which type you want to search");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Enter Keyword");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(170, 160, 100, 15);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,6 +197,9 @@ public class SearchProfiles extends javax.swing.JFrame {
         jTable1.setShowHorizontalLines(false);
         jTable1.setShowVerticalLines(false);
         jScrollPane2.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 229, 813, 240);
 
         jRadioButton1.setText("Reg No");
         jPanel1.add(jRadioButton1);
@@ -193,6 +220,9 @@ public class SearchProfiles extends javax.swing.JFrame {
         });
         jPanel1.add(jRadioButton3);
 
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(270, 100, 220, 30);
+
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Admin/image/WhatsApp Image 2017-08-20 at 21.00.30.jpeg"))); // NOI18N
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -201,6 +231,8 @@ public class SearchProfiles extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton8);
+        jButton8.setBounds(30, 60, 74, 59);
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -212,7 +244,7 @@ public class SearchProfiles extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 833, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
@@ -225,68 +257,18 @@ public class SearchProfiles extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(jLabel2)
-                        .addGap(47, 47, 47)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(322, 322, 322)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(322, 322, 322)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2)
-                    .addContainerGap()))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel2))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
-                .addComponent(jButton8)
-                .addGap(52, 52, 52))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(229, 229, 229)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(175, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(0, 0, 833, 30);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Select which type you want to search");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(170, 60, 233, 15);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Select Criteria");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(170, 110, 100, 15);
 
         pack();
         setLocationRelativeTo(null);
@@ -413,6 +395,12 @@ public class SearchProfiles extends javax.swing.JFrame {
             
             if(!re.isBeforeFirst()){
                 JOptionPane.showMessageDialog(null, "No users found");
+                
+                //clear the table
+                DefaultTableModel model = new DefaultTableModel(new String[]{}, 0);
+                model.setRowCount(0);
+                jTable1.setModel(model); 
+                
                 return;
             }
             
@@ -520,7 +508,7 @@ public class SearchProfiles extends javax.swing.JFrame {
         }
         if(jRadioButton2.isSelected()){
             char key = (char) evt.getKeyCode();
-               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+               if((key>=evt.VK_A && key<=evt.VK_Z)||(key == evt.VK_SHIFT)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
                    
                    jTextField1.setEditable(true);
                    jTextField1.setBackground(Color.white);
@@ -595,6 +583,8 @@ public class SearchProfiles extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

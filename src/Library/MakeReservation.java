@@ -45,6 +45,7 @@ public class MakeReservation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         BorrowerID = new javax.swing.JTextField();
         ISBN = new javax.swing.JTextField();
         noofbooks = new javax.swing.JComboBox<>();
@@ -55,9 +56,14 @@ public class MakeReservation extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 720, 40);
 
         BorrowerID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -76,8 +82,13 @@ public class MakeReservation extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BorrowerID);
-        BorrowerID.setBounds(330, 140, 240, 28);
+        BorrowerID.setBounds(340, 190, 240, 30);
 
+        ISBN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ISBNFocusLost(evt);
+            }
+        });
         ISBN.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ISBNKeyPressed(evt);
@@ -87,7 +98,7 @@ public class MakeReservation extends javax.swing.JFrame {
             }
         });
         getContentPane().add(ISBN);
-        ISBN.setBounds(330, 100, 240, 28);
+        ISBN.setBounds(340, 140, 240, 30);
 
         noofbooks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "1", "2" }));
         noofbooks.setName(""); // NOI18N
@@ -97,9 +108,9 @@ public class MakeReservation extends javax.swing.JFrame {
             }
         });
         getContentPane().add(noofbooks);
-        noofbooks.setBounds(330, 190, 90, 26);
+        noofbooks.setBounds(340, 250, 90, 30);
         getContentPane().add(resdate);
-        resdate.setBounds(330, 60, 240, 28);
+        resdate.setBounds(340, 90, 240, 30);
 
         reserve.setText("Reserve ");
         reserve.addItemListener(new java.awt.event.ItemListener() {
@@ -113,25 +124,31 @@ public class MakeReservation extends javax.swing.JFrame {
             }
         });
         getContentPane().add(reserve);
-        reserve.setBounds(330, 240, 120, 28);
+        reserve.setBounds(330, 350, 120, 23);
 
         jLabel3.setText("Borrower Id");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(190, 140, 80, 16);
+        jLabel3.setBounds(200, 200, 80, 14);
 
         jLabel2.setText("Number Of Books");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(190, 190, 110, 16);
+        jLabel2.setBounds(200, 260, 110, 14);
 
         jLabel4.setText("ISBN");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(190, 100, 80, 16);
+        jLabel4.setBounds(200, 140, 80, 14);
 
         jLabel5.setText("Reserved Date");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(190, 60, 90, 16);
+        jLabel5.setBounds(200, 90, 90, 14);
+
+        jLabel1.setBackground(new java.awt.Color(0, 102, 255));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -30, 730, 520);
+
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(160, 60, 460, 260);
 
         setSize(new java.awt.Dimension(736, 504));
         setLocationRelativeTo(null);
@@ -146,7 +163,7 @@ public class MakeReservation extends javax.swing.JFrame {
        
         String sBorrowerID = this.BorrowerID.getText();
         String sISBN = this.ISBN.getText();
-        int ISBN = Integer.parseInt(sISBN);
+        long ISBN = Long.parseLong(sISBN);
           String stringno =   noofbooks.getSelectedItem().toString();
           int selectedno = Integer.parseInt(stringno);
         System.out.println(selectedno);
@@ -187,6 +204,7 @@ public class MakeReservation extends javax.swing.JFrame {
                   quntity = quntity - selectedno;
                           if(count<2){
                    b1.makereservation(sBorrowerID, name, ISBN, Bname, resdate,quntity,selectedno);
+               
                      setnll();
                           }else{
 //               
@@ -224,7 +242,7 @@ public class MakeReservation extends javax.swing.JFrame {
     private void BorrowerIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BorrowerIDKeyPressed
           char key = evt.getKeyChar();
         
-        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)|| (key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE){
+        if ((key>=evt.VK_A || key >= evt.VK_Z) || (key == evt.VK_SPACE)|| (key >= evt.VK_NUMPAD0&& key <= evt.VK_NUMPAD9)||(key>=KeyEvent.VK_0&&key<=evt.VK_9) ||key == KeyEvent.VK_BACK_SPACE||key==KeyEvent.VK_CONTROL||key == KeyEvent.VK_V){
        
            BorrowerID.setEditable(true);
            BorrowerID.setBackground(Color.WHITE);
@@ -242,7 +260,7 @@ public class MakeReservation extends javax.swing.JFrame {
 
     private void ISBNKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyPressed
         int key = evt.getKeyCode();
-        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE){
+        if((key>=KeyEvent.VK_0&&key<=evt.VK_9)||(key>=KeyEvent.VK_NUMPAD0 &&key<=evt.VK_NUMPAD9) ||key == KeyEvent.VK_BACK_SPACE||key==KeyEvent.VK_CONTROL||key == KeyEvent.VK_V){
         
            ISBN.setEditable(true);
            ISBN.setBackground(Color.WHITE);
@@ -298,6 +316,37 @@ public class MakeReservation extends javax.swing.JFrame {
              changer();
         System.out.println("dasdsd");
     }//GEN-LAST:event_BorrowerIDFocusLost
+
+    private void ISBNFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ISBNFocusLost
+        int number = 0;
+        String bname = null;
+        PreparedStatement pst;
+        Connection con = DBconnect.connect();
+        ResultSet rs;
+        
+        try {
+            String sql = "Select Available_amount , Name from book_details where ISBN = " + Long.parseLong(ISBN.getText());
+            pst = con.prepareStatement(sql);
+           rs = pst.executeQuery();
+            
+            while(rs.next()){
+                
+                   
+                    number = rs.getInt("Available_amount");
+                    bname=rs.getString("Name");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+//            System.out.println(number);
+           if(number<0){
+               ISBN.setText(null);
+               JOptionPane.showMessageDialog(null,"The Book You requesting is ("+bname+") is OUT OF STOCK");
+               
+           }
+           
+           
+    }//GEN-LAST:event_ISBNFocusLost
 
     
      public void setnll(){
@@ -363,6 +412,8 @@ public class MakeReservation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> noofbooks;
     private com.toedter.calendar.JDateChooser resdate;
     private javax.swing.JButton reserve;

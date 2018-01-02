@@ -46,46 +46,67 @@ public class Remove_Books extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        cat = new javax.swing.JTextField();
-        searchisbn = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        ISBN = new javax.swing.JTextField();
-        name1 = new javax.swing.JTextField();
-        pages = new javax.swing.JTextField();
-        qty = new javax.swing.JTextField();
         update = new javax.swing.JButton();
-        lang = new javax.swing.JTextField();
-        pr = new javax.swing.JTextField();
         remove = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        searchisbn = new javax.swing.JTextField();
+        pr = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cat = new javax.swing.JTextField();
+        lang = new javax.swing.JTextField();
+        qty = new javax.swing.JTextField();
+        pages = new javax.swing.JTextField();
+        name1 = new javax.swing.JTextField();
+        ISBN = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        cat.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                catActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        cat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                catKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                catKeyReleased(evt);
+        getContentPane().add(update);
+        update.setBounds(70, 420, 90, 40);
+
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
             }
         });
-        getContentPane().add(cat);
-        cat.setBounds(160, 300, 154, 20);
+        getContentPane().add(remove);
+        remove.setBounds(250, 420, 80, 40);
+
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel2MouseReleased(evt);
+            }
+        });
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(324, 8, 370, 40);
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         searchisbn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         searchisbn.setText("Search Book");
@@ -108,38 +129,81 @@ public class Remove_Books extends javax.swing.JFrame {
                 searchisbnKeyTyped(evt);
             }
         });
-        getContentPane().add(searchisbn);
-        searchisbn.setBounds(70, 20, 250, 20);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setText("ISBN");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(50, 100, 80, 20);
+        pr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prActionPerformed(evt);
+            }
+        });
+        pr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                prKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                prKeyReleased(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setText("Name");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 140, 70, 20);
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setText("Pages");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 180, 66, 19);
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel6.setText("Quntity");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(50, 220, 66, 19);
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel7.setText("Language");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(50, 260, 69, 19);
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setText("Price");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setText("Catagory");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(50, 300, 80, 19);
+
+        cat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catActionPerformed(evt);
+            }
+        });
+        cat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                catKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                catKeyReleased(evt);
+            }
+        });
+
+        lang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                langKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                langKeyReleased(evt);
+            }
+        });
+
+        qty.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                qtyKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                qtyKeyReleased(evt);
+            }
+        });
+
+        pages.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pagesKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pagesKeyReleased(evt);
+            }
+        });
+
+        name1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                name1ActionPerformed(evt);
+            }
+        });
+        name1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                name1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                name1KeyReleased(evt);
+            }
+        });
 
         ISBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,120 +221,118 @@ public class Remove_Books extends javax.swing.JFrame {
                 ISBNKeyTyped(evt);
             }
         });
-        getContentPane().add(ISBN);
-        ISBN.setBounds(160, 100, 154, 20);
 
-        name1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name1ActionPerformed(evt);
-            }
-        });
-        name1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                name1KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                name1KeyReleased(evt);
-            }
-        });
-        getContentPane().add(name1);
-        name1.setBounds(160, 140, 154, 20);
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel7.setText("Language");
 
-        pages.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                pagesKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                pagesKeyReleased(evt);
-            }
-        });
-        getContentPane().add(pages);
-        pages.setBounds(160, 180, 154, 20);
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setText("Quntity");
 
-        qty.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                qtyKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                qtyKeyReleased(evt);
-            }
-        });
-        getContentPane().add(qty);
-        qty.setBounds(160, 220, 154, 20);
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setText("Pages");
 
-        update.setText("Update");
-        update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
-            }
-        });
-        getContentPane().add(update);
-        update.setBounds(60, 390, 90, 40);
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setText("Name");
 
-        lang.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                langKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                langKeyReleased(evt);
-            }
-        });
-        getContentPane().add(lang);
-        lang.setBounds(160, 260, 154, 20);
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setText("ISBN");
 
-        pr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prActionPerformed(evt);
-            }
-        });
-        pr.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                prKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                prKeyReleased(evt);
-            }
-        });
-        getContentPane().add(pr);
-        pr.setBounds(160, 340, 154, 20);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cat, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pr, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 23, Short.MAX_VALUE)
+                        .addComponent(searchisbn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lang, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pages, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(searchisbn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(name1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pages, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lang, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cat, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pr, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(22, 22, 22))
+        );
 
-        remove.setText("Remove");
-        remove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(remove);
-        remove.setBounds(217, 390, 80, 40);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(40, 40, 320, 370);
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setText("Price");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(50, 340, 80, 19);
+        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
-        jLabel1.setMaximumSize(new java.awt.Dimension(200, 100));
-        jLabel1.setMinimumSize(new java.awt.Dimension(200, 100));
-        jLabel1.setPreferredSize(new java.awt.Dimension(600, 466));
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-290, -20, 1040, 600);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
 
-        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel2MouseDragged(evt);
-            }
-        });
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel2MouseReleased(evt);
-            }
-        });
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 370, 40);
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 420, 30);
 
-        setSize(new java.awt.Dimension(392, 521));
+        setSize(new java.awt.Dimension(439, 572));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -281,22 +343,6 @@ public class Remove_Books extends javax.swing.JFrame {
     private void prActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prActionPerformed
-
-    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
-
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xmouse, y - ymouse);
-
-    }//GEN-LAST:event_jLabel2MouseDragged
-
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseReleased
 
     private void searchisbnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchisbnFocusGained
         searchisbn.setText(null);
@@ -310,7 +356,7 @@ public class Remove_Books extends javax.swing.JFrame {
        int number = 0;
       
         String sbn = ISBN.getText();
-        int IBN = Integer.parseInt(sbn);
+        long IBN = Long.parseLong(sbn);
         String name = name1.getText();
         String pagess = pages .getText();
         int pags = Integer.parseInt(pagess);
@@ -350,9 +396,13 @@ public class Remove_Books extends javax.swing.JFrame {
             Logger.getLogger(Add_Books.class.getName()).log(Level.SEVERE, null, ex);
         }
          //calculate new quntity and available books
-        number = number + quntity;
-        quntity = quntity + nwquntity;
-        boolean ck = false ;
+       // number = number + quntity;
+       // quntity = quntity + nwquntity;
+        if(quntity>=nwquntity){    //check for update
+            number = (quntity-nwquntity)+number;
+            
+            
+            boolean ck = false ;
             int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
                 if(out==0){ 
                     Book b1 = new Book();
@@ -362,8 +412,24 @@ public class Remove_Books extends javax.swing.JFrame {
                 }
                 if(ck == true)
                    setnll();
+        }else{
+             number = number - (nwquntity-quntity);
+            
+            
+            boolean ck = false ;
+            int out=JOptionPane.showConfirmDialog(null,"You really want to update?");
+                if(out==0){ 
+                    Book b1 = new Book();
+                           b1.add_Book(IBN, name, pagess, lang, cat, quntity, price, pags);
+                    ck = b1.update_book(IBN, name, date, lang, cat, quntity, number, pags, price);
+                 
+                }
+                if(ck == true)
+                   setnll();
+            
+            }
            changer();
-           changed();
+           //changed();
         
     }//GEN-LAST:event_updateActionPerformed
 
@@ -375,7 +441,7 @@ public class Remove_Books extends javax.swing.JFrame {
       
         String SBN = null;
          SBN = this.ISBN.getText();
-       int ISBN = Integer.parseInt(SBN);
+       long ISBN = Long.parseLong(SBN);
        Book b1 =new Book();
        Connection con = DBconnect.connect();
         try {
@@ -532,9 +598,9 @@ public class Remove_Books extends javax.swing.JFrame {
     private void searchisbnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchisbnKeyReleased
         setnll();
         try {
-              int search=0;
+              long search=0;
        String s = searchisbn.getText();
-       search = Integer.parseInt(s);
+       search = Long.parseLong(s);
         System.out.println(search);
           
           String sql = "SELECT ISBN,Name,Pages,Quntity,Language,Category,Price FROM book_details WHERE ISBN = "+search;
@@ -544,7 +610,7 @@ public class Remove_Books extends javax.swing.JFrame {
           ResultSet rs = pst.executeQuery();
                
                 while (rs.next()) {
-                int sbn = rs.getInt("ISBN");
+                long sbn = rs.getLong("ISBN");
                 ISBN.setText(String.valueOf(sbn));
                 String name=  rs.getString("Name");
                 name1.setText(name);
@@ -619,6 +685,21 @@ public class Remove_Books extends javax.swing.JFrame {
         
          changer();
     }//GEN-LAST:event_prKeyReleased
+
+    private void jLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseReleased
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xmouse, y - ymouse);
+    }//GEN-LAST:event_jLabel2MouseDragged
 
      public void changed(){
          if (!ISBN.getText().isEmpty()){
@@ -695,7 +776,6 @@ public class Remove_Books extends javax.swing.JFrame {
     private javax.swing.JTextField ISBN;
     private javax.swing.JTextField cat;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -704,6 +784,8 @@ public class Remove_Books extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField lang;
     private javax.swing.JTextField name1;
     private javax.swing.JTextField pages;

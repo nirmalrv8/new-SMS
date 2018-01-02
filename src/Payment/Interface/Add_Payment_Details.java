@@ -10,7 +10,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import mycode.dbconnect1;
+import Payment.Interface.dbconnect1;
+import static com.sun.mail.imap.SortTerm.FROM;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import net.proteanit.sql.DbUtils;
 import java.util.Properties;
 import javax.mail.Message;
@@ -20,8 +30,10 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.table.TableModel;
+import static javax.swing.text.html.HTML.Tag.SELECT;
 
 /**
  *
@@ -71,6 +83,9 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
        }
     
     }
+    
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,6 +119,8 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         SID = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.MatteBorder(null));
         setPreferredSize(new java.awt.Dimension(2048, 2048));
@@ -114,9 +131,21 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 92, 23));
 
         jLabel3.setText("Due_fees");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 92, 19));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 92, 19));
+
+        amount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                amountKeyPressed(evt);
+            }
+        });
         getContentPane().add(amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 90, -1));
-        getContentPane().add(fees, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 90, -1));
+
+        fees.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                feesKeyPressed(evt);
+            }
+        });
+        getContentPane().add(fees, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 90, -1));
 
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +153,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 73, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 73, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,7 +225,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         getContentPane().add(sid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         pid.setText("ID");
-        getContentPane().add(pid, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 20, -1));
+        getContentPane().add(pid, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 30, -1));
 
         update.setText("Update");
         update.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +233,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
                 updateActionPerformed(evt);
             }
         });
-        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
+        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +241,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
                 deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
@@ -223,8 +252,8 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, -1));
         getContentPane().add(pid_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 100, -1));
 
-        jLabel4.setText("Payment_ID");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 60, 20));
+        jLabel4.setText("Student_ID");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 70, 20));
 
         jLabel5.setText("Term");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 60, 30));
@@ -240,6 +269,12 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
 
         jLabel8.setText("SID");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 30, -1));
+
+        SID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SIDKeyPressed(evt);
+            }
+        });
         getContentPane().add(SID, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 10, 70, -1));
 
         jButton3.setText("Send Payment Details Through E-mail");
@@ -248,7 +283,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 250, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 250, -1));
 
         jButton2.setText("Clear");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -257,19 +292,56 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 60, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 60, 20));
+
+        jButton4.setText("Demo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        String PID = pid.getText();
         String sid = SID.getText();
         String Amount = amount.getText();
         String Fees = fees.getText();
         String Sem = term.getSelectedItem().toString();
         String Clz = clz.getSelectedItem().toString();
-        
+        String no="";
        try{
+           
+            FileWriter writer = new FileWriter(sid,true);
+            
+           
+            
+           writer.write(System.getProperty("line.separator")); 
+           writer.write(System.getProperty("line.separator"));
+           writer.write("       ****                Your Payment Details Are here                 ****"+no);
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************              PID = "+PID+"                 **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Student ID = "+sid+"               **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************              Amount = "+Amount+"                 **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Fees = "+Fees+"                   **********************"); 
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Semester = "+Sem+"                 **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.write("**********************             Class = "+Clz+"                    **********************");
+           writer.write(System.getProperty("line.separator"));
+           writer.close();    
+            
+           
+           
+           
+           
             String q = "INSERT INTO student_payment(student_ID,class,term,paid_amount,late_fees)values('"+sid+"','"+Clz+"','"+Sem+"','"+Amount+"','"+Fees+"')";
             
             pst = con.prepareStatement(q);
@@ -280,6 +352,17 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
        catch(Exception e){
            System.out.println("db add error");
        }
+
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
@@ -358,10 +441,10 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
      
-        String Pid= pid_search.getText();
+        String sid= pid_search.getText();
         try{
             
-            String sql="SELECT payment_id,student_ID,paid_amount,late_fees FROM student_payment WHERE payment_id ='"+Pid+"' ";
+            String sql="SELECT payment_id,student_ID,paid_amount,late_fees FROM student_payment WHERE student_ID='"+sid+"' ";
         
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -395,6 +478,72 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
         tableload();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void SIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SIDKeyPressed
+        
+        int key = evt.getKeyCode();
+        
+        if(SID.getText().length()!=5 || key == KeyEvent.VK_BACK_SPACE){
+            SID.setEditable(true);
+            SID.setBackground(Color.white);
+        }else{
+            SID.setEditable(false);
+            SID.setBackground(Color.red);
+        }
+        
+    }//GEN-LAST:event_SIDKeyPressed
+
+    private void amountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountKeyPressed
+        
+        
+        
+         char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0 && key<=evt.VK_9)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                   amount.setEditable(true);
+                   amount.setBackground(Color.white);
+               }
+               else{
+                    amount.setEditable(false);
+                    amount.setBackground(Color.red);
+               }
+        
+        
+        
+        
+    }//GEN-LAST:event_amountKeyPressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        
+        amount.setText("30000");
+        fees.setText("1500");
+        pid.setText("23");
+        SID.setText("006");
+        clz.setSelectedItem("7");
+        term.setSelectedItem("2");
+        
+        
+    
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void feesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_feesKeyPressed
+        
+        char key = (char) evt.getKeyCode();
+               if((key>=evt.VK_0 && key<=evt.VK_9)||(key == evt.VK_BACK_SPACE)||(key == evt.VK_SPACE)||(key==evt.VK_ENTER)){
+                   
+                   fees.setEditable(true);
+                   fees.setBackground(Color.white);
+               }
+               else{
+                    fees.setEditable(false);
+                    fees.setBackground(Color.red);
+               }
+        
+    }//GEN-LAST:event_feesKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SID;
     private javax.swing.JTextField amount;
@@ -404,6 +553,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -411,6 +561,7 @@ public class Add_Payment_Details extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel pid;
     private javax.swing.JTextField pid_search;

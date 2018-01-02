@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Borrower {
     String borrowerId;
-    int ISbn;
+    long ISbn;
     String BookName;
     String BorrowersName;
     String status = "Borrowed";
@@ -30,7 +30,7 @@ public class Borrower {
 //            Status        
 //
 
-    void setBorrower(String borrowID , String BorowName,int Isbn,String due,String re){
+    void setBorrower(String borrowID , String BorowName,long Isbn,String due,String re){
     
        
         this.BorrowersName = BorowName;
@@ -62,7 +62,9 @@ public class Borrower {
                         System.out.println(sql2);
                         PreparedStatement ps2 = con.prepareStatement(sql2);
                       ps2.execute();
-                      JOptionPane.showMessageDialog(null," Borowed Details Stored Suddessfully" );
+                       int no = this.get_lend_number();
+                      
+                      JOptionPane.showMessageDialog(null," Borowed Details Stored Suddessfully \n And your lend number is "+no );
                         
                       removere(num);
                       
@@ -83,7 +85,7 @@ public class Borrower {
         
     
     }
-    void updateStatus(int ID ,int isb ){
+    void updateStatus(int ID ,long isb ){
          PreparedStatement ps,ps2,pst,ps3;
         ResultSet rs , rs1;
         Connection con = DBconnect.connect();
@@ -162,5 +164,29 @@ public class Borrower {
                      }
                      
     }
+    int get_lend_number(){
+ 
+    int number = 0;
+    String sql = "Select Max(lend_no) as 'No' from borrowers_details ";
+            try {
+                DBconnect db = new DBconnect();
+                Connection  con = db. connect();
+                PreparedStatement pst= con.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next()){
+                      number = rs.getInt("No");
+                    return number;
+                }
+                
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return number;
+}
+    
+
+    
+    
+    
     
 }

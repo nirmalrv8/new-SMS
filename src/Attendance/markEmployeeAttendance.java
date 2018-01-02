@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance;
+package Attendance;
 
-import codes.DBconnect;
+
 import com.mysql.jdbc.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -54,9 +53,9 @@ public class markEmployeeAttendance extends javax.swing.JFrame {
         calc_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         empAtt_table = new javax.swing.JTable();
-        date_txt = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        date_txt = new com.toedter.calendar.JDateChooser();
 
         jButton1.setText("jButton1");
 
@@ -137,15 +136,15 @@ public class markEmployeeAttendance extends javax.swing.JFrame {
         empAtt_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(empAtt_table);
         if (empAtt_table.getColumnModel().getColumnCount() > 0) {
-            empAtt_table.getColumnModel().getColumn(0).setMinWidth(100);
-            empAtt_table.getColumnModel().getColumn(0).setPreferredWidth(100);
+            empAtt_table.getColumnModel().getColumn(0).setMinWidth(200);
+            empAtt_table.getColumnModel().getColumn(0).setPreferredWidth(200);
             empAtt_table.getColumnModel().getColumn(0).setMaxWidth(100);
-            empAtt_table.getColumnModel().getColumn(1).setMinWidth(150);
-            empAtt_table.getColumnModel().getColumn(1).setPreferredWidth(150);
-            empAtt_table.getColumnModel().getColumn(1).setMaxWidth(150);
-            empAtt_table.getColumnModel().getColumn(2).setMinWidth(100);
-            empAtt_table.getColumnModel().getColumn(2).setPreferredWidth(100);
-            empAtt_table.getColumnModel().getColumn(2).setMaxWidth(100);
+            empAtt_table.getColumnModel().getColumn(1).setMinWidth(200);
+            empAtt_table.getColumnModel().getColumn(1).setPreferredWidth(200);
+            empAtt_table.getColumnModel().getColumn(1).setMaxWidth(250);
+            empAtt_table.getColumnModel().getColumn(2).setMinWidth(150);
+            empAtt_table.getColumnModel().getColumn(2).setPreferredWidth(150);
+            empAtt_table.getColumnModel().getColumn(2).setMaxWidth(150);
         }
 
         jButton2.setText("Get All");
@@ -164,35 +163,40 @@ public class markEmployeeAttendance extends javax.swing.JFrame {
             }
         });
 
+        date_txt.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jButton2)
-                                .addGap(125, 125, 125)
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(43, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(calc_btn)
-                        .addContainerGap(39, Short.MAX_VALUE))))
+                        .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jButton2)
+                        .addGap(35, 35, 35)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(calc_btn))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,20 +206,25 @@ public class markEmployeeAttendance extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(calc_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton2))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(calc_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(jButton7)
-                        .addGap(102, 102, 102)
-                        .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)))))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,93 +232,69 @@ public class markEmployeeAttendance extends javax.swing.JFrame {
 
     private void save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_btnActionPerformed
        
-        try
-        {
+         String checked = null,dt = null;
             for(int i=0; i<count; i++)
             {
                 
                 String eid=empAtt_table.getValueAt(i, 0).toString();
-                if(eid.equals(null)){
-                    eid="null";
-                }
-//                eid="null";
-    
-      
-                
-//                if(checked.equals(null)){
-//                    checked="null";
-//                }
-//                checked="false";   
-String checked;
-                try{
-                 checked=empAtt_table.getValueAt(i, 2).toString(); 
-                }
-                catch(NullPointerException ne){
-                    checked="false";
-                }
-                
-                String dt=((JTextField)date_txt.getDateEditor().getUiComponent()).getText();
-//                if(dt.equals(null)){
-//                    dt="null";
-//                }
-//                dt="null";
-                
-                System.out.println(eid);
-                System.out.println(checked);
-                System.out.println(dt);
-                
-            String sql="Insert into employee_attendance(Date_,empID,present) values(?,?,?) ";
-            pst =con.prepareStatement(sql);
-            pst.setString(1,dt);
-            pst.setString(2,eid);
-            pst.setString(3, checked);
-
-            pst.execute();
-           
+                checked=empAtt_table.getValueAt(i, 2).toString(); 
+                dt=((JTextField)date_txt.getDateEditor().getUiComponent()).getText();
+          
+               SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+               String dat=sdf.format(date_txt.getDate());
+               
+               Employee newemp=new Employee();
+               try{
+                   
+                   newemp.addRecords(dat, eid, checked);
+               
+               }
+               catch(Exception e)
+               {
+               
+                   System.out.println(e);
+               }
             }
-            
-            
-            JOptionPane.showMessageDialog(null, "Records saved succesfully");
-        }
-        catch(Exception e)
-        {
-        
-            System.out.println(e);
-        
-        }
-        
-        
-        
+            JOptionPane.showMessageDialog(null, "Records Inserted successfully !");
+ 
+               
+
     }//GEN-LAST:event_save_btnActionPerformed
 
+
+           
+    
+            
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          clearAllRows();
-        loadTable();
+         loadTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         if(jRadioButton1.isSelected()){
         try{
             
-            for(int i=0; i<count; i++){
+            for(int i=0; i<count; i++)
+            {
             
-            empAtt_table.setValueAt(true, i, 2);
+                empAtt_table.setValueAt(true, i, 2);
             }
        
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
+            }
+                catch(Exception e)
+                {
+                     System.out.println(e);
         
-        }
-        }
+                }
+            }
         else{
             try{
             
-            for(int i=0; i<count; i++){
+                 for(int i=0; i<count; i++)
+                 {
             
-            empAtt_table.setValueAt(false, i, 2);
-            }
+                    empAtt_table.setValueAt(false, i, 2);
+                 }
        
         }
         catch(Exception e)
@@ -322,28 +307,28 @@ String checked;
 
     private void calc_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calc_btnActionPerformed
         int present = 0;
-       int absent  = 0;
+             int absent  = 0;
        
        for(int i=0; i<count; i++){
-           if("true".equals(empAtt_table.getValueAt(i, 2).toString())){
-               present++;
-           }
-           else if("false".equals(empAtt_table.getValueAt(i, 2).toString())){
-               absent++;
-           }
+              if("true".equals(empAtt_table.getValueAt(i, 2).toString())){
+                       present++;
+                 }
+                    else if("false".equals(empAtt_table.getValueAt(i, 2).toString())){
+                            absent++;
+                        }
        }
-        markStudentAttendance.infoBox("present:" + present + " absent: " + absent + " ","TITLE BAR MESSAGE");
+                     markEmployeeAttendance.infoBox("present:" + present + " absent: " + absent + " ","TITLE BAR MESSAGE");
 
     }                                          
 
     public static void infoBox(String infoMsg,String titleBar){
-        JOptionPane.showMessageDialog(null, infoMsg , "Attendance count",JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog(null, infoMsg , "Attendance count",JOptionPane.INFORMATION_MESSAGE );
     
     }//GEN-LAST:event_calc_btnActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         new Admin.schoolsystem.Admin_Panel().setVisible(true);
-        this.dispose();
+            this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -398,35 +383,27 @@ String checked;
 
      private void loadTable() {
         DefaultTableModel mod=(DefaultTableModel)empAtt_table.getModel();
-        mod.setRowCount(10);
+             mod.setRowCount(10);
            
         try
            
         {
-         
-                     
-           
-            String q="select Teacher_ID, name  from teacher  ";
-            pst=con.prepareStatement(q);
-            rs=pst.executeQuery();
-            //System.out.println("ppp");
+
+            String q="select Emp_ID, name  from employee  ";
+                pst=con.prepareStatement(q);
+                    rs=pst.executeQuery();
+  
              
             int i=0;
             
             while(rs.next()){
             count++;
-                String col1=rs.getString("Teacher_Id");
-                String col2=rs.getString("name");
-//                String col3=rs.getString("department");
-//                String col4=rs.getString("designation");
-                
-               // System.out.println(col1+" "+col2+ " "+col3+" "+col4  );
-                empAtt_table.setValueAt(col1, i, 0);
-                empAtt_table.setValueAt(col2, i, 1);
-//                empAtt_table.setValueAt(col3, i, 2);
-//                empAtt_table.setValueAt(col4, i, 3);
-                            //System.out.println("ppp");
-                i++;
+              String col1=rs.getString("Emp_ID");
+                 String col2=rs.getString("name");
+
+               empAtt_table.setValueAt(col1, i, 0);
+                 empAtt_table.setValueAt(col2, i, 1);
+                    i++;
            
             }
           
@@ -444,7 +421,7 @@ String checked;
     private void clearAllRows() {
         
         DefaultTableModel mod=(DefaultTableModel)empAtt_table.getModel();
-        mod.setRowCount(0);
+             mod.setRowCount(0);
     
       
       }

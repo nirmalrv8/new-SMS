@@ -126,7 +126,7 @@ public class ResetPassword extends javax.swing.JFrame {
 
       // create the mysql insert preparedstatement
       PreparedStatement preparedStmt = conn.prepareStatement(query);
-      preparedStmt.setString (1, txt1);
+      preparedStmt.setString (1, txt2);
       preparedStmt.setString (2, email);      
 
       // execute the preparedstatement

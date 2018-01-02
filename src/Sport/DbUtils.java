@@ -5,10 +5,17 @@
  */
 package sport;
 
+import java.sql.ResultSet;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Ruvindi
  */
 class DbUtils {
+
+    static TableModel resultSetToTableModel(ResultSet ra) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

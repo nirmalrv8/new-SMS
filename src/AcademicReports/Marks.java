@@ -14,6 +14,42 @@ import javax.swing.JOptionPane;
 
 
 public class Marks {
+    
+    
+    
+    
+    
+    public ResultSet getAll(){
+     Connection c;
+       c=DBclass.connect();
+       PreparedStatement ps;
+       ResultSet r=null;
+       try{
+       
+          
+          ps=c.prepareStatement("SELECT * FROM Marks");
+          
+          r = ps.executeQuery();
+          
+                   
+             return r;
+             
+          
+          }
+        catch(SQLException ex){
+          JOptionPane.showMessageDialog(null, ex);
+          return null;
+          }
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
       
     public void addMarks(String sId,String subId,double marks)
     {
@@ -40,6 +76,33 @@ public class Marks {
         
         
     }
+    
+    
+    
+    
+    
+    
+    public void sendNotification(String regNum,String subid)
+    {
+                Connection con=DBclass.connect();
+        PreparedStatement ps;
+        try {
+            
+            ps=con.prepareStatement("INSERT INTO notification(regNum,message) VALUES(?,?)");
+            ps.setString(1, regNum);
+            ps.setString(2, subid+" result was published");
+                       
+            ps.execute();
+            
+           // JOptionPane.showMessageDialog(null,"Successfuly Send notification");
+        
+        }
+        catch (SQLException e) {
+        
+            JOptionPane.showMessageDialog(null,"wrong sql " + e.getMessage());
+        
+        }
+    }        
 
     
     
@@ -47,8 +110,9 @@ public class Marks {
     
 
 
-public ResultSet getMarks(String sId)
+public ResultSet getMarks(String sId,String grd)
 {
+       char grade=grd.charAt(0);
        Connection c;
        c=DBclass.connect();
        PreparedStatement ps;
@@ -56,13 +120,14 @@ public ResultSet getMarks(String sId)
        try{
        
           
-          ps=c.prepareStatement("SELECT * FROM Marks WHERE regNum = ?");
+          ps=c.prepareStatement("SELECT * FROM Marks WHERE regNum = ? and subjectID like ?");
           ps.setString(1, sId);
+          ps.setString(2, "%"+grade);
           
            r = ps.executeQuery();
           
-           if(!r.isBeforeFirst())
-              JOptionPane.showMessageDialog(null, "Invalid Student ID number.Enter Student ID number again");
+           //if(!r.isBeforeFirst())
+           //  JOptionPane.showMessageDialog(null, "Invalid Student ID number.Enter Student ID number again");
            
              return r;
           
@@ -80,10 +145,10 @@ public ResultSet getMarks(String sId)
 
 public void updateMarks(String sID,String subID,double marks){
 
-Connection c;
-PreparedStatement ps;
+    Connection c;
+    PreparedStatement ps;
 
-c=DBclass.connect();
+    c=DBclass.connect();
 try{
 
     ps = c.prepareStatement("update marks set results=? where subjectID=? and regNum=? ");
@@ -111,7 +176,9 @@ catch(SQLException e){
 
 public void removeMarks(String subiD,String siD)
 {
+    int r=JOptionPane.showConfirmDialog(null,"Do you want to delete this mark");
 
+    if(r == JOptionPane.YES_OPTION){
     PreparedStatement ps;
     Connection c;
     
@@ -126,6 +193,7 @@ public void removeMarks(String subiD,String siD)
         ps.execute();
         
         JOptionPane.showMessageDialog(null, "Successfully deleted");
+        
     }
     
     
@@ -133,8 +201,10 @@ public void removeMarks(String subiD,String siD)
             JOptionPane.showMessageDialog(null, e);
     }
     
-    
+ }
 }
+
+
 
 
 
@@ -165,6 +235,12 @@ public ResultSet getAnalysis(String subId){
     return r;
 }
  
+
+
+
+
+
+
 
 public ResultSet teacherViewResults(String subId){
 

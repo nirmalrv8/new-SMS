@@ -26,12 +26,7 @@ public class ChangeAdminPassword extends javax.swing.JFrame {
      */
     public ChangeAdminPassword() {
         initComponents();
-        con=Profile.MainInterface.DBconnect.connect();
-        
-        Toolkit toolkit = getToolkit();
-        Dimension size = toolkit.getScreenSize();
-        setLocation(size.width/2 - getWidth()/2, 
-        size.height/2 - getHeight()/2);
+        con=ConnectDB.connect();
     }
 
     void changepassword()
@@ -201,6 +196,7 @@ public class ChangeAdminPassword extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

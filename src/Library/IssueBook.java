@@ -28,11 +28,11 @@ public class IssueBook extends javax.swing.JFrame {
             setVisible(false);
              JTextFieldDateEditor editor = (JTextFieldDateEditor) duedate.getDateEditor();
         editor.setEditable(false);
-        
+        changer();
     }
-    public IssueBook(String Borrower , String Name , int ISBN ,String res){
+    public IssueBook(String Borrower , String Name , long ISBN ,String res){
         initComponents();   
-    
+        changer();
         BorrowerID.setText(Borrower);
         this.Name.setText(Name);
         String sISBN = String.valueOf(ISBN);
@@ -70,6 +70,8 @@ public class IssueBook extends javax.swing.JFrame {
         res1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -79,18 +81,44 @@ public class IssueBook extends javax.swing.JFrame {
                 BorrowerIDFocusLost(evt);
             }
         });
+        BorrowerID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                BorrowerIDKeyReleased(evt);
+            }
+        });
         getContentPane().add(BorrowerID);
-        BorrowerID.setBounds(230, 70, 250, 28);
+        BorrowerID.setBounds(230, 70, 250, 30);
 
+        Name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NameFocusLost(evt);
+            }
+        });
         Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameActionPerformed(evt);
             }
         });
+        Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                NameKeyReleased(evt);
+            }
+        });
         getContentPane().add(Name);
-        Name.setBounds(230, 110, 250, 28);
+        Name.setBounds(230, 120, 250, 30);
+
+        ISBN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ISBNFocusLost(evt);
+            }
+        });
+        ISBN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ISBNKeyReleased(evt);
+            }
+        });
         getContentPane().add(ISBN);
-        ISBN.setBounds(230, 150, 250, 28);
+        ISBN.setBounds(230, 170, 250, 30);
 
         res2.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         getContentPane().add(res2);
@@ -104,9 +132,15 @@ public class IssueBook extends javax.swing.JFrame {
             }
         });
         getContentPane().add(issue);
-        issue.setBounds(260, 300, 190, 36);
+        issue.setBounds(260, 340, 190, 33);
+
+        duedate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                duedateFocusLost(evt);
+            }
+        });
         getContentPane().add(duedate);
-        duedate.setBounds(230, 190, 250, 28);
+        duedate.setBounds(230, 220, 250, 30);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -118,25 +152,33 @@ public class IssueBook extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel5.setText("Name");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 110, 140, 24);
+        jLabel5.setBounds(80, 120, 140, 24);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel6.setText("ISBN");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(80, 150, 70, 24);
+        jLabel6.setBounds(80, 170, 70, 24);
 
         res1.setText("Reservation number");
         getContentPane().add(res1);
-        res1.setBounds(570, 70, 120, 16);
+        res1.setBounds(570, 70, 120, 14);
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel7.setText("Due Date");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(80, 190, 100, 24);
+        jLabel7.setBounds(80, 220, 100, 24);
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -10, 850, 470);
+        jLabel1.setBounds(-60, 40, 850, 470);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Details"));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(50, 50, 460, 240);
+
+        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 840, 30);
 
         setSize(new java.awt.Dimension(860, 494));
         setLocationRelativeTo(null);
@@ -150,7 +192,7 @@ public class IssueBook extends javax.swing.JFrame {
          
          String name = Name.getText();
          String SBN = this.ISBN.getText();
-         int ISBN1 = Integer.parseInt(SBN);
+         long ISBN1 = Long.parseLong(SBN);
          String Borrower =BorrowerID.getText();
          Borrower bo1 = new Borrower();
          String reso =res2.getText();
@@ -191,12 +233,15 @@ public class IssueBook extends javax.swing.JFrame {
 
             System.out.println(date);
 
-         bo1.setBorrower(Borrower, name, ISBN1,date,reso);
+            if(name.equals("")||ISBN1 == 0||Borrower == ""){
+                    JOptionPane.showMessageDialog(null,"Please fill all the fields \n");
+            }else{
+                  bo1.setBorrower(Borrower, name, ISBN1,date,reso);
       
-         bo1.StoreBorrowerRecord(number);
-        
+                       bo1.StoreBorrowerRecord(number);
+            }
            }
-         
+         set_null();
         
     }//GEN-LAST:event_issueActionPerformed
 
@@ -229,9 +274,56 @@ public class IssueBook extends javax.swing.JFrame {
                   } catch (Exception e) {
                       System.out.println(e);
                      }
-        
+        changer();
     }//GEN-LAST:event_BorrowerIDFocusLost
 
+    private void NameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameFocusLost
+        // TODO add your handling code 
+        changer();
+    }//GEN-LAST:event_NameFocusLost
+
+    private void ISBNFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ISBNFocusLost
+        // TODO add your handling code here:
+        changer();
+    }//GEN-LAST:event_ISBNFocusLost
+
+    private void duedateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_duedateFocusLost
+        // TODO add your handling code here:
+        changer();
+    }//GEN-LAST:event_duedateFocusLost
+
+    private void BorrowerIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BorrowerIDKeyReleased
+       changer();
+    }//GEN-LAST:event_BorrowerIDKeyReleased
+
+    private void NameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameKeyReleased
+        changer();       
+    }//GEN-LAST:event_NameKeyReleased
+
+    private void ISBNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ISBNKeyReleased
+        // TODO add your handling code here:
+        changer();
+    }//GEN-LAST:event_ISBNKeyReleased
+
+    void set_null(){
+        BorrowerID.setText(null);
+        Name.setText(null);
+        ISBN.setText(null);
+        duedate.setDate(null);
+    }
+    public void changer(){
+      JTextField pubd=(JTextField)this.duedate.getDateEditor().getUiComponent();
+         String dat = pubd.getText();
+         System.out.println("sdasdasdsd:"+dat);
+      if (!ISBN.getText().isEmpty()&&!BorrowerID.getText().isEmpty()&&!dat.isEmpty()&&!Name.getText().isEmpty()){
+             issue.setEnabled(true);
+           
+         }
+         else {
+               issue.setEnabled(false);
+           
+         }
+     }
     /**
      * @param args the command line arguments
      */
@@ -278,6 +370,8 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel res1;
     private javax.swing.JLabel res2;
     // End of variables declaration//GEN-END:variables

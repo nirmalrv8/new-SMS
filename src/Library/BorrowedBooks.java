@@ -29,7 +29,7 @@ public class  BorrowedBooks extends Book{
     return amount;
     }
     
-    public void removwborrowed(int numb, int ISbn,int lend) {
+    public void removwborrowed(int numb, long ISbn,int lend) {
           Connection con = DBconnect.connect();
                    
                   try{
@@ -45,9 +45,9 @@ public class  BorrowedBooks extends Book{
                     } 
                      
                          try{
-                             numb=numb+1;
+                             numb=numb-1;
                              System.out.println(numb);
-                       String sql4 = " UPDATE book_details SET Available_amount = "+numb+" where ISBN ="+ISbn;
+                       String sql4 = " UPDATE book_details SET Quntity = "+numb+" where ISBN ="+ISbn;
                             
                       PreparedStatement   ps4 = con.prepareStatement(sql4);
                             ps4.execute();

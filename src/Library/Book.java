@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author LuCif3R
  */
 public class Book {
-    int ISBN;
+    long ISBN;
     int pages;
     String Book_name;
     String Pub_Year;
@@ -33,7 +33,7 @@ public class Book {
         ResultSet rest, rs;
     
     
-    void add_Book(int pISbn, String pname ,String pubYear , String language,String Catogry,int pquntity,double price1,int ppages){
+    void add_Book(long pISbn, String pname ,String pubYear , String language,String Catogry,int pquntity,double price1,int ppages){
     
         this.ISBN = pISbn;
         this.Book_name = pname;
@@ -74,7 +74,7 @@ public class Book {
         
     
     }
-    void remove_Book(int isbn){
+    void remove_Book(long isbn){
      con = DBconnect.connect();
         try {
             String sql = "DELETE FROM book_details WHERE ISBN ="+isbn;
@@ -93,7 +93,7 @@ public class Book {
 
     
     }
-    boolean update_book(int pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
+    boolean update_book(long pISbn , String name, String date,String lang , String cat, int quntity , int number , int pagess , double price){
      //System.out.println(pISbn+name+date+cat+lang+quntity+number+price);
       
         con = DBconnect.connect();
@@ -116,7 +116,7 @@ public class Book {
             }
            return false;
     }
-    void makereservation(String sBorrowerID , String name , int ISBN , String Bname , String resdate,int quntity , int no ) throws SQLException{
+    void makereservation(String sBorrowerID , String name , long ISBN , String Bname , String resdate,int quntity , int no ) throws SQLException{
         con =DBconnect.connect();
         PreparedStatement ps3,ps4;
                    try{     
@@ -133,8 +133,8 @@ public class Book {
                String sql4 = " UPDATE book_details SET Available_amount = "+quntity+" where ISBN ="+ISBN;
                ps4 = con.prepareStatement(sql4);
                ps4.execute();
-               
-               JOptionPane.showMessageDialog(null,"Reservation Stored Successfully");
+               int n = this.get_reserved_numb();
+               JOptionPane.showMessageDialog(null,"Reservation Stored Successfully \n Your Reservation number is "+n);
              }else{
                              
                   JOptionPane.showMessageDialog(null,"Error");
@@ -149,6 +149,28 @@ public class Book {
 
     
     }
+        int get_reserved_numb(){
+    
+        int number = 0;
+    String sql = "Select Max(ReserveNo) as 'No' from book_reservation ";
+            try {
+                DBconnect db = new DBconnect();
+                Connection  con = db. connect();
+                PreparedStatement pst= con.prepareStatement(sql);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next()){
+                      number = rs.getInt("No");
+                    return number;
+                }
+                
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return number;
+    
+    
+    }
+    
     
 
 }

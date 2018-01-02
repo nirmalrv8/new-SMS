@@ -3,23 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance;
+package Attendance;
 
-import codes.DBconnect;
+import Profile.MainInterface.Main;
 import java.awt.HeadlessException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.*;
 import java.sql.PreparedStatement;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -27,24 +25,25 @@ import javax.swing.table.TableColumnModel;
  */
 public class markStudentAttendance extends javax.swing.JFrame {
 
-    Connection con=null; 
-    PreparedStatement pst=null; 
-    ResultSet rs=null;
-    int count=0;
-           
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    int count = 0;
+
     /**
      * Creates new form markStudentAttendance
      */
     public markStudentAttendance() {
         initComponents();
-        
+        JTextField text = (JTextField) this.date_txt.getDateEditor().getUiComponent();
+        String dat = text.getText();
         //dbconnection
         con = DBconnect.connect();
-        
-        
-        
+        save_txt.setEnabled(false);
+        check();
+        System.out.println(dat);
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,8 +67,8 @@ public class markStudentAttendance extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
-        date_txt = new com.toedter.calendar.JDateChooser();
         jButton7 = new javax.swing.JButton();
+        date_txt = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +101,12 @@ public class markStudentAttendance extends javax.swing.JFrame {
         });
 
         grade_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        grade_txt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
+        grade_txt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6", "7", "8", "9", "10", "11" }));
+        grade_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                grade_txtActionPerformed(evt);
+            }
+        });
 
         class_txt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         class_txt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D", "E", "F" }));
@@ -121,7 +125,7 @@ public class markStudentAttendance extends javax.swing.JFrame {
         });
 
         go_txt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        go_txt.setText("Go");
+        go_txt.setText("Load");
         go_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 go_txtActionPerformed(evt);
@@ -214,6 +218,8 @@ public class markStudentAttendance extends javax.swing.JFrame {
             }
         });
 
+        date_txt.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -226,32 +232,33 @@ public class markStudentAttendance extends javax.swing.JFrame {
                         .addGap(115, 115, 115)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(grade_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(class_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(go_txt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rapid_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(save_txt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(calAtt_txt))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(grade_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(class_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(go_txt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rapid_btn)
+                .addGap(18, 18, 18)
+                .addComponent(save_txt)
+                .addGap(18, 18, 18)
+                .addComponent(calAtt_txt)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,150 +276,140 @@ public class markStudentAttendance extends javax.swing.JFrame {
                                 .addGap(15, 15, 15)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(grade_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(class_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(go_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(rapid_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(save_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                                    .addComponent(calAtt_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(grade_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(class_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(go_txt)
+                                    .addComponent(rapid_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(save_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(calAtt_txt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 20, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(date_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void calAtt_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calAtt_txtActionPerformed
-       int present = 0;
-       int absent  = 0;
-       
-       for(int i=0; i<count; i++){
-           if("true".equals(jTable1.getValueAt(i, 2).toString())){
-               present++;
-           }
-           else if("false".equals(jTable1.getValueAt(i, 2).toString())){
-               absent++;
-           }
-       }
-        markStudentAttendance.infoBox("present:" + present + " absent: " + absent + " ","TITLE BAR MESSAGE");
+        int present = 0;
+        int absent = 0;
+
+        for (int i = 0; i < count; i++) {
+            if ("true".equals(jTable1.getValueAt(i, 2).toString())) {
+                present++;
+            } else if ("false".equals(jTable1.getValueAt(i, 2).toString())) {
+                absent++;
+            }
+        }
+        markStudentAttendance.infoBox("Present: " + present + "    Absent: " + absent + " ", "TITLE BAR MESSAGE");
 
     }//GEN-LAST:event_calAtt_txtActionPerformed
 
-    public static void infoBox(String infoMsg,String titleBar){
-        JOptionPane.showMessageDialog(null, infoMsg , "Attendance count",JOptionPane.INFORMATION_MESSAGE );
+    public static void infoBox(String infoMsg, String titleBar) {
+        JOptionPane.showMessageDialog(null, infoMsg, "Attendance count", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void save_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_txtActionPerformed
 
-        
-        try{
-          
-            for( int i=0; i<count; i++)
-            {   
-                String checked=jTable1.getValueAt(i, 2).toString();                
-                
-                String adm=jTable1.getValueAt(i, 0).toString();
-               
-                String grd=grade_txt.getSelectedItem().toString();
-                String cls=class_txt.getSelectedItem().toString();
-                String dt=((JTextField)date_txt.getDateEditor().getUiComponent()).getText();
+        for (int i = 0; i < count; i++) {
+            String adm = jTable1.getValueAt(i, 0).toString();
+            String grd = grade_txt.getSelectedItem().toString();
+            String cls = class_txt.getSelectedItem().toString();
+            String checked = jTable1.getValueAt(i, 2).toString();
 
-                String sql="Insert into student_attendance(Date_,Grade,Class,Admission_No,present) values (?,?,?,?,?) ";
-                pst =con.prepareStatement(sql);
-                pst.setString(1,dt);  
-                pst.setString(2, grd);
-                pst.setString(3, cls);                
-                pst.setString(4, adm);     
-                pst.setString(5, checked);     
-                pst.execute();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dt = sdf.format(date_txt.getDate());
+
+
+            Student sd = new Student();
+            try {
+                
+                boolean stat = sd.addRecords(dt, grd, cls, adm, checked);
+//                if(stat==true){
+//                JOptionPane.showMessageDialog(null, "Records Inserted successfully !");
+//                return;
+//                }
+                if(stat==false)
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Error!Records already exist!","error",JOptionPane.ERROR_MESSAGE);
+                    return ;
+                }       
+            } catch (HeadlessException | SQLException e) {
                
-             
+                System.out.println(e);
             }
-            JOptionPane.showMessageDialog(null, "Records saved succesfully");
+     
+               
         }
-        catch(HeadlessException | SQLException e)
-        {
-        
-            System.out.println(e);
-        
-        }
-        
+              JOptionPane.showMessageDialog(null, "Records Inserted successfully !");
+
+
     }//GEN-LAST:event_save_txtActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        AttendanceHome ah=new AttendanceHome();
+
+        AttendanceHome ah = new AttendanceHome();
         ah.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void go_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_go_txtActionPerformed
-        
-        con=DBconnect.connect();
-        //System.out.println("lol");
+
+        con = DBconnect.connect();
         clearAllRows();
         loadTable();
 
-         
+
     }//GEN-LAST:event_go_txtActionPerformed
 
     private void rapid_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rapid_btnActionPerformed
-       
-        if(rapid_btn.isSelected()){
-        try{
-            
-            for(int i=0; i<count; i++){
-            
-            jTable1.setValueAt(true, i, 2);
+
+        if (rapid_btn.isSelected()) {
+            try {
+
+                for (int i = 0; i < count; i++) {
+                    jTable1.setValueAt(true, i, 2);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
             }
-       
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        
-        }
-        }
-        else{
-            try{
-            
-            for(int i=0; i<count; i++){
-            
-            jTable1.setValueAt(false, i, 2);
+        } else {
+            try {
+                for (int i = 0; i < count; i++) {
+                    jTable1.setValueAt(false, i, 2);
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
             }
-       
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        
-        }
         }
     }//GEN-LAST:event_rapid_btnActionPerformed
 
     private void class_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_class_txtActionPerformed
-        
+
     }//GEN-LAST:event_class_txtActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-     new Profile.MainInterface.Main().setVisible(true);
+        new Main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void grade_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grade_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_grade_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,7 +435,8 @@ public class markStudentAttendance extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
+        new markStudentAttendance().setVisible(true);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -459,70 +457,58 @@ public class markStudentAttendance extends javax.swing.JFrame {
     private javax.swing.JButton save_txt;
     // End of variables declaration//GEN-END:variables
 
-    public void loadTable(){
-        DefaultTableModel mod=(DefaultTableModel)jTable1.getModel();
+    public void loadTable() {
+        DefaultTableModel mod = (DefaultTableModel) jTable1.getModel();
         mod.setRowCount(35);
 //        clearAllRows();
-        String grd=grade_txt.getSelectedItem().toString();
+        String grd = grade_txt.getSelectedItem().toString();
         String cls = class_txt.getSelectedItem().toString();
-        String grdcls=grd+cls;
-        System.out.println(grdcls);
-        try
-            
-        {
-            String sql="select regNum,name from student where grade ='"+grdcls+"'";
-            
-            pst=con.prepareStatement(sql);
-           
-            rs=pst.executeQuery(sql);
-            
-            int i=0;
-            
-            while(rs.next()){
+
+        try {
+            String sql = "select regNum,name from student where grade ='" + grd + cls + "'";
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery(sql);
+            int i = 0;
+
+            while (rs.next()) {
                 count++;
-              
-                String col2=rs.getString("regNum");
-                String col3=rs.getString("name");
-                
-                
+
+                String col2 = rs.getString("regNum");
+                String col3 = rs.getString("name");
+
                 jTable1.setValueAt(col2, i, 0);
                 jTable1.setValueAt(col3, i, 1);
-                     
+
                 i++;
-           
+
             }
-          
-               
-        }
-        catch(SQLException e)
-        {
+
+        } catch (SQLException e) {
             System.out.println(e);
         }
-   
+
     }
+
     private void clearAllRows() {
-        
-        DefaultTableModel mod=(DefaultTableModel)jTable1.getModel();
-        mod.setRowCount(0);
-    
-      
-      }
-    public void mouseClicked(MouseEvent e){
-        
-        int col=jTable1.columnAtPoint(e.getPoint());
-        String colname=jTable1.getColumnName(col);
-        System.out.println("column index selected "+col+""+colname);
-//         TableColumnModel colmdl=jTable1.getColumnModel();
-//             int colModelIndex=colmdl.getColumnIndexAtX(e.getX());
-//             int modelIndex= colmdl.getColumn(colModelIndex).;
-//        
-            
 
-    
+        DefaultTableModel mod = (DefaultTableModel) jTable1.getModel();
+        mod.setRowCount(0);
+
     }
 
-        
-       
+    public void check() {
 
-    
+        JTextField text;
+
+        text = (JTextField) this.date_txt.getDateEditor().getUiComponent();
+        String dat = text.getText();
+
+        if (dat.equalsIgnoreCase(null) || dat.equalsIgnoreCase(" ")) {
+            save_txt.setEnabled(false);
+        } else {
+            save_txt.setEnabled(true);
+
+        }
+    }
+
 }
